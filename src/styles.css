@@ -312,7 +312,7 @@
 .animate-orbit-blink { animation: orbit-blink 1.1s steps(1) infinite; }
 .animate-orbit-fade-up { animation: orbit-fade-up 0.7s var(--ease-out-soft) both; }
 .animate-orbit-dash { stroke-dasharray: 6 8; animation: orbit-dash 8s linear infinite; }
-.animate-orbit-ping { animation: orbit-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.animate-orbit-ping { animation: orbit-ping 2.4s var(--ease-orbit) infinite; }
 .animate-orbit-ring { animation: orbit-ring 3s var(--ease-out-soft) infinite; }
 .animate-orbit-breathe { animation: orbit-breathe 12s ease-in-out infinite; }
 .animate-orbit-atmos-drift { animation: orbit-atmos-drift 40s ease-in-out infinite; }

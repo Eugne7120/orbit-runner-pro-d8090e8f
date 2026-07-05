@@ -48,7 +48,7 @@ export function Footer() {
           </div>
         </div>
         {cols.map((c) => (
-          <div key={c.title}>
+          <nav key={c.title} aria-label={c.title}>
             <div className="mb-3 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               {c.title}
             </div>
@@ -57,14 +57,14 @@ export function Footer() {
                 <li key={i.label}>
                   <Link
                     to={i.to}
-                    className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+                    className="rounded text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {i.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         ))}
       </div>
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 border-t border-border px-6 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center">

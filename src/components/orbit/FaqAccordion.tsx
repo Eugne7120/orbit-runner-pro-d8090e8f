@@ -9,12 +9,16 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
     <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface/40">
       {items.map((item, i) => {
         const isOpen = open === i;
+        const panelId = `faq-panel-${i}`;
+        const triggerId = `faq-trigger-${i}`;
         return (
           <div key={item.q}>
             <button
+              id={triggerId}
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-surface"
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
               aria-expanded={isOpen}
+              aria-controls={panelId}
             >
               <span className="font-display text-[15px] font-medium tracking-tight text-foreground">
                 {item.q}
@@ -26,6 +30,9 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
               </span>
             </button>
             <div
+              id={panelId}
+              role="region"
+              aria-labelledby={triggerId}
               className="grid transition-all duration-400 ease-[var(--ease-out-soft)]"
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >

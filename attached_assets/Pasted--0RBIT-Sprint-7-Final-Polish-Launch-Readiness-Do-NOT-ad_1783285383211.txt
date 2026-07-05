@@ -1,0 +1,389 @@
+# 0RBIT — Sprint 7
+## Final Polish & Launch Readiness
+
+Do NOT add any new pages.
+
+Do NOT introduce new features.
+
+Do NOT redesign the website.
+
+The goal of this sprint is to polish, refine, and unify every part of the website until it feels like a finished premium product.
+
+This sprint is about quality, consistency, motion, responsiveness, and attention to detail.
+
+---
+
+# Visual Consistency
+
+Review every page.
+
+Make sure every page follows the same visual language.
+
+Check:
+
+• spacing
+• border radius
+• shadows
+• glass effects
+• typography
+• card styles
+• icon sizing
+• button styles
+• hover effects
+
+Everything should feel like one design system.
+
+---
+
+# Remove Empty Areas
+
+Many sections still feel visually empty.
+
+Review every page.
+
+If a section has too much unused space:
+
+• add architectural background details
+• add subtle diagrams
+• add supporting cards
+• add technical visual elements
+
+Never leave large empty black areas.
+
+Every section should feel intentional.
+
+---
+
+# Improve Animations
+
+Review every animation.
+
+Improve timing.
+
+Improve easing.
+
+Improve smoothness.
+
+Animations should never feel repetitive.
+
+Avoid animations that constantly loop too aggressively.
+
+Everything should feel natural.
+
+---
+
+# Improve Scroll Experience
+
+Scrolling should feel premium.
+
+Review:
+
+• scroll smoothing
+
+• section transitions
+
+• fade effects
+
+• reveal animations
+
+• sticky elements
+
+Everything should feel seamless.
+
+---
+
+# Improve Micro Interactions
+
+Review every interactive element.
+
+Improve:
+
+Buttons
+
+Cards
+
+Navigation
+
+Tabs
+
+Accordion
+
+Sidebar
+
+Links
+
+Inputs
+
+Hover effects
+
+Focus states
+
+Loading states
+
+Everything should provide subtle feedback.
+
+---
+
+# Typography Polish
+
+Review every heading.
+
+Review every paragraph.
+
+Improve:
+
+line height
+
+spacing
+
+font weight
+
+text hierarchy
+
+alignment
+
+Long paragraphs should be broken into smaller readable blocks.
+
+---
+
+# Background Polish
+
+Review every page background.
+
+Ensure every page has:
+
+subtle architectural details
+
+animated connection lines
+
+slow moving signals
+
+soft gradients
+
+consistent depth
+
+No page should feel flat.
+
+---
+
+# Motion Consistency
+
+Every animation should share similar timing.
+
+Avoid random animation speeds.
+
+Use consistent easing.
+
+The entire website should feel like one system.
+
+---
+
+# Performance Optimization
+
+Optimize rendering.
+
+Reduce unnecessary animations.
+
+Avoid layout shifts.
+
+Reduce unnecessary re-renders.
+
+Lazy load where appropriate.
+
+Maintain smooth scrolling.
+
+The website should feel lightweight.
+
+---
+
+# Responsive Improvements
+
+Review every page on:
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+Fix:
+
+overflow
+
+spacing
+
+grid layouts
+
+card stacking
+
+navigation
+
+tables
+
+terminal components
+
+flow diagrams
+
+Everything should work beautifully on every screen size.
+
+---
+
+# Accessibility
+
+Improve accessibility.
+
+Review:
+
+contrast
+
+button size
+
+focus indicators
+
+keyboard navigation
+
+ARIA labels where appropriate
+
+semantic HTML
+
+---
+
+# Navigation
+
+Review the entire navigation experience.
+
+Improve:
+
+active page states
+
+hover animations
+
+mobile navigation
+
+footer navigation
+
+breadcrumb consistency
+
+Users should never feel lost.
+
+---
+
+# SEO
+
+Improve:
+
+page titles
+
+meta descriptions
+
+Open Graph metadata
+
+Twitter metadata
+
+structured data
+
+robots
+
+sitemap
+
+favicon consistency
+
+---
+
+# Loading Experience
+
+Improve loading states.
+
+Examples:
+
+Skeleton cards
+
+Soft fade transitions
+
+Loading placeholders
+
+Avoid blank screens.
+
+---
+
+# Final QA
+
+Review the entire website.
+
+Fix:
+
+visual bugs
+
+alignment issues
+
+inconsistent spacing
+
+broken animations
+
+responsive issues
+
+duplicate styles
+
+unused components
+
+unused code
+
+Ensure there are no placeholder texts remaining.
+
+Replace every Lorem Ipsum with meaningful content.
+
+---
+
+# Final Review Checklist
+
+The website should now feel like a complete AI infrastructure platform.
+
+Visitors should immediately understand:
+
+• What 0RBIT is
+
+• How the product works
+
+• How developers integrate it
+
+• How workers participate
+
+• How the token economy functions
+
+• Why the project is different
+
+Every page should feel alive.
+
+Every page should feel intentional.
+
+Every animation should have a purpose.
+
+Nothing should feel unfinished.
+
+Nothing should feel like a template.
+
+Nothing should feel like a crypto landing page.
+
+The final result should resemble a premium software company building decentralized AI infrastructure.
+
+---
+
+# Expected Result
+
+After this sprint:
+
+• The website is visually complete.
+
+• All pages feel connected.
+
+• Every section is polished.
+
+• Animations are smooth and consistent.
+
+• Mobile experience is excellent.
+
+• Performance is optimized.
+
+• The website is ready for public launch.

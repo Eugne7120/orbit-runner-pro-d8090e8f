@@ -9,6 +9,26 @@ import { MetricTile } from "@/components/orbit/MetricTile";
 import { RuntimeFeatures } from "@/components/orbit/RuntimeFeatures";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "0RBIT — The decentralized runtime for AI" },
+      {
+        name: "description",
+        content:
+          "Inference, routing and streaming across a global network of workers. AI infrastructure engineered for speed, precision and trust.",
+      },
+      { property: "og:title", content: "0RBIT — The decentralized runtime for AI" },
+      {
+        property: "og:description",
+        content: "A global mesh of workers routes every inference request to wherever it is cheapest, fastest and closest.",
+      },
+      { name: "twitter:title", content: "0RBIT — The decentralized runtime for AI" },
+      {
+        name: "twitter:description",
+        content: "Inference, routing and streaming across a global network of workers.",
+      },
+    ],
+  }),
   component: Home,
 });
 
