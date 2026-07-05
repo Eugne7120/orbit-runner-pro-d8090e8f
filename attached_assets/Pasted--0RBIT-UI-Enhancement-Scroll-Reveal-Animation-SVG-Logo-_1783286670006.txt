@@ -1,0 +1,221 @@
+# 0RBIT — UI Enhancement
+## Scroll Reveal Animation + SVG Logo Integration
+
+Do NOT redesign the website.
+
+Do NOT change the layout.
+
+Do NOT modify the design system.
+
+The goal of this update is to improve the overall user experience with premium scroll animations and replace all temporary branding assets with the official 0RBIT logo.
+
+---
+
+# Part 1 — Scroll Reveal Animation
+
+Implement smooth scroll reveal animations across the entire website.
+
+Every major section should animate into view only when it enters the viewport.
+
+Avoid animations that trigger repeatedly while scrolling.
+
+The animation should play once and remain visible.
+
+---
+
+## Reveal Style
+
+Use a subtle premium animation.
+
+Preferred animation:
+
+Fade In + Move Up
+
+Animation example:
+
+- opacity: 0 → 1
+- translateY: 32px → 0
+- slight blur → sharp
+- duration: 700–900ms
+- ease: ease-out
+
+The animation should feel elegant and modern.
+
+Never dramatic.
+
+---
+
+## Staggered Animation
+
+When multiple cards appear together,
+do not animate them simultaneously.
+
+Reveal each card with a small delay.
+
+Example:
+
+Card 1
+
+↓
+
+80ms
+
+↓
+
+Card 2
+
+↓
+
+80ms
+
+↓
+
+Card 3
+
+↓
+
+80ms
+
+↓
+
+Card 4
+
+This creates a premium cascading effect.
+
+---
+
+## Components That Should Reveal
+
+Apply reveal animations to:
+
+- Hero secondary content
+- Product cards
+- Feature cards
+- Documentation sections
+- API cards
+- Worker cards
+- Dashboard widgets
+- Pricing cards
+- FAQ items
+- CTA sections
+- Footer content
+
+Do NOT animate:
+
+Navbar
+
+Background
+
+Continuous runtime animations
+
+---
+
+## Performance
+
+Use Intersection Observer or an equivalent performant solution.
+
+Avoid expensive scroll listeners.
+
+Animations should remain smooth even on lower-end devices.
+
+Respect prefers-reduced-motion.
+
+---
+
+# Part 2 — Official SVG Logo
+
+Replace every temporary logo with the official SVG logo provided by the user.
+
+The SVG should become the single source of truth for branding.
+
+Use the SVG without modifying its proportions.
+
+Do not rasterize it.
+
+Keep it crisp on all screen sizes.
+
+---
+
+## Replace Logo Everywhere
+
+Use the SVG in:
+
+- Navbar
+- Footer
+- Mobile menu
+- Loading screen (if any)
+- Documentation
+- Company pages
+- Any placeholder logo
+
+Ensure all instances are consistent.
+
+---
+
+## Favicon
+
+Generate website favicons using the provided SVG.
+
+Include:
+
+- favicon.ico
+- favicon.svg
+- apple-touch-icon
+- 32×32 favicon
+- 16×16 favicon
+
+Update all favicon references in the HTML.
+
+The browser tab should display the new official logo.
+
+---
+
+## Metadata
+
+Update:
+
+- Open Graph image if applicable
+- Web manifest icons
+- Browser theme color
+- Application name
+
+Use the new brand identity consistently.
+
+---
+
+## Logo Animation
+
+Do NOT add flashy animations.
+
+Only allow:
+
+- subtle fade-in on page load
+- slight opacity transition on hover
+- optional 2–3° micro rotation or 1.02 scale on hover
+
+The logo should feel premium and restrained.
+
+---
+
+# Final QA
+
+Verify that:
+
+- Every old placeholder logo has been removed.
+- The SVG renders correctly on all browsers.
+- The favicon appears correctly.
+- Scroll reveal animations are smooth.
+- Animations do not conflict with existing runtime animations.
+- Mobile performance remains excellent.
+- No layout shifts are introduced.
+
+---
+
+# Expected Result
+
+After this update:
+
+- The website feels significantly more polished through subtle scroll reveal animations.
+- The official 0RBIT SVG logo is used consistently across the entire website.
+- The browser favicon matches the new brand identity.
+- The overall experience feels closer to a production-ready AI infrastructure platform.
