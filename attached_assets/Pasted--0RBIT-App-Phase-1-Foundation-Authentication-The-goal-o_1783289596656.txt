@@ -1,0 +1,465 @@
+# 0RBIT App
+## Phase 1 — Foundation & Authentication
+
+The goal of this phase is to build the foundation of the 0RBIT application.
+
+This is NOT the marketing website.
+
+This project must be built as a completely separate application hosted on:
+
+app.0rbit.ai
+
+Do NOT reuse the marketing website layout.
+
+The application should feel like a professional AI SaaS platform similar to ChatGPT, Claude, Cursor, or Vercel Dashboard, while maintaining the existing 0RBIT visual identity.
+
+---
+
+# Objective
+
+Build the application shell, authentication flow, routing, navigation, and user foundation.
+
+Do NOT implement AI chat yet.
+
+Do NOT build API features.
+
+Do NOT build Worker features.
+
+Do NOT implement token economy.
+
+Focus only on creating a solid production-ready application foundation.
+
+---
+
+# Tech Stack
+
+Use the existing stack of this project.
+
+Maintain clean architecture.
+
+Write reusable components.
+
+Organize the project for future scalability.
+
+---
+
+# Authentication
+
+Use Privy as the authentication provider.
+
+Supported login methods:
+
+- Phantom Wallet
+- Backpack Wallet
+- Solflare Wallet
+- Wallet Standard
+- X (Twitter)
+- Google
+
+The login experience should be modern, fast, and frictionless.
+
+No email/password authentication.
+
+---
+
+# Login Screen
+
+Create a beautiful authentication page.
+
+Layout:
+
+------------------------------------------------
+
+0RBIT Logo
+
+AI Infrastructure for Everyone
+
+Sign in to access the decentralized AI network.
+
+[ Continue with Wallet ]
+
+[ Continue with X ]
+
+[ Continue with Google ]
+
+Small footer:
+
+Powered by Privy
+
+------------------------------------------------
+
+The login screen should match the premium aesthetic of the main website.
+
+Dark.
+
+Minimal.
+
+Architectural.
+
+No unnecessary illustrations.
+
+---
+
+# Authentication Flow
+
+User opens:
+
+app.0rbit.ai
+
+↓
+
+If not authenticated
+
+↓
+
+Show Login Screen
+
+↓
+
+User selects Wallet or Social Login
+
+↓
+
+Authentication Success
+
+↓
+
+Redirect to Dashboard
+
+If already authenticated:
+
+Skip login completely.
+
+Go directly to Dashboard.
+
+---
+
+# Dashboard Layout
+
+Create the complete application shell.
+
+Desktop:
+
+------------------------------------------------
+
+Sidebar
+
+Topbar
+
+Main Content
+
+------------------------------------------------
+
+Mobile:
+
+Top Navigation
+
+↓
+
+Slide-out Sidebar
+
+↓
+
+Content
+
+The layout must already be fully responsive.
+
+---
+
+# Sidebar Navigation
+
+Build the permanent sidebar.
+
+Menu:
+
+🏠 Home
+
+💬 Chat
+
+📊 Dashboard
+
+💳 Credits
+
+──────────────
+
+🧩 API
+
+🚧 Coming Soon
+
+──────────────
+
+🖥 Workers
+
+🚧 Coming Soon
+
+──────────────
+
+🪙 Staking
+
+🚧 Coming Soon
+
+──────────────
+
+🧠 Workspace
+
+🚧 Coming Soon
+
+──────────────
+
+⚙ Settings
+
+The "Coming Soon" items should already exist as navigation entries but will not contain functionality yet.
+
+---
+
+# Top Navigation
+
+Create a clean top bar.
+
+Include:
+
+- Current Page Title
+- Search placeholder (UI only)
+- Credits Balance
+- Connected Wallet Status
+- User Avatar
+
+Example:
+
+Credits
+
+120
+
+Wallet
+
+Connected
+
+Avatar
+
+Do not display the full wallet address.
+
+Use shortened format.
+
+Example:
+
+9Kf2...X7Lm
+
+---
+
+# Home Dashboard
+
+Create a clean dashboard page.
+
+Display welcome information only.
+
+Sections:
+
+Welcome Card
+
+Recent Activity (placeholder)
+
+Usage Summary (placeholder)
+
+Network Status (placeholder)
+
+Quick Actions
+
+Everything is placeholder content.
+
+No AI features yet.
+
+---
+
+# Credits Widget
+
+Create a reusable credits component.
+
+Display:
+
+Current Credits
+
+Monthly Usage
+
+Remaining Credits
+
+Use animated number counters.
+
+The values can be dummy data.
+
+---
+
+# Settings Page
+
+Build the Settings UI.
+
+Include:
+
+Profile
+
+Appearance
+
+Language
+
+Connected Wallet
+
+Connected Accounts
+
+Security
+
+Notification Preferences
+
+All settings can be UI only.
+
+No backend implementation yet.
+
+---
+
+# User Profile
+
+Create a reusable profile component.
+
+Display:
+
+Avatar
+
+Display Name
+
+Wallet Address
+
+Connected Accounts
+
+Member Since
+
+The data may be mocked.
+
+---
+
+# Theme
+
+Maintain the existing 0RBIT visual language.
+
+Dark background.
+
+Glass surfaces.
+
+Soft blue accent.
+
+Premium spacing.
+
+Smooth animations.
+
+Avoid bright gradients.
+
+---
+
+# Responsive Design
+
+Fully support:
+
+Mobile
+
+Tablet
+
+Laptop
+
+Desktop
+
+The application must feel native on every device.
+
+---
+
+# Motion
+
+Use subtle UI animations.
+
+Examples:
+
+Page transitions
+
+Sidebar animation
+
+Hover effects
+
+Button interaction
+
+Card elevation
+
+Fade transitions
+
+Avoid excessive animation.
+
+---
+
+# Performance
+
+Lazy load pages.
+
+Optimize rendering.
+
+Use reusable components.
+
+Avoid unnecessary re-renders.
+
+Keep the app lightweight.
+
+---
+
+# Code Quality
+
+Use clean folder structure.
+
+Reusable components.
+
+Scalable architecture.
+
+Consistent naming.
+
+Prepare the project for future phases.
+
+---
+
+# Not Included In This Phase
+
+Do NOT build:
+
+- AI Chat
+- LLM Integration
+- File Upload
+- Streaming Response
+- API Platform
+- Worker Network
+- Wallet Economy
+- Token Integration
+- Image Generation
+
+Those features belong to future phases.
+
+---
+
+# Expected Result
+
+After completing this phase, the application should include:
+
+✅ Production-ready application shell
+
+✅ Privy authentication
+
+✅ Solana wallet login
+
+✅ Social login
+
+✅ Responsive dashboard
+
+✅ Sidebar navigation
+
+✅ Top navigation
+
+✅ Credits widget
+
+✅ Settings page
+
+✅ User profile
+
+✅ Coming Soon navigation placeholders
+
+The application should feel complete as a product foundation and be ready to begin Phase 2: 0RBIT Chat MVP.
