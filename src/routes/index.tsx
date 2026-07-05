@@ -64,10 +64,10 @@ function Home() {
             style={{ animationDelay: "220ms" }}
           >
             <Link
-              to="/developers"
+              to="/app/login"
               className="btn-sheen group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[14px] font-medium text-background transition-all duration-300 hover:bg-foreground/90 hover:scale-[1.01] shadow-[0_10px_30px_-10px_oklch(1_0_0/0.25)]"
             >
-              Start building
+              Start App
               <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
             </Link>
             <Link
