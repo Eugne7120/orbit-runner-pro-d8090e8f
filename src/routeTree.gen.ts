@@ -19,6 +19,8 @@ import { Route as DevelopersRouteImport } from './routes/developers'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ApiRouteImport } from './routes/api'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -70,30 +72,43 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsIndexRoute = DocsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsSlugRoute = DocsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => DocsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api': typeof ApiRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
-  '/docs': typeof DocsRoute
+  '/docs': typeof DocsRouteWithChildren
   '/manifesto': typeof ManifestoRoute
   '/pricing': typeof PricingRoute
   '/product': typeof ProductRoute
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/docs/$slug': typeof DocsSlugRoute
+  '/docs/': typeof DocsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api': typeof ApiRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
-  '/docs': typeof DocsRoute
   '/manifesto': typeof ManifestoRoute
   '/pricing': typeof PricingRoute
   '/product': typeof ProductRoute
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/docs/$slug': typeof DocsSlugRoute
+  '/docs': typeof DocsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -101,12 +116,14 @@ export interface FileRoutesById {
   '/api': typeof ApiRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
-  '/docs': typeof DocsRoute
+  '/docs': typeof DocsRouteWithChildren
   '/manifesto': typeof ManifestoRoute
   '/pricing': typeof PricingRoute
   '/product': typeof ProductRoute
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/docs/$slug': typeof DocsSlugRoute
+  '/docs/': typeof DocsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,18 +138,21 @@ export interface FileRouteTypes {
     | '/product'
     | '/runtime'
     | '/sitemap.xml'
+    | '/docs/$slug'
+    | '/docs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/api'
     | '/company'
     | '/developers'
-    | '/docs'
     | '/manifesto'
     | '/pricing'
     | '/product'
     | '/runtime'
     | '/sitemap.xml'
+    | '/docs/$slug'
+    | '/docs'
   id:
     | '__root__'
     | '/'
@@ -145,6 +165,8 @@ export interface FileRouteTypes {
     | '/product'
     | '/runtime'
     | '/sitemap.xml'
+    | '/docs/$slug'
+    | '/docs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -152,7 +174,7 @@ export interface RootRouteChildren {
   ApiRoute: typeof ApiRoute
   CompanyRoute: typeof CompanyRoute
   DevelopersRoute: typeof DevelopersRoute
-  DocsRoute: typeof DocsRoute
+  DocsRoute: typeof DocsRouteWithChildren
   ManifestoRoute: typeof ManifestoRoute
   PricingRoute: typeof PricingRoute
   ProductRoute: typeof ProductRoute
@@ -232,15 +254,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs/': {
+      id: '/docs/'
+      path: '/'
+      fullPath: '/docs/'
+      preLoaderRoute: typeof DocsIndexRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/$slug': {
+      id: '/docs/$slug'
+      path: '/$slug'
+      fullPath: '/docs/$slug'
+      preLoaderRoute: typeof DocsSlugRouteImport
+      parentRoute: typeof DocsRoute
+    }
   }
 }
+
+interface DocsRouteChildren {
+  DocsSlugRoute: typeof DocsSlugRoute
+  DocsIndexRoute: typeof DocsIndexRoute
+}
+
+const DocsRouteChildren: DocsRouteChildren = {
+  DocsSlugRoute: DocsSlugRoute,
+  DocsIndexRoute: DocsIndexRoute,
+}
+
+const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiRoute: ApiRoute,
   CompanyRoute: CompanyRoute,
   DevelopersRoute: DevelopersRoute,
-  DocsRoute: DocsRoute,
+  DocsRoute: DocsRouteWithChildren,
   ManifestoRoute: ManifestoRoute,
   PricingRoute: PricingRoute,
   ProductRoute: ProductRoute,
