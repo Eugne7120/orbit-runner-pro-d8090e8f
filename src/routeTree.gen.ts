@@ -14,7 +14,6 @@ import { Route as RuntimeRouteImport } from './routes/runtime'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ManifestoRouteImport } from './routes/manifesto'
-import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DevelopersRouteImport } from './routes/developers'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ApiRouteImport } from './routes/api'
@@ -45,11 +44,6 @@ const ManifestoRoute = ManifestoRouteImport.update({
   path: '/manifesto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DevelopersRoute = DevelopersRouteImport.update({
   id: '/developers',
   path: '/developers',
@@ -76,7 +70,6 @@ export interface FileRoutesByFullPath {
   '/api': typeof ApiRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
-  '/docs': typeof DocsRoute
   '/manifesto': typeof ManifestoRoute
   '/pricing': typeof PricingRoute
   '/product': typeof ProductRoute
@@ -88,7 +81,6 @@ export interface FileRoutesByTo {
   '/api': typeof ApiRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
-  '/docs': typeof DocsRoute
   '/manifesto': typeof ManifestoRoute
   '/pricing': typeof PricingRoute
   '/product': typeof ProductRoute
@@ -101,7 +93,6 @@ export interface FileRoutesById {
   '/api': typeof ApiRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
-  '/docs': typeof DocsRoute
   '/manifesto': typeof ManifestoRoute
   '/pricing': typeof PricingRoute
   '/product': typeof ProductRoute
@@ -115,7 +106,6 @@ export interface FileRouteTypes {
     | '/api'
     | '/company'
     | '/developers'
-    | '/docs'
     | '/manifesto'
     | '/pricing'
     | '/product'
@@ -127,7 +117,6 @@ export interface FileRouteTypes {
     | '/api'
     | '/company'
     | '/developers'
-    | '/docs'
     | '/manifesto'
     | '/pricing'
     | '/product'
@@ -139,7 +128,6 @@ export interface FileRouteTypes {
     | '/api'
     | '/company'
     | '/developers'
-    | '/docs'
     | '/manifesto'
     | '/pricing'
     | '/product'
@@ -152,7 +140,6 @@ export interface RootRouteChildren {
   ApiRoute: typeof ApiRoute
   CompanyRoute: typeof CompanyRoute
   DevelopersRoute: typeof DevelopersRoute
-  DocsRoute: typeof DocsRoute
   ManifestoRoute: typeof ManifestoRoute
   PricingRoute: typeof PricingRoute
   ProductRoute: typeof ProductRoute
@@ -197,13 +184,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ManifestoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/docs': {
-      id: '/docs'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/developers': {
       id: '/developers'
       path: '/developers'
@@ -240,7 +220,6 @@ const rootRouteChildren: RootRouteChildren = {
   ApiRoute: ApiRoute,
   CompanyRoute: CompanyRoute,
   DevelopersRoute: DevelopersRoute,
-  DocsRoute: DocsRoute,
   ManifestoRoute: ManifestoRoute,
   PricingRoute: PricingRoute,
   ProductRoute: ProductRoute,
