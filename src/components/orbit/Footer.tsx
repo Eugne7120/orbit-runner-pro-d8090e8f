@@ -9,6 +9,7 @@ const cols: { title: string; items: { label: string; to: string }[] }[] = [
       { label: "API", to: "/api" },
       { label: "Console", to: "/developers" },
       { label: "Pricing", to: "/pricing" },
+      { label: "Economy", to: "/economy" },
     ],
   },
   {

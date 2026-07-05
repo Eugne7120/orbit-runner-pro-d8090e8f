@@ -1,0 +1,408 @@
+# 0RBIT — Sprint 6
+## Build the $0RBIT Token Economy & Staking Experience
+
+Do NOT redesign the homepage.
+
+Do NOT change the design system.
+
+Do NOT modify typography.
+
+Do NOT change colors.
+
+Do NOT replace existing animations.
+
+The goal of this sprint is to build a premium Token Economy page that clearly explains how the $0RBIT ecosystem works.
+
+The page should feel like a real product economy, not a meme coin tokenomics page.
+
+Everything should be frontend only.
+
+No blockchain integration is required.
+
+---
+
+## Expand the Economy Page
+
+Transform the current Economy page into a complete experience.
+
+Explain:
+
+• Why the token exists
+
+• How value enters the ecosystem
+
+• How revenue flows
+
+• How staking works
+
+• Why workers stake
+
+• Why holders benefit
+
+Avoid long paragraphs.
+
+Use visual storytelling.
+
+---
+
+## Hero Section
+
+Create a premium hero.
+
+Title example:
+
+The Economy Behind Every Inference
+
+Subtitle:
+
+Every AI request contributes to a sustainable token economy powered by real compute usage.
+
+Add two CTA buttons:
+
+View Tokenomics
+
+Start Staking
+
+---
+
+## Value Flow Diagram
+
+Create a large animated flow diagram.
+
+Flow:
+
+User Purchases Credits
+
+↓
+
+AI Inference
+
+↓
+
+Platform Revenue
+
+↓
+
+Treasury
+
+↓
+
+50% Buyback & Burn
+
+↓
+
+50% USDC Rewards
+
+↓
+
+Stakers
+
+Use rounded nodes.
+
+Connection lines.
+
+Moving signal pulses.
+
+Everything should animate slowly.
+
+This should become the centerpiece of the page.
+
+---
+
+## Treasury Dashboard
+
+Create a dashboard showing live metrics.
+
+Examples:
+
+Treasury Balance
+
+Daily Revenue
+
+USDC Rewards
+
+Buyback Today
+
+Tokens Burned
+
+Active Stakers
+
+Staked Supply
+
+APR Estimate
+
+Values should animate naturally.
+
+No backend required.
+
+---
+
+## Token Utility Cards
+
+Create premium feature cards.
+
+Examples:
+
+Stake to Earn USDC
+
+Higher Worker Rewards
+
+Daily Free Credits
+
+Priority Job Allocation
+
+Governance Ready
+
+Deflationary Economy
+
+Cards should animate subtly on hover.
+
+---
+
+## Buyback & Burn Visualization
+
+Create a dedicated section.
+
+Show an animated cycle.
+
+Revenue
+
+↓
+
+Treasury
+
+↓
+
+Market Buyback
+
+↓
+
+Burn Address
+
+↓
+
+Reduced Supply
+
+Animate signals flowing through the diagram.
+
+Keep everything clean.
+
+---
+
+## Staking Preview
+
+Build a staking dashboard UI.
+
+Display:
+
+Current Balance
+
+Staked Balance
+
+Pending Rewards
+
+Estimated APR
+
+Claim Rewards Button
+
+Stake Button
+
+Unstake Button
+
+UI only.
+
+No wallet connection.
+
+---
+
+## Reward Distribution Timeline
+
+Create a horizontal timeline.
+
+Examples:
+
+00:00 UTC
+
+↓
+
+Treasury Update
+
+↓
+
+Buyback
+
+↓
+
+Burn
+
+↓
+
+Reward Distribution
+
+↓
+
+Staking Refresh
+
+Animate the progress indicator.
+
+Loop forever.
+
+---
+
+## Token Statistics
+
+Create statistic cards.
+
+Examples:
+
+Total Supply
+
+Circulating Supply
+
+Burned Supply
+
+Market Activity
+
+Daily Volume
+
+Staking Ratio
+
+Workers Staked
+
+Premium Workers
+
+Values should animate slowly.
+
+---
+
+## Economic Flywheel
+
+Create a visual flywheel.
+
+Usage
+
+↓
+
+Revenue
+
+↓
+
+Treasury
+
+↓
+
+Buyback
+
+↓
+
+Higher Token Value
+
+↓
+
+More Stakers
+
+↓
+
+More Workers
+
+↓
+
+Better Network
+
+↓
+
+More Usage
+
+Animate a signal continuously moving through the cycle.
+
+---
+
+## FAQ Section
+
+Add common questions.
+
+Examples:
+
+Why stake?
+
+How are rewards calculated?
+
+Where does revenue come from?
+
+How does buyback work?
+
+Is staking required?
+
+Use expandable accordion cards.
+
+---
+
+## Background
+
+Continue using the architectural animated background.
+
+For this page, subtly emphasize:
+
+Flow lines
+
+Treasury routing
+
+Signal movement
+
+Large rounded structures
+
+Never use coins floating.
+
+Never use crypto icons.
+
+Never use dollar graphics.
+
+---
+
+## Motion
+
+Animate:
+
+Flow diagrams
+
+Dashboard counters
+
+Timeline progress
+
+Signal pulses
+
+Card reveals
+
+Hover interactions
+
+Everything should remain smooth and minimal.
+
+---
+
+## Mobile Experience
+
+Fully responsive.
+
+Flow diagrams stack vertically.
+
+Dashboard cards resize naturally.
+
+Charts remain readable.
+
+---
+
+## Expected Result
+
+After this sprint:
+
+• Visitors immediately understand the value of $0RBIT.
+
+• The token economy feels transparent and sustainable.
+
+• The staking system looks trustworthy.
+
+• The buyback mechanism is easy to understand.
+
+• Visual storytelling explains the ecosystem better than long paragraphs.
+
+• The Economy page becomes one of the strongest investor-focused sections of the website.

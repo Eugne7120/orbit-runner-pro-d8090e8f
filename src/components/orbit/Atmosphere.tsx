@@ -33,7 +33,7 @@ function areaFromPath(pathname: string): Area {
   if (pathname.startsWith("/developers") || pathname.startsWith("/api")) return "developers";
   if (pathname.startsWith("/docs")) return "docs";
   if (pathname.startsWith("/product")) return "workers";
-  if (pathname.startsWith("/pricing")) return "economy";
+  if (pathname.startsWith("/pricing") || pathname.startsWith("/economy")) return "economy";
   if (pathname.startsWith("/company") || pathname.startsWith("/manifesto")) return "company";
   return "home";
 }

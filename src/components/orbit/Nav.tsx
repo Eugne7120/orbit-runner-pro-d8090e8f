@@ -10,6 +10,7 @@ const links = [
   { to: "/workers", label: "Workers" },
   { to: "/runtime", label: "Runtime" },
   { to: "/pricing", label: "Pricing" },
+  { to: "/economy", label: "Economy" },
   { to: "/manifesto", label: "Manifesto" },
 ];
 
