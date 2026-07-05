@@ -1,0 +1,223 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { AnimatePresence } from "motion/react";
+import { z } from "zod";
+import { ChatMessage } from "@/components/chat/ChatMessage";
+import { ChatComposer } from "@/components/chat/ChatComposer";
+import { ModelSelector } from "@/components/app/ModelSelector";
+import { chatStore, type Message } from "@/lib/chat-store";
+import { resolveModel, type OrbitModelId } from "@/lib/openai";
+import { Plus } from "lucide-react";
+
+export const Route = createFileRoute("/app/chat/$id")({
+  validateSearch: z.object({ q: z.string().optional() }),
+  component: ChatView,
+});
+
+async function streamChat(
+  messages: { role: string; content: string }[],
+  model: string,
+  onDelta: (d: string) => void,
+  signal: AbortSignal
+) {
+  const res = await fetch("/app-chat-api", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages, model }),
+    signal,
+  });
+  if (!res.ok || !res.body) throw new Error("Stream failed");
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    const lines = buf.split("\n");
+    buf = lines.pop() ?? "";
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      try {
+        const parsed = JSON.parse(line.slice(6));
+        if (parsed.content) onDelta(parsed.content);
+        if (parsed.done) return;
+        if (parsed.error) throw new Error(parsed.error);
+      } catch {}
+    }
+  }
+}
+
+function ChatView() {
+  const { id } = Route.useParams();
+  const { q } = Route.useSearch();
+  const navigate = useNavigate();
+
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [model, setModel] = useState<OrbitModelId>("0rbit-core");
+  const [input, setInput] = useState("");
+  const [streaming, setStreaming] = useState(false);
+  const [autoScroll, setAutoScroll] = useState(true);
+
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const didInitQ = useRef(false);
+
+  useEffect(() => {
+    const conv = chatStore.get(id);
+    if (!conv) { navigate({ to: "/app/chat" }); return; }
+    setMessages(conv.messages);
+    setModel((conv.model as OrbitModelId) ?? "0rbit-core");
+    didInitQ.current = false;
+  }, [id]);
+
+  useEffect(() => {
+    if (q && !didInitQ.current) {
+      didInitQ.current = true;
+      const conv = chatStore.get(id);
+      if (conv && conv.messages.length === 0) {
+        setTimeout(() => sendMessage(q), 150);
+      }
+    }
+  }, [q, id]);
+
+  useEffect(() => {
+    if (autoScroll) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, autoScroll]);
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setAutoScroll(el.scrollHeight - el.scrollTop - el.clientHeight < 80);
+  };
+
+  const sendMessage = useCallback(async (text: string) => {
+    if (!text.trim() || streaming) return;
+    setInput("");
+    setAutoScroll(true);
+
+    const userMsg = chatStore.addMessage(id, { role: "user", content: text });
+    setMessages((prev) => [...prev, userMsg]);
+
+    const assistantMsg = chatStore.addMessage(id, { role: "assistant", content: "" });
+    setMessages((prev) => [...prev, assistantMsg]);
+
+    setStreaming(true);
+    abortRef.current = new AbortController();
+
+    try {
+      const conv = chatStore.get(id);
+      const history = (conv?.messages ?? [])
+        .slice(0, -1)
+        .map((m) => ({ role: m.role, content: m.content }));
+
+      let full = "";
+      await streamChat(
+        history,
+        resolveModel(model),
+        (delta) => {
+          full += delta;
+          chatStore.updateLastMessage(id, full);
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = { ...updated[updated.length - 1], content: full };
+            return updated;
+          });
+        },
+        abortRef.current.signal
+      );
+    } catch (err: any) {
+      if (err?.name !== "AbortError") {
+        const errMsg = "Something went wrong. Please try again.";
+        chatStore.updateLastMessage(id, errMsg);
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { ...updated[updated.length - 1], content: errMsg };
+          return updated;
+        });
+      }
+    } finally {
+      setStreaming(false);
+      abortRef.current = null;
+    }
+  }, [id, model, streaming]);
+
+  const handleStop = () => {
+    abortRef.current?.abort();
+    setStreaming(false);
+  };
+
+  const handleRegenerate = useCallback(async () => {
+    const conv = chatStore.get(id);
+    if (!conv || conv.messages.length < 2) return;
+    const lastUser = [...conv.messages].reverse().find((m) => m.role === "user");
+    if (lastUser) sendMessage(lastUser.content);
+  }, [id, sendMessage]);
+
+  const handleModelChange = (m: OrbitModelId) => {
+    setModel(m);
+    chatStore.setModel(id, m);
+  };
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* Chat topbar */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-background/80 backdrop-blur-sm flex-shrink-0">
+        <ModelSelector value={model} onChange={handleModelChange} compact />
+        <button
+          onClick={() => {
+            const c = chatStore.create(model);
+            navigate({ to: "/app/chat/$id", params: { id: c.id } });
+          }}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-white/[0.05] border border-transparent hover:border-border transition-all"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          New chat
+        </button>
+      </div>
+
+      {/* Messages */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex-1 overflow-y-auto py-4"
+      >
+        <div className="max-w-3xl mx-auto">
+          <AnimatePresence initial={false}>
+            {messages.map((msg, i) => (
+              <ChatMessage
+                key={msg.id}
+                message={msg}
+                isStreaming={streaming && i === messages.length - 1 && msg.role === "assistant"}
+                onRegenerate={
+                  !streaming && msg.role === "assistant" && i === messages.length - 1
+                    ? handleRegenerate
+                    : undefined
+                }
+              />
+            ))}
+          </AnimatePresence>
+          <div ref={bottomRef} />
+        </div>
+      </div>
+
+      {/* Composer */}
+      <div className="flex-shrink-0 px-4 pb-4 pt-2 border-t border-border bg-background/80 backdrop-blur-sm">
+        <div className="max-w-3xl mx-auto">
+          <ChatComposer
+            value={input}
+            onChange={setInput}
+            onSubmit={() => sendMessage(input)}
+            onStop={handleStop}
+            isStreaming={streaming}
+            isEmpty={messages.length === 0}
+            model={model}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}

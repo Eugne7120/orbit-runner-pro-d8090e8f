@@ -19,10 +19,21 @@ import { Route as EconomyRouteImport } from './routes/economy'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DevelopersRouteImport } from './routes/developers'
 import { Route as CompanyRouteImport } from './routes/company'
+import { Route as AppConfigRouteImport } from './routes/app-config'
+import { Route as AppChatApiRouteImport } from './routes/app-chat-api'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as ApiRouteImport } from './routes/api'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppLoginRouteImport } from './routes/app.login'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppCreditsRouteImport } from './routes/app.credits'
+import { Route as AppChatRouteImport } from './routes/app.chat'
+import { Route as AppChatIndexRouteImport } from './routes/app.chat.index'
+import { Route as AppChatIdRouteImport } from './routes/app.chat.$id'
 
 const WorkersRoute = WorkersRouteImport.update({
   id: '/workers',
@@ -74,6 +85,21 @@ const CompanyRoute = CompanyRouteImport.update({
   path: '/company',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppConfigRoute = AppConfigRouteImport.update({
+  id: '/app-config',
+  path: '/app-config',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppChatApiRoute = AppChatApiRouteImport.update({
+  id: '/app-chat-api',
+  path: '/app-chat-api',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiRoute = ApiRouteImport.update({
   id: '/api',
   path: '/api',
@@ -89,15 +115,58 @@ const DocsIndexRoute = DocsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DocsRoute,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
 const DocsSlugRoute = DocsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => DocsRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLoginRoute = AppLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCreditsRoute = AppCreditsRouteImport.update({
+  id: '/credits',
+  path: '/credits',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppChatRoute = AppChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppChatIndexRoute = AppChatIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppChatRoute,
+} as any)
+const AppChatIdRoute = AppChatIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AppChatRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api': typeof ApiRoute
+  '/app': typeof AppRouteWithChildren
+  '/app-chat-api': typeof AppChatApiRoute
+  '/app-config': typeof AppConfigRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
   '/docs': typeof DocsRouteWithChildren
@@ -108,12 +177,22 @@ export interface FileRoutesByFullPath {
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/workers': typeof WorkersRoute
+  '/app/chat': typeof AppChatRouteWithChildren
+  '/app/credits': typeof AppCreditsRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/login': typeof AppLoginRoute
+  '/app/settings': typeof AppSettingsRoute
   '/docs/$slug': typeof DocsSlugRoute
+  '/app/': typeof AppIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/app/chat/$id': typeof AppChatIdRoute
+  '/app/chat/': typeof AppChatIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api': typeof ApiRoute
+  '/app-chat-api': typeof AppChatApiRoute
+  '/app-config': typeof AppConfigRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
   '/economy': typeof EconomyRoute
@@ -123,13 +202,23 @@ export interface FileRoutesByTo {
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/workers': typeof WorkersRoute
+  '/app/credits': typeof AppCreditsRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/login': typeof AppLoginRoute
+  '/app/settings': typeof AppSettingsRoute
   '/docs/$slug': typeof DocsSlugRoute
+  '/app': typeof AppIndexRoute
   '/docs': typeof DocsIndexRoute
+  '/app/chat/$id': typeof AppChatIdRoute
+  '/app/chat': typeof AppChatIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api': typeof ApiRoute
+  '/app': typeof AppRouteWithChildren
+  '/app-chat-api': typeof AppChatApiRoute
+  '/app-config': typeof AppConfigRoute
   '/company': typeof CompanyRoute
   '/developers': typeof DevelopersRoute
   '/docs': typeof DocsRouteWithChildren
@@ -140,14 +229,25 @@ export interface FileRoutesById {
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/workers': typeof WorkersRoute
+  '/app/chat': typeof AppChatRouteWithChildren
+  '/app/credits': typeof AppCreditsRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/login': typeof AppLoginRoute
+  '/app/settings': typeof AppSettingsRoute
   '/docs/$slug': typeof DocsSlugRoute
+  '/app/': typeof AppIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/app/chat/$id': typeof AppChatIdRoute
+  '/app/chat/': typeof AppChatIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/api'
+    | '/app'
+    | '/app-chat-api'
+    | '/app-config'
     | '/company'
     | '/developers'
     | '/docs'
@@ -158,12 +258,22 @@ export interface FileRouteTypes {
     | '/runtime'
     | '/sitemap.xml'
     | '/workers'
+    | '/app/chat'
+    | '/app/credits'
+    | '/app/dashboard'
+    | '/app/login'
+    | '/app/settings'
     | '/docs/$slug'
+    | '/app/'
     | '/docs/'
+    | '/app/chat/$id'
+    | '/app/chat/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/api'
+    | '/app-chat-api'
+    | '/app-config'
     | '/company'
     | '/developers'
     | '/economy'
@@ -173,12 +283,22 @@ export interface FileRouteTypes {
     | '/runtime'
     | '/sitemap.xml'
     | '/workers'
+    | '/app/credits'
+    | '/app/dashboard'
+    | '/app/login'
+    | '/app/settings'
     | '/docs/$slug'
+    | '/app'
     | '/docs'
+    | '/app/chat/$id'
+    | '/app/chat'
   id:
     | '__root__'
     | '/'
     | '/api'
+    | '/app'
+    | '/app-chat-api'
+    | '/app-config'
     | '/company'
     | '/developers'
     | '/docs'
@@ -189,13 +309,24 @@ export interface FileRouteTypes {
     | '/runtime'
     | '/sitemap.xml'
     | '/workers'
+    | '/app/chat'
+    | '/app/credits'
+    | '/app/dashboard'
+    | '/app/login'
+    | '/app/settings'
     | '/docs/$slug'
+    | '/app/'
     | '/docs/'
+    | '/app/chat/$id'
+    | '/app/chat/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiRoute: typeof ApiRoute
+  AppRoute: typeof AppRouteWithChildren
+  AppChatApiRoute: typeof AppChatApiRoute
+  AppConfigRoute: typeof AppConfigRoute
   CompanyRoute: typeof CompanyRoute
   DevelopersRoute: typeof DevelopersRoute
   DocsRoute: typeof DocsRouteWithChildren
@@ -280,6 +411,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app-config': {
+      id: '/app-config'
+      path: '/app-config'
+      fullPath: '/app-config'
+      preLoaderRoute: typeof AppConfigRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app-chat-api': {
+      id: '/app-chat-api'
+      path: '/app-chat-api'
+      fullPath: '/app-chat-api'
+      preLoaderRoute: typeof AppChatApiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api': {
       id: '/api'
       path: '/api'
@@ -301,6 +453,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsIndexRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/docs/$slug': {
       id: '/docs/$slug'
       path: '/$slug'
@@ -308,8 +467,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsSlugRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/login': {
+      id: '/app/login'
+      path: '/login'
+      fullPath: '/app/login'
+      preLoaderRoute: typeof AppLoginRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/credits': {
+      id: '/app/credits'
+      path: '/credits'
+      fullPath: '/app/credits'
+      preLoaderRoute: typeof AppCreditsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/chat': {
+      id: '/app/chat'
+      path: '/chat'
+      fullPath: '/app/chat'
+      preLoaderRoute: typeof AppChatRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/chat/': {
+      id: '/app/chat/'
+      path: '/'
+      fullPath: '/app/chat/'
+      preLoaderRoute: typeof AppChatIndexRouteImport
+      parentRoute: typeof AppChatRoute
+    }
+    '/app/chat/$id': {
+      id: '/app/chat/$id'
+      path: '/$id'
+      fullPath: '/app/chat/$id'
+      preLoaderRoute: typeof AppChatIdRouteImport
+      parentRoute: typeof AppChatRoute
+    }
   }
 }
+
+interface AppChatRouteChildren {
+  AppChatIdRoute: typeof AppChatIdRoute
+  AppChatIndexRoute: typeof AppChatIndexRoute
+}
+
+const AppChatRouteChildren: AppChatRouteChildren = {
+  AppChatIdRoute: AppChatIdRoute,
+  AppChatIndexRoute: AppChatIndexRoute,
+}
+
+const AppChatRouteWithChildren =
+  AppChatRoute._addFileChildren(AppChatRouteChildren)
+
+interface AppRouteChildren {
+  AppChatRoute: typeof AppChatRouteWithChildren
+  AppCreditsRoute: typeof AppCreditsRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppLoginRoute: typeof AppLoginRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppChatRoute: AppChatRouteWithChildren,
+  AppCreditsRoute: AppCreditsRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppLoginRoute: AppLoginRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface DocsRouteChildren {
   DocsSlugRoute: typeof DocsSlugRoute
@@ -326,6 +567,9 @@ const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiRoute: ApiRoute,
+  AppRoute: AppRouteWithChildren,
+  AppChatApiRoute: AppChatApiRoute,
+  AppConfigRoute: AppConfigRoute,
   CompanyRoute: CompanyRoute,
   DevelopersRoute: DevelopersRoute,
   DocsRoute: DocsRouteWithChildren,
