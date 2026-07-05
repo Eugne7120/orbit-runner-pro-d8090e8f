@@ -1,0 +1,1 @@
+- [0RBIT design system hydration quirk](orbit-hydration-quirk.md) — Math.random()-seeded initial state in orbit components causes benign SSR hydration mismatches; it's an accepted existing pattern, not a bug to fix.

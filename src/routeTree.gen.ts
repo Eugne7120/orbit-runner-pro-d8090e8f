@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkersRouteImport } from './routes/workers'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RuntimeRouteImport } from './routes/runtime'
 import { Route as ProductRouteImport } from './routes/product'
@@ -22,6 +23,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 
+const WorkersRoute = WorkersRouteImport.update({
+  id: '/workers',
+  path: '/workers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/product': typeof ProductRoute
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/workers': typeof WorkersRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/': typeof DocsIndexRoute
 }
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/product': typeof ProductRoute
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/workers': typeof WorkersRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs': typeof DocsIndexRoute
 }
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/product': typeof ProductRoute
   '/runtime': typeof RuntimeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/workers': typeof WorkersRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/': typeof DocsIndexRoute
 }
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/product'
     | '/runtime'
     | '/sitemap.xml'
+    | '/workers'
     | '/docs/$slug'
     | '/docs/'
   fileRoutesByTo: FileRoutesByTo
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/product'
     | '/runtime'
     | '/sitemap.xml'
+    | '/workers'
     | '/docs/$slug'
     | '/docs'
   id:
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/product'
     | '/runtime'
     | '/sitemap.xml'
+    | '/workers'
     | '/docs/$slug'
     | '/docs/'
   fileRoutesById: FileRoutesById
@@ -180,10 +192,18 @@ export interface RootRouteChildren {
   ProductRoute: typeof ProductRoute
   RuntimeRoute: typeof RuntimeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  WorkersRoute: typeof WorkersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/workers': {
+      id: '/workers'
+      path: '/workers'
+      fullPath: '/workers'
+      preLoaderRoute: typeof WorkersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -294,6 +314,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductRoute: ProductRoute,
   RuntimeRoute: RuntimeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  WorkersRoute: WorkersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -7,6 +7,7 @@ const links = [
   { to: "/api", label: "API" },
   { to: "/docs", label: "Docs" },
   { to: "/developers", label: "Developers" },
+  { to: "/workers", label: "Workers" },
   { to: "/runtime", label: "Runtime" },
   { to: "/pricing", label: "Pricing" },
   { to: "/manifesto", label: "Manifesto" },
