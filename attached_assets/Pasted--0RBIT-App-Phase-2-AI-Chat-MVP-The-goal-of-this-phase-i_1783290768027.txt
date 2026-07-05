@@ -1,0 +1,460 @@
+# 0RBIT App
+## Phase 2 — AI Chat MVP
+
+The goal of this phase is to build the first working version of 0RBIT Chat.
+
+This is the core product of the entire 0RBIT ecosystem.
+
+The experience should feel modern, premium, fast, and production-ready.
+
+The application is hosted separately from the marketing website at:
+
+app.0rbit.ai
+
+Do NOT redesign the existing app layout created in Phase 1.
+
+Extend it by building the Chat experience.
+
+---
+
+# Objective
+
+Build a fully functional AI chat interface.
+
+Backend LLM implementation can temporarily use an external provider.
+
+However, the frontend MUST NOT expose the provider name.
+
+Users should only see the 0RBIT models.
+
+This allows backend providers to be replaced in the future without changing the UI.
+
+---
+
+# Chat Layout
+
+Create a layout similar to modern AI applications.
+
+------------------------------------------------
+
+Sidebar
+
+Conversation History
+
+----------------------------
+
+Top Bar
+
+Model Selector
+
+Conversation Area
+
+Composer
+
+------------------------------------------------
+
+The interface should feel clean and spacious.
+
+No unnecessary decorations.
+
+---
+
+# Sidebar
+
+Build a conversation sidebar.
+
+Include:
+
+- New Chat
+- Conversation History
+- Search Conversations
+- Rename Conversation
+- Delete Conversation
+- Pinned Chats (optional)
+
+Group conversations by:
+
+Today
+
+Yesterday
+
+Previous 7 Days
+
+Older
+
+Use dummy data if backend is not ready.
+
+---
+
+# Top Bar
+
+Display:
+
+Current Chat Title
+
+Model Selector
+
+New Chat Button
+
+Responsive Menu
+
+Keep the design minimal.
+
+---
+
+# Model Selector
+
+Never expose backend providers.
+
+Only show 0RBIT branding.
+
+Models:
+
+0RBIT Lite
+
+Description:
+Fast responses.
+
+Free.
+
+------------------
+
+0RBIT Core
+
+Description:
+Balanced performance.
+
+Recommended.
+
+------------------
+
+0RBIT Pro
+
+Description:
+Advanced reasoning.
+
+Premium.
+
+Internally these models may all map to the same backend provider for now.
+
+The user should never know.
+
+---
+
+# Chat Area
+
+Implement:
+
+- Streaming Responses
+- Markdown Rendering
+- Code Highlighting
+- Tables
+- Lists
+- Blockquotes
+- Inline Code
+- Syntax Highlight
+
+The conversation should feel polished.
+
+Spacing should be excellent.
+
+---
+
+# Typing Animation
+
+Do NOT use fake character-by-character typing.
+
+Instead:
+
+Display streamed tokens naturally.
+
+Each response should progressively appear as it streams from the backend.
+
+Maintain smooth scrolling.
+
+---
+
+# Chat Composer
+
+Create a modern prompt composer.
+
+Include:
+
+Text Area
+
+Send Button
+
+Stop Generation
+
+Attach File Button (UI placeholder)
+
+Model Indicator
+
+Suggested Prompt Button
+
+Auto-growing textarea.
+
+Maximum height before scrolling.
+
+---
+
+# Suggested Prompts
+
+Before the first message,
+display suggested prompts.
+
+Examples:
+
+Explain quantum computing simply
+
+Write a Next.js API route
+
+Summarize this article
+
+Generate a marketing strategy
+
+Create a Python script
+
+Each suggestion becomes the user's first prompt.
+
+---
+
+# Response Actions
+
+Each assistant response should support:
+
+Copy
+
+Regenerate
+
+Like
+
+Dislike
+
+These actions should appear only on hover (desktop) or below the response (mobile).
+
+---
+
+# Markdown
+
+Support:
+
+Headers
+
+Bold
+
+Italic
+
+Lists
+
+Tables
+
+Links
+
+Task Lists
+
+Horizontal Rules
+
+Code Blocks
+
+Math support is optional.
+
+---
+
+# Code Blocks
+
+Every code block should include:
+
+Language Label
+
+Copy Button
+
+Syntax Highlighting
+
+Rounded Container
+
+Dark Theme
+
+Long code should scroll horizontally.
+
+---
+
+# Auto Scroll
+
+Automatically scroll while streaming.
+
+If the user scrolls upward manually,
+
+pause auto-scroll.
+
+Resume only when the user returns to the bottom.
+
+---
+
+# Empty State
+
+When there are no conversations,
+
+display a premium welcome screen.
+
+Include:
+
+0RBIT Logo
+
+Welcome message
+
+Suggested prompts
+
+Model selector
+
+Keep it clean.
+
+---
+
+# Loading States
+
+Use skeleton loading where appropriate.
+
+Avoid blank screens.
+
+Buttons should have loading indicators.
+
+---
+
+# Error Handling
+
+Gracefully handle:
+
+Network failure
+
+Rate limit
+
+Backend unavailable
+
+Streaming interruption
+
+Display friendly messages.
+
+---
+
+# Responsive Design
+
+Support:
+
+Mobile
+
+Tablet
+
+Desktop
+
+Requirements:
+
+Sidebar becomes drawer
+
+Composer remains fixed
+
+Messages remain readable
+
+Code blocks scroll horizontally
+
+Touch interactions are comfortable
+
+---
+
+# Motion
+
+Use subtle animations.
+
+Examples:
+
+Message fade-in
+
+Streaming appearance
+
+Button hover
+
+Sidebar transition
+
+Page transition
+
+Avoid excessive animations.
+
+---
+
+# Performance
+
+Virtualize long conversation history if needed.
+
+Lazy load conversations.
+
+Optimize rendering.
+
+Avoid unnecessary re-renders.
+
+Keep scrolling smooth.
+
+---
+
+# Backend Integration
+
+Prepare clean interfaces for:
+
+Streaming API
+
+Conversation API
+
+History API
+
+Model API
+
+Do not tightly couple the UI to any specific provider.
+
+---
+
+# NOT Included In This Phase
+
+Do NOT build:
+
+Image Generation
+
+Vision
+
+Voice
+
+Projects
+
+Workspace
+
+API Platform
+
+Workers
+
+Token Economy
+
+Wallet Payments
+
+These belong to future phases.
+
+---
+
+# Expected Result
+
+After completing this phase, users should be able to:
+
+✅ Sign in
+
+✅ Create a new conversation
+
+✅ Send prompts
+
+✅ Receive streaming AI responses
+
+✅ View Markdown and code beautifully
+
+✅ Manage conversation history
+
+✅ Switch between 0RBIT models
+
+✅ Enjoy a polished, responsive AI chat experience
+
+This should feel like a real AI product ready for public MVP release.
