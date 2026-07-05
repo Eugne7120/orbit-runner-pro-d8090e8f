@@ -3,6 +3,7 @@ import { PageShell } from "@/components/orbit/PageShell";
 import { PageHeader } from "@/components/orbit/PageHeader";
 import { Section } from "@/components/orbit/Section";
 import { PageBackground } from "@/components/orbit/PageBackground";
+import { Reveal } from "@/components/orbit/Reveal";
 
 export const Route = createFileRoute("/manifesto")({
   head: () => ({
@@ -45,16 +46,17 @@ function ManifestoPage() {
       <Section eyebrow="/ beliefs">
         <div className="mx-auto max-w-3xl">
           {beats.map((b, i) => (
-            <div
-              key={b.n}
-              className={`grid grid-cols-[60px_1fr] gap-6 py-10 ${i > 0 ? "border-t border-border" : ""}`}
-            >
-              <div className="pt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{b.n}</div>
-              <div>
-                <h3 className="text-balance font-display text-2xl font-medium tracking-[-0.02em] md:text-3xl">{b.t}</h3>
-                <p className="mt-3 text-pretty text-[15.5px] leading-relaxed text-muted-foreground md:text-[16.5px]">{b.b}</p>
+            <Reveal key={b.n} delay={i * 60}>
+              <div
+                className={`grid grid-cols-[60px_1fr] gap-6 py-10 ${i > 0 ? "border-t border-border" : ""}`}
+              >
+                <div className="pt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{b.n}</div>
+                <div>
+                  <h3 className="text-balance font-display text-2xl font-medium tracking-[-0.02em] md:text-3xl">{b.t}</h3>
+                  <p className="mt-3 text-pretty text-[15.5px] leading-relaxed text-muted-foreground md:text-[16.5px]">{b.b}</p>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -65,19 +67,21 @@ function ManifestoPage() {
             <div className="absolute left-0 top-6 h-px w-full bg-gradient-to-r from-transparent via-border-strong to-transparent" />
             <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
               {evolution.map((e, i) => (
-                <div key={e.era} className="relative">
-                  <div className="flex items-center gap-3">
-                    <span className="relative flex h-3 w-3">
-                      {i === evolution.length - 1 && (
-                        <span className="absolute inset-0 rounded-full bg-signal/60 animate-orbit-ping" />
-                      )}
-                      <span className={`relative h-3 w-3 rounded-full ${i === evolution.length - 1 ? "bg-signal shadow-[0_0_10px] shadow-signal" : "bg-border-strong"}`} />
-                    </span>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{e.era}</span>
+                <Reveal key={e.era} delay={i * 80}>
+                  <div className="relative">
+                    <div className="flex items-center gap-3">
+                      <span className="relative flex h-3 w-3">
+                        {i === evolution.length - 1 && (
+                          <span className="absolute inset-0 rounded-full bg-signal/60 animate-orbit-ping" />
+                        )}
+                        <span className={`relative h-3 w-3 rounded-full ${i === evolution.length - 1 ? "bg-signal shadow-[0_0_10px] shadow-signal" : "bg-border-strong"}`} />
+                      </span>
+                      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{e.era}</span>
+                    </div>
+                    <div className="mt-3 font-display text-xl tracking-tight">{e.label}</div>
+                    <div className="mt-1 text-[13.5px] text-muted-foreground">{e.detail}</div>
                   </div>
-                  <div className="mt-3 font-display text-xl tracking-tight">{e.label}</div>
-                  <div className="mt-1 text-[13.5px] text-muted-foreground">{e.detail}</div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -85,10 +89,12 @@ function ManifestoPage() {
       </Section>
 
       <Section eyebrow="/ signature">
-        <div className="mx-auto max-w-3xl border-t border-border pt-10 text-center">
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">— the 0RBIT team</div>
-          <div className="mt-2 font-mono text-[11px] text-muted-foreground">2026 · earth · always on</div>
-        </div>
+        <Reveal>
+          <div className="mx-auto max-w-3xl border-t border-border pt-10 text-center">
+            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">— the 0RBIT team</div>
+            <div className="mt-2 font-mono text-[11px] text-muted-foreground">2026 · earth · always on</div>
+          </div>
+        </Reveal>
       </Section>
     </PageShell>
   );

@@ -368,3 +368,24 @@
 .btn-sheen:hover::after {
   transform: translateX(240%) skewX(-18deg);
 }
+
+/* ---------- Scroll Reveal ---------- */
+
+.orbit-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(3px);
+  transition:
+    opacity 750ms var(--ease-out-soft),
+    transform 750ms var(--ease-out-soft),
+    filter 750ms var(--ease-out-soft);
+  will-change: opacity, transform, filter;
+}
+
+.orbit-reveal.orbit-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* prefers-reduced-motion is already handled globally in @layer base */

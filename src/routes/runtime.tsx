@@ -7,6 +7,7 @@ import { AreaChart } from "@/components/orbit/AreaChart";
 import { RegionMap } from "@/components/orbit/RegionMap";
 import { StatusPill } from "@/components/orbit/StatusPill";
 import { PageBackground } from "@/components/orbit/PageBackground";
+import { Reveal } from "@/components/orbit/Reveal";
 import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/runtime")({
@@ -32,50 +33,62 @@ function RuntimePage() {
       />
 
       <Section eyebrow="/ health">
-        <div className="mb-8 flex flex-wrap items-center gap-3">
-          <StatusPill status="operational" label="all systems operational" />
-          <StatusPill status="operational" label="us-west-2 · normal" />
-          <StatusPill status="operational" label="eu-west-1 · normal" />
-          <StatusPill status="elevated" label="ap-northeast-1 · elevated" />
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
-            updated · <LiveClock />
-          </span>
-        </div>
+        <Reveal>
+          <div className="mb-8 flex flex-wrap items-center gap-3">
+            <StatusPill status="operational" label="all systems operational" />
+            <StatusPill status="operational" label="us-west-2 · normal" />
+            <StatusPill status="operational" label="eu-west-1 · normal" />
+            <StatusPill status="elevated" label="ap-northeast-1 · elevated" />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
+              updated · <LiveClock />
+            </span>
+          </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricTile label="requests / s" base={4820} variance={0.08} seed={11} />
-          <MetricTile label="workers online" base={214} variance={0.02} chartColor="muted" seed={22} />
-          <MetricTile label="p50 latency" base={41} unit="ms" variance={0.14} seed={33} />
-          <MetricTile label="tokens / s" base={12400} variance={0.16} seed={44} />
-          <MetricTile label="queue depth" base={0} variance={0.5} chartColor="muted" seed={55} hint="target 0" />
-          <MetricTile label="gpu util · fleet" base={68} unit="%" variance={0.08} seed={66} />
-          <MetricTile label="credits burned · min" base={182} unit=" cr" variance={0.12} chartColor="warm" seed={77} />
-          <MetricTile label="stream throughput" base={9200} variance={0.14} seed={88} />
+          <Reveal delay={0}><MetricTile label="requests / s" base={4820} variance={0.08} seed={11} /></Reveal>
+          <Reveal delay={80}><MetricTile label="workers online" base={214} variance={0.02} chartColor="muted" seed={22} /></Reveal>
+          <Reveal delay={160}><MetricTile label="p50 latency" base={41} unit="ms" variance={0.14} seed={33} /></Reveal>
+          <Reveal delay={240}><MetricTile label="tokens / s" base={12400} variance={0.16} seed={44} /></Reveal>
+          <Reveal delay={80}><MetricTile label="queue depth" base={0} variance={0.5} chartColor="muted" seed={55} hint="target 0" /></Reveal>
+          <Reveal delay={160}><MetricTile label="gpu util · fleet" base={68} unit="%" variance={0.08} seed={66} /></Reveal>
+          <Reveal delay={240}><MetricTile label="credits burned · min" base={182} unit=" cr" variance={0.12} chartColor="warm" seed={77} /></Reveal>
+          <Reveal delay={320}><MetricTile label="stream throughput" base={9200} variance={0.14} seed={88} /></Reveal>
         </div>
       </Section>
 
       <Section eyebrow="/ regions" title="Traffic by region." intro="Each region is a set of independent workers under a shared router. The mesh rebalances continuously.">
-        <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
-          <RegionMap />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
+            <RegionMap />
+          </div>
+        </Reveal>
       </Section>
 
       <Section eyebrow="/ latency" title="Latency, unbucketed." intro="Live p50 · p95 · p99 across the network. The gap between percentiles is the fingerprint of the system.">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="p50" base={41} variance={8} unit="ms" seed={101} height={160} />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="p95" base={140} variance={30} unit="ms" seed={102} height={160} color="warm" />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="p99" base={210} variance={55} unit="ms" seed={103} height={160} color="muted" />
-          </div>
+          <Reveal delay={0}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="p50" base={41} variance={8} unit="ms" seed={101} height={160} />
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="p95" base={140} variance={30} unit="ms" seed={102} height={160} color="warm" />
+            </div>
+          </Reveal>
+          <Reveal delay={160}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="p99" base={210} variance={55} unit="ms" seed={103} height={160} color="muted" />
+            </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section eyebrow="/ workers" title="Fleet state." intro="A sample of active workers. Real fleet is larger and rotates constantly.">
-        <WorkerTable />
+        <Reveal>
+          <WorkerTable />
+        </Reveal>
       </Section>
     </PageShell>
   );

@@ -5,6 +5,7 @@ import { Section } from "@/components/orbit/Section";
 import { RuntimeFlow } from "@/components/orbit/RuntimeFlow";
 import { LiveCard, LiveMetric, MiniSparkline } from "@/components/orbit/LiveCard";
 import { PageBackground } from "@/components/orbit/PageBackground";
+import { Reveal } from "@/components/orbit/Reveal";
 
 export const Route = createFileRoute("/product")({
   head: () => ({
@@ -38,9 +39,11 @@ function ProductPage() {
       />
 
       <Section eyebrow="/ system">
-        <div className="glass-strong rounded-3xl p-4 shadow-elegant md:p-8">
-          <RuntimeFlow />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-4 shadow-elegant md:p-8">
+            <RuntimeFlow />
+          </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -50,35 +53,43 @@ function ProductPage() {
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c, i) => (
-            <LiveCard key={c.title} eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={c.title} description={c.body} />
+            <Reveal key={c.title} delay={i * 80}>
+              <LiveCard eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={c.title} description={c.body} />
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section eyebrow="/ observability" title="See the runtime, always." intro="The dashboard is a live view of your traffic, not a weekly digest.">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <LiveCard eyebrow="Latency" title="p50 · p95 · p99">
-            <MiniSparkline />
-            <div className="mt-3 space-y-0">
-              <LiveMetric label="p50" base={41} />
-              <LiveMetric label="p95" base={140} />
-              <LiveMetric label="p99" base={210} />
-            </div>
-          </LiveCard>
-          <LiveCard eyebrow="Throughput" title="Tokens per second">
-            <MiniSparkline color="muted" />
-            <div className="mt-3 space-y-0">
-              <LiveMetric label="now" base={12400} unit="" />
-              <LiveMetric label="peak · 24h" base={41800} unit="" />
-            </div>
-          </LiveCard>
-          <LiveCard eyebrow="Cost" title="Credits consumed">
-            <div className="space-y-0">
-              <LiveMetric label="hour" base={82} unit="cr" />
-              <LiveMetric label="day" base={1904} unit="cr" />
-              <LiveMetric label="month" base={38210} unit="cr" />
-            </div>
-          </LiveCard>
+          <Reveal>
+            <LiveCard eyebrow="Latency" title="p50 · p95 · p99">
+              <MiniSparkline />
+              <div className="mt-3 space-y-0">
+                <LiveMetric label="p50" base={41} />
+                <LiveMetric label="p95" base={140} />
+                <LiveMetric label="p99" base={210} />
+              </div>
+            </LiveCard>
+          </Reveal>
+          <Reveal delay={80}>
+            <LiveCard eyebrow="Throughput" title="Tokens per second">
+              <MiniSparkline color="muted" />
+              <div className="mt-3 space-y-0">
+                <LiveMetric label="now" base={12400} unit="" />
+                <LiveMetric label="peak · 24h" base={41800} unit="" />
+              </div>
+            </LiveCard>
+          </Reveal>
+          <Reveal delay={160}>
+            <LiveCard eyebrow="Cost" title="Credits consumed">
+              <div className="space-y-0">
+                <LiveMetric label="hour" base={82} unit="cr" />
+                <LiveMetric label="day" base={1904} unit="cr" />
+                <LiveMetric label="month" base={38210} unit="cr" />
+              </div>
+            </LiveCard>
+          </Reveal>
         </div>
       </Section>
     </PageShell>

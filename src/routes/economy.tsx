@@ -10,6 +10,7 @@ import { StakingPreview } from "@/components/orbit/StakingPreview";
 import { RewardTimeline } from "@/components/orbit/RewardTimeline";
 import { EconomicFlywheel } from "@/components/orbit/EconomicFlywheel";
 import { FaqAccordion } from "@/components/orbit/FaqAccordion";
+import { Reveal } from "@/components/orbit/Reveal";
 
 export const Route = createFileRoute("/economy")({
   head: () => ({
@@ -38,9 +39,11 @@ function EconomyPage() {
         title="Every inference feeds the economy."
         intro="A single request turns into revenue, then splits between burning supply and paying stakers in USDC. No step is hidden."
       >
-        <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
-          <ValueFlowDiagram />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
+            <ValueFlowDiagram />
+          </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -50,14 +53,14 @@ function EconomyPage() {
         intro="Every figure below is generated from the same telemetry the runtime uses internally — nothing here is a static snapshot."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricTile label="treasury balance" base={4820000} unit=" USDC" variance={0.02} seed={401} />
-          <MetricTile label="daily revenue" base={38200} unit=" USDC" variance={0.1} chartColor="warm" seed={402} />
-          <MetricTile label="usdc rewards / day" base={19100} unit=" USDC" variance={0.1} seed={403} />
-          <MetricTile label="buyback today" base={19100} unit=" USDC" variance={0.12} chartColor="warm" seed={404} />
-          <MetricTile label="tokens burned / day" base={214000} unit=" $0RBIT" variance={0.14} seed={405} />
-          <MetricTile label="active stakers" base={8420} variance={0.02} chartColor="muted" seed={406} />
-          <MetricTile label="staked supply" base={41.2} unit="%" variance={0.01} format={(n) => `${n.toFixed(1)}%`} chartColor="muted" seed={407} />
-          <MetricTile label="apr estimate" base={14.2} unit="%" variance={0.03} format={(n) => `${n.toFixed(1)}%`} seed={408} />
+          <Reveal delay={0}><MetricTile label="treasury balance" base={4820000} unit=" USDC" variance={0.02} seed={401} /></Reveal>
+          <Reveal delay={80}><MetricTile label="daily revenue" base={38200} unit=" USDC" variance={0.1} chartColor="warm" seed={402} /></Reveal>
+          <Reveal delay={160}><MetricTile label="usdc rewards / day" base={19100} unit=" USDC" variance={0.1} seed={403} /></Reveal>
+          <Reveal delay={240}><MetricTile label="buyback today" base={19100} unit=" USDC" variance={0.12} chartColor="warm" seed={404} /></Reveal>
+          <Reveal delay={80}><MetricTile label="tokens burned / day" base={214000} unit=" $0RBIT" variance={0.14} seed={405} /></Reveal>
+          <Reveal delay={160}><MetricTile label="active stakers" base={8420} variance={0.02} chartColor="muted" seed={406} /></Reveal>
+          <Reveal delay={240}><MetricTile label="staked supply" base={41.2} unit="%" variance={0.01} format={(n) => `${n.toFixed(1)}%`} chartColor="muted" seed={407} /></Reveal>
+          <Reveal delay={320}><MetricTile label="apr estimate" base={14.2} unit="%" variance={0.03} format={(n) => `${n.toFixed(1)}%`} seed={408} /></Reveal>
         </div>
       </Section>
 
@@ -69,7 +72,9 @@ function EconomyPage() {
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {UTILITY.map((u, i) => (
-            <LiveCard key={u.title} eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={u.title} description={u.body} />
+            <Reveal key={u.title} delay={i * 80}>
+              <LiveCard eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={u.title} description={u.body} />
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -80,9 +85,11 @@ function EconomyPage() {
         title="Revenue becomes scarcity."
         intro="Half of platform revenue is used to buy $0RBIT on the open market and burn it — permanently, verifiably."
       >
-        <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
-          <BuybackBurnFlow />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
+            <BuybackBurnFlow />
+          </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -91,7 +98,9 @@ function EconomyPage() {
         title="Stake, earn, compound."
         intro="A preview of the staking dashboard. Connect a wallet at launch — for now, try it with demo balances."
       >
-        <StakingPreview />
+        <Reveal>
+          <StakingPreview />
+        </Reveal>
       </Section>
 
       <Section
@@ -99,9 +108,11 @@ function EconomyPage() {
         title="The daily reward cycle."
         intro="Treasury settlement runs on a fixed daily loop, the same one every staker's rewards move through."
       >
-        <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
-          <RewardTimeline />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
+            <RewardTimeline />
+          </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -111,14 +122,14 @@ function EconomyPage() {
         intro="Supply-side numbers move slowly by design — this is a monetary policy, not a trading chart."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricTile label="total supply" base={1_000_000_000} unit="" variance={0} chart={false} seed={501} />
-          <MetricTile label="circulating supply" base={612_400_000} unit="" variance={0.001} chart={false} seed={502} />
-          <MetricTile label="burned supply" base={38_900_000} unit="" variance={0.004} chart={false} seed={503} />
-          <MetricTile label="daily volume" base={2_140_000} unit=" USDC" variance={0.18} chartColor="warm" seed={504} />
-          <MetricTile label="staking ratio" base={41.2} unit="%" variance={0.01} format={(n) => `${n.toFixed(1)}%`} chart={false} seed={505} />
-          <MetricTile label="workers staked" base={5210} variance={0.02} chartColor="muted" seed={506} />
-          <MetricTile label="premium workers" base={1840} variance={0.03} chartColor="muted" seed={507} />
-          <MetricTile label="market activity" base={98.4} unit="%" variance={0.005} format={(n) => `${n.toFixed(1)}%`} chart={false} seed={508} />
+          <Reveal delay={0}><MetricTile label="total supply" base={1_000_000_000} unit="" variance={0} chart={false} seed={501} /></Reveal>
+          <Reveal delay={80}><MetricTile label="circulating supply" base={612_400_000} unit="" variance={0.001} chart={false} seed={502} /></Reveal>
+          <Reveal delay={160}><MetricTile label="burned supply" base={38_900_000} unit="" variance={0.004} chart={false} seed={503} /></Reveal>
+          <Reveal delay={240}><MetricTile label="daily volume" base={2_140_000} unit=" USDC" variance={0.18} chartColor="warm" seed={504} /></Reveal>
+          <Reveal delay={80}><MetricTile label="staking ratio" base={41.2} unit="%" variance={0.01} format={(n) => `${n.toFixed(1)}%`} chart={false} seed={505} /></Reveal>
+          <Reveal delay={160}><MetricTile label="workers staked" base={5210} variance={0.02} chartColor="muted" seed={506} /></Reveal>
+          <Reveal delay={240}><MetricTile label="premium workers" base={1840} variance={0.03} chartColor="muted" seed={507} /></Reveal>
+          <Reveal delay={320}><MetricTile label="market activity" base={98.4} unit="%" variance={0.005} format={(n) => `${n.toFixed(1)}%`} chart={false} seed={508} /></Reveal>
         </div>
       </Section>
 
@@ -128,9 +139,11 @@ function EconomyPage() {
         title="Why growth compounds."
         intro="Usage doesn't just generate revenue once — it strengthens every part of the network that produces the next request."
       >
-        <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
-          <EconomicFlywheel />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
+            <EconomicFlywheel />
+          </div>
+        </Reveal>
       </Section>
 
       <Section id="faq" eyebrow="/ 09 · faq" title="Questions, answered plainly." intro="No jargon. If something's unclear, it stays unclear until it isn't.">

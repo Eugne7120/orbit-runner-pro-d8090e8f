@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/orbit/PageHeader";
 import { Section } from "@/components/orbit/Section";
 import { CreditFlow } from "@/components/orbit/CreditFlow";
 import { PageBackground } from "@/components/orbit/PageBackground";
+import { Reveal } from "@/components/orbit/Reveal";
 import { useState } from "react";
 
 export const Route = createFileRoute("/pricing")({
@@ -66,66 +67,73 @@ function PricingPage() {
       />
 
       <Section eyebrow="/ how billing works" title="Credits move through the network." intro="A credit is a stable unit of work. You buy them. The runtime meters them. Workers earn them. Solana settles them.">
-        <CreditFlow />
+        <Reveal>
+          <CreditFlow />
+        </Reveal>
       </Section>
 
       <Section eyebrow="/ plans">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          {plans.map((p) => (
-            <div
-              key={p.name}
-              className={`relative overflow-hidden rounded-2xl border p-8 transition-all ${
-                p.highlight
-                  ? "border-signal/40 bg-surface shadow-signal"
-                  : "border-border bg-surface/40 hover:border-border-strong"
-              }`}
-            >
-              {p.highlight && (
-                <div className="pointer-events-none absolute inset-0 -z-10 opacity-60" style={{
-                  background: "radial-gradient(80% 60% at 50% 0%, oklch(0.78 0.14 232 / 0.18), transparent 70%)"
-                }} />
-              )}
-              <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">{p.tag}</div>
-              <div className="mt-1 font-display text-2xl tracking-tight">{p.name}</div>
-              <div className="mt-6 font-display text-5xl font-medium tracking-[-0.03em]">{p.price}</div>
-              <div className="mt-2 font-mono text-[12px] text-muted-foreground">{p.line}</div>
-              <ul className="mt-8 space-y-2.5">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5 text-[14px] text-foreground/90">
-                    <span className="mt-1.5 h-1 w-1 rounded-full bg-signal" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/developers"
-                className={`mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all ${
+          {plans.map((p, i) => (
+            <Reveal key={p.name} delay={i * 80}>
+              <div
+                className={`relative overflow-hidden rounded-2xl border p-8 transition-all h-full ${
                   p.highlight
-                    ? "bg-foreground text-background hover:bg-foreground/90"
-                    : "border border-border-strong bg-surface text-foreground hover:bg-surface-2"
+                    ? "border-signal/40 bg-surface shadow-signal"
+                    : "border-border bg-surface/40 hover:border-border-strong"
                 }`}
               >
-                {p.cta} →
-              </Link>
-            </div>
+                {p.highlight && (
+                  <div className="pointer-events-none absolute inset-0 -z-10 opacity-60" style={{
+                    background: "radial-gradient(80% 60% at 50% 0%, oklch(0.78 0.14 232 / 0.18), transparent 70%)"
+                  }} />
+                )}
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">{p.tag}</div>
+                <div className="mt-1 font-display text-2xl tracking-tight">{p.name}</div>
+                <div className="mt-6 font-display text-5xl font-medium tracking-[-0.03em]">{p.price}</div>
+                <div className="mt-2 font-mono text-[12px] text-muted-foreground">{p.line}</div>
+                <ul className="mt-8 space-y-2.5">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-[14px] text-foreground/90">
+                      <span className="mt-1.5 h-1 w-1 rounded-full bg-signal" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/developers"
+                  className={`mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-medium transition-all ${
+                    p.highlight
+                      ? "bg-foreground text-background hover:bg-foreground/90"
+                      : "border border-border-strong bg-surface text-foreground hover:bg-surface-2"
+                  }`}
+                >
+                  {p.cta} →
+                </Link>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section eyebrow="/ catalog" title="Per-model pricing." intro="Prices go down as the network grows. Historical rates are recorded on-chain.">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {CATALOG.map((r) => (
-            <div key={r.k} className="rounded-xl border border-border bg-surface/40 p-6">
-              <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{r.k}</div>
-              <div className="mt-3 font-display text-3xl tabular-nums">${r.v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "")}</div>
-              <div className="font-mono text-[11px] text-muted-foreground">{r.u}</div>
-            </div>
+          {CATALOG.map((r, i) => (
+            <Reveal key={r.k} delay={i * 80}>
+              <div className="rounded-xl border border-border bg-surface/40 p-6 h-full">
+                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{r.k}</div>
+                <div className="mt-3 font-display text-3xl tabular-nums">${r.v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "")}</div>
+                <div className="font-mono text-[11px] text-muted-foreground">{r.u}</div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section eyebrow="/ estimate" title="Estimate your monthly bill." intro="A rough model. The runtime will always meter you exactly.">
-        <Calculator />
+        <Reveal>
+          <Calculator />
+        </Reveal>
       </Section>
     </PageShell>
   );

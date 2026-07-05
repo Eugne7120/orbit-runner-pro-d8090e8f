@@ -5,6 +5,7 @@ import { Section } from "@/components/orbit/Section";
 import { LiveCard } from "@/components/orbit/LiveCard";
 import { RegionMap } from "@/components/orbit/RegionMap";
 import { PageBackground } from "@/components/orbit/PageBackground";
+import { Reveal } from "@/components/orbit/Reveal";
 
 export const Route = createFileRoute("/company")({
   head: () => ({
@@ -37,20 +38,24 @@ function CompanyPage() {
       />
 
       <Section eyebrow="/ network" title="Global by construction." intro="Every worker is independent. Every region is a peer. The network has no center.">
-        <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
-          <RegionMap />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
+            <RegionMap />
+          </div>
+        </Reveal>
         <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
             { k: "regions", v: "12" },
             { k: "workers", v: "214" },
             { k: "requests · day", v: "42.1M" },
             { k: "uptime · 30d", v: "99.994%" },
-          ].map((s) => (
-            <div key={s.k} className="rounded-xl border border-border bg-surface/40 p-5">
-              <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">{s.k}</div>
-              <div className="mt-2 font-display text-2xl tabular-nums tracking-tight">{s.v}</div>
-            </div>
+          ].map((s, i) => (
+            <Reveal key={s.k} delay={i * 80}>
+              <div className="rounded-xl border border-border bg-surface/40 p-5 h-full">
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">{s.k}</div>
+                <div className="mt-2 font-display text-2xl tabular-nums tracking-tight">{s.v}</div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -58,25 +63,33 @@ function CompanyPage() {
       <Section eyebrow="/ timeline" title="Where we came from. Where we are.">
         <div className="mx-auto max-w-3xl">
           {timeline.map((t, i) => (
-            <div key={t.d} className={`grid grid-cols-[100px_1fr] gap-6 py-6 ${i > 0 ? "border-t border-border" : ""}`}>
-              <div className="pt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{t.d}</div>
-              <div>
-                <h3 className="font-display text-lg tracking-tight">{t.t}</h3>
-                <p className="mt-1 text-[14.5px] leading-relaxed text-muted-foreground">{t.b}</p>
+            <Reveal key={t.d} delay={i * 60}>
+              <div className={`grid grid-cols-[100px_1fr] gap-6 py-6 ${i > 0 ? "border-t border-border" : ""}`}>
+                <div className="pt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{t.d}</div>
+                <div>
+                  <h3 className="font-display text-lg tracking-tight">{t.t}</h3>
+                  <p className="mt-1 text-[14.5px] leading-relaxed text-muted-foreground">{t.b}</p>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section eyebrow="/ operating principles">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <LiveCard eyebrow="ship" title="Runtime, not marketing." description="The product argues for itself. Our best week is the one where the changelog is long and the homepage is quiet." />
-          <LiveCard eyebrow="write" title="Docs before slides." description="If it isn't in the docs, it isn't in the product. Every feature ships with the reference it deserves." />
-          <LiveCard eyebrow="respect" title="Developers first, always." description="We measure success by the number of people building things they couldn't have built yesterday." />
-          <LiveCard eyebrow="operate" title="Nines are cultural." description="Uptime is not a target. It is a promise. Everyone in the company can page the network." />
-          <LiveCard eyebrow="settle" title="On-chain, invisible." description="Solana is the ledger. It is never the pitch. The user should never feel it." />
-          <LiveCard eyebrow="stay" title="Independent." description="We take capital that lets us stay small and stay honest. We are here for a decade." />
+          {[
+            { eyebrow: "ship", title: "Runtime, not marketing.", description: "The product argues for itself. Our best week is the one where the changelog is long and the homepage is quiet." },
+            { eyebrow: "write", title: "Docs before slides.", description: "If it isn't in the docs, it isn't in the product. Every feature ships with the reference it deserves." },
+            { eyebrow: "respect", title: "Developers first, always.", description: "We measure success by the number of people building things they couldn't have built yesterday." },
+            { eyebrow: "operate", title: "Nines are cultural.", description: "Uptime is not a target. It is a promise. Everyone in the company can page the network." },
+            { eyebrow: "settle", title: "On-chain, invisible.", description: "Solana is the ledger. It is never the pitch. The user should never feel it." },
+            { eyebrow: "stay", title: "Independent.", description: "We take capital that lets us stay small and stay honest. We are here for a decade." },
+          ].map((p, i) => (
+            <Reveal key={p.title} delay={i * 80}>
+              <LiveCard eyebrow={p.eyebrow} title={p.title} description={p.description} />
+            </Reveal>
+          ))}
         </div>
       </Section>
 
@@ -86,11 +99,13 @@ function CompanyPage() {
             { k: "General", v: "hello@0rbit.dev" },
             { k: "Sales", v: "sales@0rbit.dev" },
             { k: "Press", v: "press@0rbit.dev" },
-          ].map((c) => (
-            <div key={c.k} className="rounded-xl border border-border bg-surface/40 p-6 transition-all hover:border-border-strong hover:bg-surface">
-              <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">{c.k}</div>
-              <div className="mt-3 font-mono text-[14px] text-foreground">{c.v}</div>
-            </div>
+          ].map((c, i) => (
+            <Reveal key={c.k} delay={i * 80}>
+              <div className="rounded-xl border border-border bg-surface/40 p-6 transition-all hover:border-border-strong hover:bg-surface h-full">
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">{c.k}</div>
+                <div className="mt-3 font-mono text-[14px] text-foreground">{c.v}</div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>

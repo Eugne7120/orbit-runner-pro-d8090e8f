@@ -11,6 +11,7 @@ import { StatusPill } from "@/components/orbit/StatusPill";
 import { NetworkTopology } from "@/components/orbit/NetworkTopology";
 import { ActivityFeed } from "@/components/orbit/ActivityFeed";
 import { JobRoutingFlow } from "@/components/orbit/JobRoutingFlow";
+import { Reveal } from "@/components/orbit/Reveal";
 
 export const Route = createFileRoute("/workers")({
   head: () => ({
@@ -43,26 +44,34 @@ function WorkersPage() {
         intro="Anyone with a capable GPU can join the mesh. Workers stake for priority, run the runtime binary, and start receiving jobs within minutes."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <LiveCard
-            eyebrow="/ contribute"
-            title="Contribute compute"
-            description="Idle GPU cycles are matched against live inference demand across the network."
-          />
-          <LiveCard
-            eyebrow="/ assign"
-            title="Jobs get assigned"
-            description="The scheduler scores every worker on latency, load and price, then routes in under a millisecond."
-          />
-          <LiveCard
-            eyebrow="/ earn"
-            title="Rewards accrue"
-            description="Completed inference settles instantly as credits — redeemable, stakeable, on-chain."
-          />
-          <LiveCard
-            eyebrow="/ decentralize"
-            title="No single point of failure"
-            description="Thousands of independent nodes beat a handful of hyperscale regions on resilience and price."
-          />
+          <Reveal>
+            <LiveCard
+              eyebrow="/ contribute"
+              title="Contribute compute"
+              description="Idle GPU cycles are matched against live inference demand across the network."
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <LiveCard
+              eyebrow="/ assign"
+              title="Jobs get assigned"
+              description="The scheduler scores every worker on latency, load and price, then routes in under a millisecond."
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <LiveCard
+              eyebrow="/ earn"
+              title="Rewards accrue"
+              description="Completed inference settles instantly as credits — redeemable, stakeable, on-chain."
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <LiveCard
+              eyebrow="/ decentralize"
+              title="No single point of failure"
+              description="Thousands of independent nodes beat a handful of hyperscale regions on resilience and price."
+            />
+          </Reveal>
         </div>
       </Section>
 
@@ -72,14 +81,14 @@ function WorkersPage() {
         intro="A live dashboard view of the mesh. Every number below moves continuously — this is the same telemetry our schedulers see."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricTile label="workers online" base={214} variance={0.02} seed={201} />
-          <MetricTile label="available gpus" base={891} variance={0.03} chartColor="muted" seed={202} />
-          <MetricTile label="jobs running" base={3402} variance={0.12} seed={203} />
-          <MetricTile label="inference requests / s" base={4820} variance={0.1} seed={204} />
-          <MetricTile label="avg latency" base={41} unit="ms" variance={0.14} chartColor="warm" seed={205} />
-          <MetricTile label="success rate" base={99.6} unit="%" variance={0.002} chartColor="muted" seed={206} format={(n) => `${n.toFixed(2)}%`} />
-          <MetricTile label="network throughput" base={12400} unit=" tok/s" variance={0.16} seed={207} />
-          <MetricTile label="credits processed / min" base={1820} unit=" cr" variance={0.12} chartColor="warm" seed={208} />
+          <Reveal delay={0}><MetricTile label="workers online" base={214} variance={0.02} seed={201} /></Reveal>
+          <Reveal delay={80}><MetricTile label="available gpus" base={891} variance={0.03} chartColor="muted" seed={202} /></Reveal>
+          <Reveal delay={160}><MetricTile label="jobs running" base={3402} variance={0.12} seed={203} /></Reveal>
+          <Reveal delay={240}><MetricTile label="inference requests / s" base={4820} variance={0.1} seed={204} /></Reveal>
+          <Reveal delay={80}><MetricTile label="avg latency" base={41} unit="ms" variance={0.14} chartColor="warm" seed={205} /></Reveal>
+          <Reveal delay={160}><MetricTile label="success rate" base={99.6} unit="%" variance={0.002} chartColor="muted" seed={206} format={(n) => `${n.toFixed(2)}%`} /></Reveal>
+          <Reveal delay={240}><MetricTile label="network throughput" base={12400} unit=" tok/s" variance={0.16} seed={207} /></Reveal>
+          <Reveal delay={320}><MetricTile label="credits processed / min" base={1820} unit=" cr" variance={0.12} chartColor="warm" seed={208} /></Reveal>
         </div>
       </Section>
 
@@ -88,9 +97,11 @@ function WorkersPage() {
         title="Requests find the best worker."
         intro="A simplified view of the mesh: the scheduler holds no state of its own — it just routes. Watch a request travel from client to scheduler to worker."
       >
-        <div className="glass-strong rounded-3xl p-4 shadow-elegant md:p-8">
-          <NetworkTopology />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-4 shadow-elegant md:p-8">
+            <NetworkTopology />
+          </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -100,7 +111,9 @@ function WorkersPage() {
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SAMPLE_WORKERS.map((w, i) => (
-            <WorkerCard key={w.id} worker={w} index={i} />
+            <Reveal key={w.id} delay={i * 80}>
+              <WorkerCard worker={w} index={i} />
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -110,13 +123,15 @@ function WorkersPage() {
         title="Live from the network."
         intro="A rolling feed of what's happening across the mesh — connections, completions, rewards, syncs."
       >
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <ActivityFeed />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <StatCard label="events / min" base={38} />
-            <StatCard label="active regions" base={11} variance={0.01} />
+        <Reveal>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+            <ActivityFeed />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <StatCard label="events / min" base={38} />
+              <StatCard label="active regions" base={11} variance={0.01} />
+            </div>
           </div>
-        </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -125,24 +140,36 @@ function WorkersPage() {
         intro="Latency, distribution and saturation, generated straight from the runtime — no snapshots, no cached charts."
       >
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="latency" base={41} variance={9} unit="ms" seed={301} height={150} />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="gpu usage · fleet" base={68} variance={10} unit="%" seed={302} height={150} color="warm" />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="queue length" base={4} variance={3} seed={303} height={150} color="muted" />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="success rate" base={99.6} variance={0.3} unit="%" seed={304} height={150} format={(n) => `${n.toFixed(2)}%`} />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5">
-            <AreaChart label="throughput" base={9200} variance={1400} seed={305} height={150} />
-          </div>
-          <div className="rounded-2xl border border-border bg-surface/40 p-5 md:col-span-1">
-            <WorkerDistribution />
-          </div>
+          <Reveal delay={0}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="latency" base={41} variance={9} unit="ms" seed={301} height={150} />
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="gpu usage · fleet" base={68} variance={10} unit="%" seed={302} height={150} color="warm" />
+            </div>
+          </Reveal>
+          <Reveal delay={160}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="queue length" base={4} variance={3} seed={303} height={150} color="muted" />
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="success rate" base={99.6} variance={0.3} unit="%" seed={304} height={150} format={(n) => `${n.toFixed(2)}%`} />
+            </div>
+          </Reveal>
+          <Reveal delay={160}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5">
+              <AreaChart label="throughput" base={9200} variance={1400} seed={305} height={150} />
+            </div>
+          </Reveal>
+          <Reveal delay={240}>
+            <div className="rounded-2xl border border-border bg-surface/40 p-5 md:col-span-1">
+              <WorkerDistribution />
+            </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -151,9 +178,11 @@ function WorkersPage() {
         title="From request to response."
         intro="Every job takes the same five-stage path through the runtime — the scheduler never becomes the bottleneck."
       >
-        <div className="glass-strong rounded-3xl p-8 shadow-elegant md:p-12">
-          <JobRoutingFlow />
-        </div>
+        <Reveal>
+          <div className="glass-strong rounded-3xl p-8 shadow-elegant md:p-12">
+            <JobRoutingFlow />
+          </div>
+        </Reveal>
       </Section>
 
       <Section
@@ -163,20 +192,22 @@ function WorkersPage() {
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {BECOME_STEPS.map((s, i) => (
-            <div key={s.title} className="relative">
-              <div className="rounded-2xl border border-border bg-surface/40 p-6 transition-all duration-500 hover:border-border-strong hover:bg-surface">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
-                  step {String(i + 1).padStart(2, "0")}
+            <Reveal key={s.title} delay={i * 80}>
+              <div className="relative h-full">
+                <div className="rounded-2xl border border-border bg-surface/40 p-6 transition-all duration-500 hover:border-border-strong hover:bg-surface h-full">
+                  <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
+                    step {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-medium tracking-tight text-foreground">{s.title}</h3>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-muted-foreground">{s.body}</p>
                 </div>
-                <h3 className="mt-3 font-display text-lg font-medium tracking-tight text-foreground">{s.title}</h3>
-                <p className="mt-1.5 text-[14px] leading-relaxed text-muted-foreground">{s.body}</p>
+                {i < BECOME_STEPS.length - 1 && (
+                  <div className="pointer-events-none absolute -right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground/40 lg:block">
+                    →
+                  </div>
+                )}
               </div>
-              {i < BECOME_STEPS.length - 1 && (
-                <div className="pointer-events-none absolute -right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground/40 lg:block">
-                  →
-                </div>
-              )}
-            </div>
+            </Reveal>
           ))}
         </div>
         <div className="mt-10 flex justify-center">
@@ -197,7 +228,9 @@ function WorkersPage() {
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {BENEFITS.map((b, i) => (
-            <LiveCard key={b.title} eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={b.title} description={b.body} />
+            <Reveal key={b.title} delay={i * 80}>
+              <LiveCard eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={b.title} description={b.body} />
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -208,23 +241,24 @@ function WorkersPage() {
         intro="Estimated performance and reward tier for common cards. Actual rewards depend on live demand and uptime."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {HARDWARE.map((h) => (
-            <div
-              key={h.name}
-              className="rounded-2xl border border-border bg-surface/40 p-6 transition-all duration-500 hover:border-border-strong hover:bg-surface"
-            >
-              <div className="flex items-start justify-between">
-                <h3 className="font-display text-lg font-medium tracking-tight text-foreground">{h.name}</h3>
-                <span className="rounded-full border border-border bg-surface/60 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-                  {h.tier}
-                </span>
+          {HARDWARE.map((h, i) => (
+            <Reveal key={h.name} delay={i * 80}>
+              <div
+                className="rounded-2xl border border-border bg-surface/40 p-6 transition-all duration-500 hover:border-border-strong hover:bg-surface h-full"
+              >
+                <div className="flex items-start justify-between">
+                  <h3 className="font-display text-lg font-medium tracking-tight text-foreground">{h.name}</h3>
+                  <span className="rounded-full border border-border bg-surface/60 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                    {h.tier}
+                  </span>
+                </div>
+                <div className="mt-5 space-y-2.5">
+                  <Row label="memory" value={h.memory} />
+                  <Row label="est. performance" value={h.perf} />
+                  <Row label="est. reward" value={h.reward} accent />
+                </div>
               </div>
-              <div className="mt-5 space-y-2.5">
-                <Row label="memory" value={h.memory} />
-                <Row label="est. performance" value={h.perf} />
-                <Row label="est. reward" value={h.reward} accent />
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>

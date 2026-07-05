@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "./Reveal";
 
 export function Section({
   eyebrow,
@@ -18,7 +19,7 @@ export function Section({
   return (
     <section id={id} className={`relative mx-auto w-full max-w-6xl px-6 py-24 md:py-32 ${className}`}>
       {(eyebrow || title || intro) && (
-        <div className="mb-14 max-w-3xl">
+        <Reveal className="mb-14 max-w-3xl">
           {eyebrow && (
             <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-px w-6 bg-border-strong" />
@@ -35,7 +36,7 @@ export function Section({
               {intro}
             </p>
           )}
-        </div>
+        </Reveal>
       )}
       {children}
     </section>

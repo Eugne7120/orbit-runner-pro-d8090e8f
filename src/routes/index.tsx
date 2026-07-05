@@ -7,6 +7,7 @@ import { LiveCard, LiveMetric, MiniSparkline } from "@/components/orbit/LiveCard
 import { ChatPreview } from "@/components/orbit/ChatPreview";
 import { MetricTile } from "@/components/orbit/MetricTile";
 import { RuntimeFeatures } from "@/components/orbit/RuntimeFeatures";
+import { Reveal } from "@/components/orbit/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,7 +36,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <PageShell>
-      {/* HERO */}
+      {/* HERO — already has animate-orbit-fade-up, leave as-is */}
       <section className="relative mx-auto max-w-6xl px-6 pt-8 md:pt-16">
         <div className="mx-auto max-w-4xl text-center">
           <div className="animate-orbit-fade-up inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
@@ -115,38 +116,44 @@ function Home() {
         intro="Models come and go. Chains settle value. In between lives the layer that actually runs the request: routes it, streams it, bills it, retries it. That layer has always belonged to one provider at a time. 0RBIT rebuilds it as an open network."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <LiveCard
-            eyebrow="Route"
-            title="Every request, best path"
-            description="Latency, price, availability and locality are evaluated on every call. The router picks the worker most likely to answer well, right now."
-          >
-            <div className="space-y-0">
-              <LiveMetric label="p50 latency" base={41} />
-              <LiveMetric label="p99 latency" base={210} />
-              <LiveMetric label="routing decisions / s" base={4800} unit="" />
-            </div>
-          </LiveCard>
-          <LiveCard
-            eyebrow="Execute"
-            title="Workers you don't manage"
-            description="Independent operators run inference on hardware they own. You get a single endpoint. They get paid per token served."
-          >
-            <MiniSparkline />
-            <div className="mt-2 font-mono text-[11px] text-muted-foreground">
-              tokens/sec · last 24h
-            </div>
-          </LiveCard>
-          <LiveCard
-            eyebrow="Settle"
-            title="Blockchain, invisible"
-            description="Solana handles settlement, quotas and receipts. You never see a wallet. Payment is in credits. On-chain is an implementation detail."
-          >
-            <div className="space-y-0">
-              <LiveMetric label="settlement" base={380} unit="ms" />
-              <LiveMetric label="finality" base={2} unit="s" />
-              <LiveMetric label="fees" base={0} unit="—" />
-            </div>
-          </LiveCard>
+          <Reveal>
+            <LiveCard
+              eyebrow="Route"
+              title="Every request, best path"
+              description="Latency, price, availability and locality are evaluated on every call. The router picks the worker most likely to answer well, right now."
+            >
+              <div className="space-y-0">
+                <LiveMetric label="p50 latency" base={41} />
+                <LiveMetric label="p99 latency" base={210} />
+                <LiveMetric label="routing decisions / s" base={4800} unit="" />
+              </div>
+            </LiveCard>
+          </Reveal>
+          <Reveal delay={80}>
+            <LiveCard
+              eyebrow="Execute"
+              title="Workers you don't manage"
+              description="Independent operators run inference on hardware they own. You get a single endpoint. They get paid per token served."
+            >
+              <MiniSparkline />
+              <div className="mt-2 font-mono text-[11px] text-muted-foreground">
+                tokens/sec · last 24h
+              </div>
+            </LiveCard>
+          </Reveal>
+          <Reveal delay={160}>
+            <LiveCard
+              eyebrow="Settle"
+              title="Blockchain, invisible"
+              description="Solana handles settlement, quotas and receipts. You never see a wallet. Payment is in credits. On-chain is an implementation detail."
+            >
+              <div className="space-y-0">
+                <LiveMetric label="settlement" base={380} unit="ms" />
+                <LiveMetric label="finality" base={2} unit="s" />
+                <LiveMetric label="fees" base={0} unit="—" />
+              </div>
+            </LiveCard>
+          </Reveal>
         </div>
       </Section>
 
@@ -156,31 +163,33 @@ function Home() {
         title="Ships like software. Runs like infrastructure."
         intro="One SDK. One key. Streaming from the first token. The network beneath it is elastic, distributed and priced per unit of work — not per seat, not per model, not per month."
       >
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <div className="lg:col-span-3">
-            <BootTerminal />
-          </div>
-          <div className="grid gap-4 lg:col-span-2">
-            <LiveCard
-              eyebrow="Install"
-              title="One line, any language"
-            >
-              <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0.008_250)] p-3 font-mono text-[12.5px] text-foreground/90">
+        <Reveal>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+            <div className="lg:col-span-3">
+              <BootTerminal />
+            </div>
+            <div className="grid gap-4 lg:col-span-2">
+              <LiveCard
+                eyebrow="Install"
+                title="One line, any language"
+              >
+                <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0.008_250)] p-3 font-mono text-[12.5px] text-foreground/90">
 {`$ npm i @orbit/sdk
 $ orbit login`}
-              </pre>
-            </LiveCard>
-            <LiveCard
-              eyebrow="Call"
-              title="Familiar shape, better runtime"
-            >
-              <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0.008_250)] p-3 font-mono text-[12.5px] leading-relaxed">
+                </pre>
+              </LiveCard>
+              <LiveCard
+                eyebrow="Call"
+                title="Familiar shape, better runtime"
+              >
+                <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0.008_250)] p-3 font-mono text-[12.5px] leading-relaxed">
 <span className="text-muted-foreground">{`// stream tokens from anywhere\n`}</span>
 <span className="text-foreground/90">{`const res = await orbit.chat({\n  model: "orbit-1",\n  stream: true,\n  messages,\n});`}</span>
-              </pre>
-            </LiveCard>
+                </pre>
+              </LiveCard>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </Section>
 
       {/* PRODUCT PREVIEW — Runtime chat */}
@@ -189,14 +198,16 @@ $ orbit login`}
         title="Experience 0RBIT Runtime."
         intro="A real chat streaming against the same architecture you see above — routed, executed and settled on the mesh in real time. This is what your users will feel."
       >
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <div className="lg:col-span-3">
-            <ChatPreview />
+        <Reveal>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+            <div className="lg:col-span-3">
+              <ChatPreview />
+            </div>
+            <div className="lg:col-span-2">
+              <RuntimeFeatures />
+            </div>
           </div>
-          <div className="lg:col-span-2">
-            <RuntimeFeatures />
-          </div>
-        </div>
+        </Reveal>
       </Section>
 
       {/* ARCHITECTURE PANEL */}
@@ -206,113 +217,58 @@ $ orbit login`}
         intro="No stock diagrams. No brains, no hexagons, no globes. Just the actual shape of the system — nodes, edges, queues, streams. Alive on every page."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-          <MetricTile
-            label="workers online"
-            base={214}
-            variance={0.02}
-            seed={1}
-            hint="12 regions · 4 continents"
-          />
-          <MetricTile
-            label="p50 latency"
-            base={41}
-            variance={0.14}
-            unit="ms"
-            chartColor="muted"
-            seed={2}
-            hint="rolling 5m"
-          />
-          <MetricTile
-            label="requests / sec"
-            base={38}
-            variance={0.22}
-            seed={4}
-            hint="↑ 18% wow"
-          />
-          <MetricTile
-            label="credits processed"
-            base={17}
-            variance={0.6}
-            format={(n) => `+${Math.max(1, Math.round(n))}`}
-            chartColor="warm"
-            seed={5}
-            hint="last minute"
-          />
-          <MetricTile
-            label="uptime"
-            base={99.994}
-            variance={0.00002}
-            format={(n) => `${n.toFixed(3)}%`}
-            chart={false}
-            hint="rolling 30d"
-          />
-          <MetricTile
-            label="ttft · warm"
-            base={38}
-            variance={0.15}
-            unit="ms"
-            seed={6}
-            hint="median"
-          />
-          <MetricTile
-            label="cost / 1m tokens"
-            base={0.42}
-            variance={0.06}
-            format={(n) => `$${n.toFixed(2)}`}
-            chartColor="muted"
-            seed={8}
-            hint="orbit-1 · avg"
-          />
-          <MetricTile
-            label="tokens / day"
-            base={1.2}
-            variance={0.05}
-            format={(n) => `${n.toFixed(2)}b`}
-            seed={9}
-            hint="24h rolling"
-          />
+          <Reveal delay={0}><MetricTile label="workers online" base={214} variance={0.02} seed={1} hint="12 regions · 4 continents" /></Reveal>
+          <Reveal delay={80}><MetricTile label="p50 latency" base={41} variance={0.14} unit="ms" chartColor="muted" seed={2} hint="rolling 5m" /></Reveal>
+          <Reveal delay={160}><MetricTile label="requests / sec" base={38} variance={0.22} seed={4} hint="↑ 18% wow" /></Reveal>
+          <Reveal delay={240}><MetricTile label="credits processed" base={17} variance={0.6} format={(n) => `+${Math.max(1, Math.round(n))}`} chartColor="warm" seed={5} hint="last minute" /></Reveal>
+          <Reveal delay={80}><MetricTile label="uptime" base={99.994} variance={0.00002} format={(n) => `${n.toFixed(3)}%`} chart={false} hint="rolling 30d" /></Reveal>
+          <Reveal delay={160}><MetricTile label="ttft · warm" base={38} variance={0.15} unit="ms" seed={6} hint="median" /></Reveal>
+          <Reveal delay={240}><MetricTile label="cost / 1m tokens" base={0.42} variance={0.06} format={(n) => `$${n.toFixed(2)}`} chartColor="muted" seed={8} hint="orbit-1 · avg" /></Reveal>
+          <Reveal delay={320}><MetricTile label="tokens / day" base={1.2} variance={0.05} format={(n) => `${n.toFixed(2)}b`} seed={9} hint="24h rolling" /></Reveal>
         </div>
       </Section>
 
       {/* CLOSING CTA */}
       <Section eyebrow="/ 05 · ship">
-        <div className="glass-strong relative overflow-hidden rounded-3xl p-10 shadow-elegant md:p-16">
-          <div
-            className="absolute inset-0 -z-10 opacity-40"
-            style={{
-              background:
-                "radial-gradient(60% 80% at 20% 0%, oklch(0.78 0.14 232 / 0.35), transparent 60%)",
-            }}
-          />
-          <div className="max-w-2xl">
-            <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              ready when you are
-            </div>
-            <h2 className="text-balance font-display text-4xl font-medium tracking-[-0.03em] md:text-5xl">
-              Move your first request in an afternoon.
-            </h2>
-            <p className="mt-5 max-w-xl text-pretty text-[16px] leading-relaxed text-muted-foreground md:text-[17px]">
-              A drop-in SDK, an OpenAI-compatible endpoint, and a network that
-              scales the moment you send traffic. No infra to provision. No
-              chain to touch. Just a runtime.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/developers"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[14px] font-medium text-background transition-all hover:bg-foreground/90"
-              >
-                Read the docs
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-              </Link>
-              <Link
-                to="/pricing"
-                className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface/40 px-5 py-2.5 text-[14px] text-foreground/90 transition-all hover:bg-surface"
-              >
-                See pricing
-              </Link>
+        <Reveal>
+          <div className="glass-strong relative overflow-hidden rounded-3xl p-10 shadow-elegant md:p-16">
+            <div
+              className="absolute inset-0 -z-10 opacity-40"
+              style={{
+                background:
+                  "radial-gradient(60% 80% at 20% 0%, oklch(0.78 0.14 232 / 0.35), transparent 60%)",
+              }}
+            />
+            <div className="max-w-2xl">
+              <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                ready when you are
+              </div>
+              <h2 className="text-balance font-display text-4xl font-medium tracking-[-0.03em] md:text-5xl">
+                Move your first request in an afternoon.
+              </h2>
+              <p className="mt-5 max-w-xl text-pretty text-[16px] leading-relaxed text-muted-foreground md:text-[17px]">
+                A drop-in SDK, an OpenAI-compatible endpoint, and a network that
+                scales the moment you send traffic. No infra to provision. No
+                chain to touch. Just a runtime.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/developers"
+                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[14px] font-medium text-background transition-all hover:bg-foreground/90"
+                >
+                  Read the docs
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                </Link>
+                <Link
+                  to="/pricing"
+                  className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface/40 px-5 py-2.5 text-[14px] text-foreground/90 transition-all hover:bg-surface"
+                >
+                  See pricing
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Section>
     </PageShell>
   );
