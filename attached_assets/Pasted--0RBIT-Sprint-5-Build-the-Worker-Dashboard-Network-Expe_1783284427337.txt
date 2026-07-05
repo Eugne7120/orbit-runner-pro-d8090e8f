@@ -1,0 +1,374 @@
+# 0RBIT — Sprint 5
+## Build the Worker Dashboard & Network Experience
+
+Do NOT redesign the homepage.
+
+Do NOT modify the design system.
+
+Do NOT change typography.
+
+Do NOT change colors.
+
+Do NOT replace existing animations.
+
+The goal of this sprint is to build a complete Worker Network experience that shows how the decentralized compute network operates.
+
+The page should feel like a real infrastructure dashboard.
+
+Everything should be frontend only.
+
+No backend is required.
+
+---
+
+## Expand the Workers Page
+
+Transform the Workers page into a complete experience.
+
+The page should explain:
+
+• What Workers are
+
+• How they contribute compute
+
+• How jobs are assigned
+
+• How rewards work
+
+• Why decentralized inference is better
+
+Avoid long paragraphs.
+
+Break everything into visual sections.
+
+---
+
+## Global Network Overview
+
+Create a large dashboard section.
+
+Display live network metrics.
+
+Examples:
+
+Workers Online
+
+Available GPUs
+
+Jobs Running
+
+Inference Requests
+
+Average Latency
+
+Success Rate
+
+Network Throughput
+
+Credits Processed
+
+All values should animate slowly.
+
+Numbers should increase naturally.
+
+No sudden jumps.
+
+---
+
+## Network Topology
+
+Build a visual network diagram.
+
+Use:
+
+Rounded nodes
+
+Connection lines
+
+Signal paths
+
+Soft animations
+
+Occasionally animate a request traveling through the network.
+
+Keep everything subtle.
+
+Do NOT use maps.
+
+Do NOT use globe animations.
+
+Do NOT use 3D.
+
+---
+
+## Worker Status Cards
+
+Create multiple worker cards.
+
+Example information:
+
+Worker ID
+
+Location
+
+GPU Model
+
+Current Status
+
+Jobs Completed
+
+Latency
+
+Uptime
+
+Reward Multiplier
+
+Status examples:
+
+Idle
+
+Busy
+
+Streaming
+
+Offline
+
+Status indicators should animate gently.
+
+---
+
+## Live Activity Feed
+
+Add a live activity panel.
+
+Continuously rotate events.
+
+Examples:
+
+Worker connected
+
+Inference completed
+
+Job assigned
+
+Reward distributed
+
+Worker upgraded
+
+Node synchronized
+
+Show timestamps.
+
+Older events should fade upward.
+
+Loop forever.
+
+---
+
+## Worker Performance Dashboard
+
+Build a clean dashboard.
+
+Examples:
+
+Latency Graph
+
+Worker Distribution
+
+GPU Usage
+
+Queue Length
+
+Success Rate
+
+Throughput
+
+Use lightweight charts.
+
+Everything should be generated with SVG or CSS.
+
+No images.
+
+---
+
+## Job Routing Animation
+
+Create a small visualization showing:
+
+User Request
+
+↓
+
+Scheduler
+
+↓
+
+Best Worker
+
+↓
+
+Inference
+
+↓
+
+Streaming Response
+
+Animate a small signal moving through the flow.
+
+Loop continuously.
+
+---
+
+## Become a Worker Section
+
+Add a dedicated section explaining how users can become workers.
+
+Include:
+
+Step 1
+
+Download Worker
+
+↓
+
+Step 2
+
+Connect GPU
+
+↓
+
+Step 3
+
+Receive Jobs
+
+↓
+
+Step 4
+
+Earn Rewards
+
+Each step should have a clean visual card.
+
+---
+
+## Worker Benefits
+
+Create feature cards.
+
+Examples:
+
+Earn Passive Income
+
+Privacy Focused
+
+No Central Servers
+
+Global Network
+
+Stake for Higher Rewards
+
+Open Infrastructure
+
+Use subtle hover effects.
+
+---
+
+## Hardware Examples
+
+Show supported hardware as UI cards.
+
+Examples:
+
+RTX 4090
+
+RTX 3090
+
+RTX 5090
+
+Apple M3 Max
+
+RX 7900 XTX
+
+Display:
+
+Memory
+
+Recommended Tier
+
+Estimated Performance
+
+Estimated Reward
+
+These are static examples.
+
+---
+
+## Animated Background
+
+Continue using the architectural animated background.
+
+This page should include:
+
+Network connections
+
+Routing paths
+
+Moving signal pulses
+
+Rounded nodes
+
+Keep the background subtle.
+
+Never distract from the content.
+
+---
+
+## Motion
+
+Add gentle animations:
+
+Cards reveal while scrolling.
+
+Metrics count smoothly.
+
+Charts animate softly.
+
+Network pulses move continuously.
+
+Worker status updates periodically.
+
+Everything should feel alive.
+
+Never overwhelming.
+
+---
+
+## Mobile Experience
+
+Fully responsive.
+
+Dashboard stacks naturally.
+
+Charts resize correctly.
+
+Cards remain readable.
+
+Navigation stays consistent.
+
+---
+
+## Expected Result
+
+After this sprint:
+
+• The Worker page feels like a real infrastructure dashboard.
+
+• Visitors understand how decentralized compute works.
+
+• The network appears active and trustworthy.
+
+• Animations reinforce the idea of a living compute network.
+
+• The page matches the premium quality of the rest of the website.
+
+• The Worker experience becomes one of the strongest technical sections on the site.
