@@ -42,8 +42,8 @@ export function EconomicFlywheel() {
     .join(" ");
 
   return (
-    <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 1000 640" className="mx-auto h-auto w-full max-w-3xl" role="img" aria-label="Economic flywheel">
+    <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <svg viewBox="0 0 1000 640" className="mx-auto h-auto w-full min-w-[640px] max-w-3xl sm:min-w-0" role="img" aria-label="Economic flywheel">
         <defs>
           <radialGradient id="fw-center-glow">
             <stop offset="0%" stopColor="oklch(0.78 0.14 232)" stopOpacity="0.25" />

@@ -55,7 +55,7 @@ function DevPage() {
 
       {/* Why */}
       <Section eyebrow="/ why · build on 0rbit" title="A runtime that argues for itself.">
-        <div className="grid gap-3 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
           {[
             { k: "OpenAI-shape", v: "Drop-in", h: "Same endpoints, same SDK shape. Change the base URL." },
             { k: "Streams first", v: "SSE", h: "Streaming is on by default. First token in 38ms." },
@@ -220,7 +220,7 @@ print(stream.receipt().worker)`,
 
       {/* Deploy */}
       <Section eyebrow="/ deploy" title="Ships anywhere your code ships." intro="No sidecars. No agents. HTTPS, a key, and a network.">
-        <div className="grid gap-3 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
           {["Vercel", "Cloudflare", "Fly.io", "AWS · Lambda", "Kubernetes", "Bare metal", "Local dev", "Edge functions"].map((p) => (
             <div key={p} className="flex items-center justify-between rounded-xl border border-border bg-surface/40 px-4 py-3.5 transition-all hover:border-border-strong hover:bg-surface">
               <span className="text-[14px] text-foreground/90">{p}</span>

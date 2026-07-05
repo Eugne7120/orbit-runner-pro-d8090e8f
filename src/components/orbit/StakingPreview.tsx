@@ -90,12 +90,12 @@ export function StakingPreview() {
               className="w-full accent-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </label>
-          <div className="flex shrink-0 flex-wrap gap-2">
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:flex-wrap">
             <button
               onClick={stake}
               disabled={amount <= 0 || available <= 0}
               aria-label={`Stake ${Math.min(amount, available).toLocaleString()} $0RBIT`}
-              className="btn-sheen inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-foreground"
+              className="btn-sheen inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-foreground"
             >
               Stake
             </button>
@@ -103,7 +103,7 @@ export function StakingPreview() {
               onClick={unstake}
               disabled={amount <= 0 || staked <= 0}
               aria-label={`Unstake ${Math.min(amount, staked).toLocaleString()} $0RBIT`}
-              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border-strong bg-surface px-5 py-2.5 text-[13px] font-medium text-foreground transition-all hover:bg-surface-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-surface"
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-border-strong bg-surface px-5 py-2.5 text-[13px] font-medium text-foreground transition-all hover:bg-surface-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-surface"
             >
               Unstake
             </button>
@@ -111,7 +111,7 @@ export function StakingPreview() {
               onClick={claim}
               disabled={pending < 0.01}
               aria-label={`Claim ${pending.toFixed(2)} USDC in pending rewards`}
-              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-signal/40 bg-signal/10 px-5 py-2.5 text-[13px] font-medium text-signal transition-all hover:bg-signal/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-signal/10"
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-signal/40 bg-signal/10 px-5 py-2.5 text-[13px] font-medium text-signal transition-all hover:bg-signal/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-signal/10"
             >
               Claim rewards
             </button>

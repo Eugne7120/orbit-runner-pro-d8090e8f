@@ -165,7 +165,7 @@ for c in stream: print(c.delta, end="", flush=True)`,
 
       {/* Rate limits */}
       <Section eyebrow="/ rate limits" title="Predictable ceilings.">
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
             { t: "Developer", r: "10 req / s", c: "20 concurrent" },
             { t: "Team", r: "500 req / s", c: "200 concurrent" },

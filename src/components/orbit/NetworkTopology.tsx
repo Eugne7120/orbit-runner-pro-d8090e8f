@@ -55,8 +55,8 @@ export function NetworkTopology() {
   const hubToWorker = pathBetween(HUB, active);
 
   return (
-    <div className="relative w-full">
-      <svg viewBox="0 0 1080 460" className="h-auto w-full" role="img" aria-label="Worker network topology">
+    <div className="relative -mx-4 w-full overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <svg viewBox="0 0 1080 460" className="h-auto w-full min-w-[640px] sm:min-w-0" role="img" aria-label="Worker network topology">
         <defs>
           <radialGradient id="topo-hub-glow">
             <stop offset="0%" stopColor="oklch(0.85 0.15 232)" stopOpacity="0.9" />

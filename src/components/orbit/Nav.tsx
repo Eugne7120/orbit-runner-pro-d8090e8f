@@ -1,7 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const links = [
   { to: "/product", label: "Product" },
@@ -30,6 +29,20 @@ export function Nav() {
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = overflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   return (
     <header
@@ -76,55 +89,76 @@ export function Nav() {
             Get access
             <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
           </Link>
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <button
-                aria-label="Open menu"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hidden"
-              >
-                <span className="relative flex h-3.5 w-4 flex-col justify-between">
-                  <span className="h-px w-full bg-current" />
-                  <span className="h-px w-full bg-current" />
-                  <span className="h-px w-full bg-current" />
-                </span>
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="glass-strong w-[85vw] border-border-strong bg-background/95 sm:max-w-xs">
-              <SheetTitle className="sr-only">Navigation menu</SheetTitle>
-              <div className="mt-6 flex items-center">
-                <Logo />
-              </div>
-              <nav aria-label="Mobile navigation" className="mt-8 flex flex-col gap-1">
-                {links.map((l) => (
-                  <Link
-                    key={l.to}
-                    to={l.to}
-                    className="rounded-lg px-3 py-2.5 text-[15px] text-foreground/80 transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    activeProps={{ className: "bg-surface text-foreground" }}
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
-              <div className="mt-8 flex flex-col gap-2 border-t border-border pt-6">
-                <Link
-                  to="/developers"
-                  className="rounded-lg px-3 py-2.5 text-center text-[14px] text-muted-foreground transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  Sign in
-                </Link>
-                <Link
-                  to="/pricing"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-2.5 text-[14px] font-medium text-background transition-all hover:bg-foreground/90"
-                >
-                  Get access
-                  <span>→</span>
-                </Link>
-              </div>
-            </SheetContent>
-          </Sheet>
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+            className="relative z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full text-foreground transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hidden"
+          >
+            <span className="relative flex h-4 w-4.5 flex-col items-center justify-center">
+              <span
+                className="absolute h-px w-4.5 bg-current transition-all duration-300 ease-[var(--ease-out-soft)]"
+                style={{ transform: open ? "rotate(45deg)" : "translateY(-5px)" }}
+              />
+              <span
+                className="absolute h-px w-4.5 bg-current transition-opacity duration-200"
+                style={{ opacity: open ? 0 : 1 }}
+              />
+              <span
+                className="absolute h-px w-4.5 bg-current transition-all duration-300 ease-[var(--ease-out-soft)]"
+                style={{ transform: open ? "rotate(-45deg)" : "translateY(5px)" }}
+              />
+            </span>
+          </button>
         </div>
       </nav>
+
+      <div
+        id="mobile-menu"
+        className={`fixed inset-0 z-50 bg-background/98 backdrop-blur-xl transition-opacity duration-300 ease-[var(--ease-out-soft)] md:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <nav
+          aria-label="Mobile navigation"
+          className={`flex h-full flex-col overflow-y-auto px-6 pb-10 pt-24 transition-all duration-300 ease-[var(--ease-out-soft)] ${
+            open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+          }`}
+        >
+          <div className="flex flex-1 flex-col justify-center gap-1">
+            {links.map((l, i) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                style={{ transitionDelay: open ? `${60 + i * 35}ms` : "0ms" }}
+                className={`rounded-xl px-4 py-4 font-display text-[22px] font-medium tracking-tight text-foreground/85 transition-all duration-300 ease-[var(--ease-out-soft)] hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+                }`}
+                activeProps={{ className: "bg-surface text-foreground" }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6">
+            <Link
+              to="/developers"
+              className="rounded-full border border-border-strong px-4 py-3.5 text-center text-[15px] font-medium text-foreground/80 transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              Sign in
+            </Link>
+            <Link
+              to="/pricing"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-3.5 text-[15px] font-medium text-background transition-all hover:bg-foreground/90"
+            >
+              Get access
+              <span>→</span>
+            </Link>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

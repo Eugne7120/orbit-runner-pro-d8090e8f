@@ -46,8 +46,8 @@ export function ValueFlowDiagram() {
   }, []);
 
   return (
-    <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 1000 680" className="mx-auto h-auto w-full max-w-2xl" role="img" aria-label="Value flow diagram">
+    <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <svg viewBox="0 0 1000 680" className="mx-auto h-auto w-full min-w-[560px] max-w-2xl sm:min-w-0" role="img" aria-label="Value flow diagram">
         <defs>
           <linearGradient id="vf-edge" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="oklch(1 0 0 / 0.03)" />

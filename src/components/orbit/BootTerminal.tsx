@@ -173,8 +173,8 @@ export function BootTerminal({ className = "" }: { className?: string }) {
           {booted ? "live" : "booting"}
         </div>
       </div>
-      <div className="relative h-[360px] overflow-hidden bg-[oklch(0.13_0.008_250)] p-5 font-mono text-[12.5px] leading-relaxed">
-        <div className="flex h-full flex-col justify-end gap-[3px]">
+      <div className="relative h-[360px] overflow-x-auto overflow-y-hidden bg-[oklch(0.13_0.008_250)] p-5 font-mono text-[12.5px] leading-relaxed">
+        <div className="flex h-full min-w-max flex-col justify-end gap-[3px]">
           {lines.map((l, i) => {
             const age = lines.length - 1 - i;
             const opacity = Math.max(0.3, 1 - age * 0.055);

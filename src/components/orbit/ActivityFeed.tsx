@@ -91,11 +91,11 @@ export function ActivityFeed({ className = "" }: { className?: string }) {
                 style={{ opacity }}
               >
                 <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${style.dot}`} />
-                <span className="min-w-[64px] shrink-0 font-mono text-[9.5px] uppercase tracking-[0.1em] text-muted-foreground/70">
+                <span className="min-w-[46px] shrink-0 font-mono text-[9.5px] uppercase tracking-[0.1em] text-muted-foreground/70 sm:min-w-[64px]">
                   {style.label}
                 </span>
-                <span className="flex-1 truncate text-[13px] text-foreground/90">{e.text}</span>
-                <span className="shrink-0 font-mono text-[10.5px] tabular-nums text-muted-foreground/60">{e.ts}</span>
+                <span className="min-w-0 flex-1 truncate text-[13px] text-foreground/90">{e.text}</span>
+                <span className="hidden shrink-0 font-mono text-[10.5px] tabular-nums text-muted-foreground/60 sm:inline">{e.ts}</span>
               </div>
             );
           })}

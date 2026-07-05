@@ -1,0 +1,268 @@
+# 0RBIT — Sprint 6.5
+## Responsive Experience Across All Devices
+
+Do NOT redesign the website.
+
+Do NOT add new features.
+
+Do NOT change the design language.
+
+The goal of this sprint is to make the entire website fully responsive and polished across all screen sizes.
+
+The desktop experience is already in a good state.
+
+Now optimize every page for mobile, tablet, laptop, and large desktop displays.
+
+---
+
+## Responsive Breakpoints
+
+Optimize for:
+
+- Mobile (320px–767px)
+- Tablet (768px–1023px)
+- Laptop (1024px–1439px)
+- Desktop (1440px+)
+
+Every layout should feel intentionally designed for each breakpoint.
+
+---
+
+## Navigation
+
+Improve the mobile navigation.
+
+Requirements:
+
+- Full-screen mobile menu
+- Smooth open/close animation
+- Prevent body scrolling when menu is open
+- Clear spacing between navigation items
+- Large touch targets
+- Sticky navigation remains smooth
+
+Do not simply collapse the desktop navbar.
+
+Design a proper mobile navigation experience.
+
+---
+
+## Hero Section
+
+Optimize the hero section.
+
+Ensure:
+
+- Headings wrap naturally
+- Subtitle remains readable
+- CTA buttons stack on small screens
+- Hero animations resize correctly
+- Background animations do not overlap content
+
+The hero should still feel premium on phones.
+
+---
+
+## Product Sections
+
+Every product card should adapt naturally.
+
+Desktop:
+
+4-column grid
+
+Tablet:
+
+2-column grid
+
+Mobile:
+
+Single-column layout
+
+Maintain consistent spacing.
+
+---
+
+## Documentation
+
+Improve the Docs experience on mobile.
+
+Requirements:
+
+- Sidebar becomes a slide-out drawer
+- Documentation content fills the screen width
+- Code blocks become horizontally scrollable
+- Tables remain readable
+- Search bar remains accessible
+
+---
+
+## Developer Page
+
+Optimize:
+
+- API cards
+- Code examples
+- Flow diagrams
+- Terminal cards
+
+Nothing should overflow horizontally.
+
+---
+
+## Worker Dashboard
+
+Improve dashboard responsiveness.
+
+Charts should resize.
+
+Cards should stack naturally.
+
+Metrics remain readable.
+
+Activity feed adapts to smaller screens.
+
+---
+
+## Economy Page
+
+Optimize:
+
+- Treasury dashboard
+- Value flow diagram
+- Flywheel diagram
+- Statistics cards
+- Staking preview
+
+Large diagrams should stack vertically on mobile.
+
+Avoid tiny unreadable elements.
+
+---
+
+## Typography
+
+Adjust typography per breakpoint.
+
+Desktop:
+
+Large headings.
+
+Mobile:
+
+Reduce heading size while maintaining hierarchy.
+
+Improve:
+
+- line height
+- paragraph spacing
+- margins
+
+Reading should remain comfortable.
+
+---
+
+## Components
+
+Review every component.
+
+Examples:
+
+Buttons
+
+Cards
+
+Terminal
+
+Code blocks
+
+Tabs
+
+Accordion
+
+Charts
+
+Forms
+
+Tables
+
+Inputs
+
+Every component should scale naturally.
+
+---
+
+## Spacing
+
+Review spacing on every page.
+
+Avoid:
+
+Huge empty gaps.
+
+Elements touching screen edges.
+
+Inconsistent margins.
+
+Maintain a balanced layout on every device.
+
+---
+
+## Touch Experience
+
+Improve mobile usability.
+
+Ensure:
+
+Large tap targets
+
+Comfortable button spacing
+
+Smooth scrolling
+
+Responsive hover replacements
+
+No accidental taps
+
+---
+
+## Performance
+
+Reduce unnecessary animations on smaller devices.
+
+Background animations should become lighter on mobile.
+
+Maintain smooth scrolling.
+
+Keep frame rate high.
+
+---
+
+## Quality Assurance
+
+Test every page.
+
+Check for:
+
+- horizontal scrolling
+- broken grids
+- overlapping elements
+- clipped text
+- overflowing cards
+- broken animations
+- inconsistent spacing
+- responsive navigation issues
+
+Fix every issue.
+
+---
+
+## Expected Result
+
+After this sprint:
+
+- Every page looks intentional on every screen size.
+- Mobile feels like a first-class experience.
+- Tablet layouts are optimized.
+- Desktop quality remains unchanged.
+- The website is fully responsive and ready for public users across all devices.
