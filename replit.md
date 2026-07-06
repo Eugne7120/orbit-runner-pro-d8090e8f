@@ -31,9 +31,11 @@ The AI chat backend uses **OpenRouter free models** (zero cost):
 
 | 0RBIT model | OpenRouter model |
 |-------------|-----------------|
-| 0RBIT Lite  | `openrouter/free` (auto-routes to best available) |
-| 0RBIT Core  | `nvidia/nemotron-3-super-120b-a12b:free` |
-| 0RBIT Pro   | `google/gemma-4-31b-it:free` |
+| 0RBIT Lite  | `nvidia/nemotron-3-nano-30b-a3b:free` (fastest, MoE 3B active) |
+| 0RBIT Core  | `openai/gpt-oss-20b:free` (recommended: fast + good quality) |
+| 0RBIT Pro   | `nvidia/nemotron-3-super-120b-a12b:free` (best reasoning quality) |
+
+These picks were chosen by live-testing OpenRouter's free-tier catalog for real latency and reliability (July 2026) — free-model availability/speed varies by provider and drifts over time, so re-test via `https://openrouter.ai/api/v1/models` and direct chat-completion calls if models start feeling slow or start erroring.
 
 Required secret: `OPENROUTER_API_KEY` — get a free key at https://openrouter.ai/keys
 
