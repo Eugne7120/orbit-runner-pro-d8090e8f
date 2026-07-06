@@ -25,10 +25,24 @@ The dev server starts on **port 5000**.
 - `src/routes/` TanStack Router route files
 - `src/styles.css` global styles with Tailwind 4 config
 
+## Chat engine
+
+The AI chat backend uses **OpenRouter free models** (zero cost):
+
+| 0RBIT model | OpenRouter model |
+|-------------|-----------------|
+| 0RBIT Lite  | `openrouter/free` (auto-routes to best available) |
+| 0RBIT Core  | `nvidia/nemotron-3-super-120b-a12b:free` |
+| 0RBIT Pro   | `google/gemma-4-31b-it:free` |
+
+Required secret: `OPENROUTER_API_KEY` — get a free key at https://openrouter.ai/keys
+
+The server-side handler (`src/routes/app-chat-api.tsx`) allowlists model IDs so the client can't request arbitrary (paid) models.
+
 ## Notes
 
 - The project was originally built with [Lovable](https://lovable.dev). Avoid rewriting published git history.
-- Hydration mismatches in the browser console are benign they come from `Math.random()`-seeded initial state in orbit components (accepted pattern).
+- Hydration mismatches in the browser console are benign — they come from `Math.random()`-seeded initial state in orbit components (accepted pattern).
 
 ## User preferences
 

@@ -87,7 +87,7 @@ export const Route = createFileRoute("/app-chat-api")({
             },
           });
         } catch (err) {
-          console.error("Chat API error:", err);
+          console.error("Chat API error:", err instanceof Error ? err.message : err);
           return new Response(JSON.stringify({ error: "Failed to process request" }), {
             status: 500,
             headers: { "Content-Type": "application/json" },
