@@ -3,10 +3,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Copy, Check, RefreshCw, ThumbsUp, ThumbsDown, Zap } from "lucide-react";
+import { Copy, Check, RefreshCw, ThumbsUp, ThumbsDown } from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import type { Message } from "@/lib/chat-store";
+import orbitLogoIcon from "@/assets/orbit-logo-icon.png";
 
 function CopyButton({ text, className }: { text: string; className?: string }) {
   const [copied, setCopied] = useState(false);
@@ -86,7 +87,7 @@ export function ChatMessage({ message, isStreaming, onRegenerate }: ChatMessageP
     >
       {!isUser && (
         <div className="w-7 h-7 rounded-full bg-signal/15 border border-signal/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <Zap className="w-3.5 h-3.5 text-signal" />
+          <img src={orbitLogoIcon} alt="0RBIT" className="w-3.5 h-3.5 object-contain" />
         </div>
       )}
 

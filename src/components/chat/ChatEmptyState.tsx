@@ -1,7 +1,7 @@
-import { Zap } from "lucide-react";
 import { motion } from "motion/react";
 import { ModelSelector } from "@/components/app/ModelSelector";
 import type { OrbitModelId } from "@/lib/openai";
+import orbitLogoIcon from "@/assets/orbit-logo-icon.png";
 
 const SUGGESTIONS = [
   { label: "Explain quantum computing", sub: "in simple terms" },
@@ -31,7 +31,11 @@ export function ChatEmptyState({ model, onModelChange, onPrompt }: ChatEmptyStat
           <div className="absolute inset-0 rounded-full bg-signal/10 animate-pulse" />
           <div className="absolute inset-2 rounded-full bg-signal/20" />
           <div className="absolute inset-4 rounded-full bg-background border border-signal/30" />
-          <Zap className="absolute inset-0 m-auto w-5 h-5 text-signal" />
+          <img
+            src={orbitLogoIcon}
+            alt="0RBIT"
+            className="absolute inset-0 m-auto w-5 h-5 object-contain"
+          />
         </div>
         <h2 className="text-xl font-semibold text-foreground mb-1">What can I help with?</h2>
         <p className="text-sm text-muted-foreground">Powered by 0RBIT's distributed AI network.</p>

@@ -2,7 +2,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { Zap, Wallet, Twitter, Chrome } from "lucide-react";
+import { Wallet, Twitter, Chrome } from "lucide-react";
+import orbitLogoIcon from "@/assets/orbit-logo-icon.png";
 
 export const Route = createFileRoute("/app/login")({
   component: LoginPage,
@@ -42,7 +43,11 @@ function LoginPage() {
             />
             <div className="absolute inset-2 rounded-full bg-signal/20" />
             <div className="absolute inset-3.5 rounded-full bg-background border border-signal/40" />
-            <Zap className="absolute inset-0 m-auto w-5 h-5 text-signal" />
+            <img
+              src={orbitLogoIcon}
+              alt="0RBIT"
+              className="absolute inset-0 m-auto w-5 h-5 object-contain"
+            />
           </div>
           <h1 className="text-xl font-semibold tracking-tight text-foreground">0RBIT</h1>
           <p className="text-sm text-muted-foreground mt-1">AI Infrastructure for Everyone</p>

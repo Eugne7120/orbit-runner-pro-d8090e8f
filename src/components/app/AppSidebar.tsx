@@ -11,9 +11,9 @@ import {
   Brain,
   Settings,
   X,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import orbitLogoIcon from "@/assets/orbit-logo-icon.png";
 
 interface NavItem {
   label: string;
@@ -101,7 +101,11 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
             <div className="absolute inset-0 rounded-full bg-signal/20 group-hover:bg-signal/30 transition-colors" />
             <div className="absolute inset-1 rounded-full bg-signal/60" />
             <div className="absolute inset-2 rounded-full bg-background" />
-            <Zap className="absolute inset-0 m-auto w-3 h-3 text-signal" />
+            <img
+              src={orbitLogoIcon}
+              alt="0RBIT"
+              className="absolute inset-0 m-auto w-3 h-3 object-contain"
+            />
           </div>
           <span className="text-sm font-semibold tracking-wider text-foreground">0RBIT</span>
         </Link>

@@ -51,7 +51,7 @@ export function PrivyProvider({ children }: { children: ReactNode }) {
         appearance: {
           theme: "dark",
           accentColor: "#4db8ff",
-          logo: "/favicon.ico",
+          logo: "/apple-touch-icon.png",
         },
         loginMethods: ["wallet", "twitter", "google"],
         embeddedWallets: {
