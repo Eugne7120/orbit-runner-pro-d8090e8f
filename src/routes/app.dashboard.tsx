@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect } from "react";
+import { useGuestMode } from "@/lib/guest";
 import { motion } from "motion/react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import type { TooltipProps } from "recharts";
@@ -29,11 +30,12 @@ const STATS = [
 
 function DashboardPage() {
   const { authenticated, ready } = usePrivy();
+  const guest = useGuestMode();
   const navigate = useNavigate();
   useEffect(() => {
-    if (ready && !authenticated) navigate({ to: "/app/login" });
-  }, [ready, authenticated]);
-  if (!ready || !authenticated) return null;
+    if (ready && !authenticated && !guest) navigate({ to: "/app/login" });
+  }, [ready, authenticated, guest]);
+  if (!ready || (!authenticated && !guest)) return null;
 
   return (
     <AppShell>

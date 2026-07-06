@@ -5,6 +5,7 @@ import { ConversationSidebar } from "@/components/chat/ConversationSidebar";
 import { AppTopbar } from "@/components/app/AppTopbar";
 import { AppSidebar } from "@/components/app/AppSidebar";
 import { chatStore, type Conversation } from "@/lib/chat-store";
+import { useGuestMode } from "@/lib/guest";
 
 export const Route = createFileRoute("/app/chat")({
   component: ChatLayout,
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/app/chat")({
 
 function ChatLayout() {
   const { authenticated, ready } = usePrivy();
+  const guest = useGuestMode();
   const navigate = useNavigate();
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -19,14 +21,14 @@ function ChatLayout() {
   const refresh = useCallback(() => setConversations(chatStore.getAll()), []);
 
   useEffect(() => {
-    if (ready && !authenticated) navigate({ to: "/app/login" });
-  }, [ready, authenticated]);
+    if (ready && !authenticated && !guest) navigate({ to: "/app/login" });
+  }, [ready, authenticated, guest]);
 
   useEffect(() => {
     refresh();
   }, []);
 
-  if (!ready || !authenticated) return null;
+  if (!ready || (!authenticated && !guest)) return null;
 
   return (
     <div className="flex h-screen bg-background overflow-hidden">

@@ -2,8 +2,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { Wallet, Twitter, Chrome } from "lucide-react";
+import { Wallet, Twitter, Chrome, User } from "lucide-react";
 import orbitLogoIcon from "@/assets/orbit-logo-icon.png";
+import { enterGuestMode } from "@/lib/guest";
 
 export const Route = createFileRoute("/app/login")({
   component: LoginPage,
@@ -18,6 +19,11 @@ function LoginPage() {
       navigate({ to: "/app" });
     }
   }, [ready, authenticated, navigate]);
+
+  const handleGuest = () => {
+    enterGuestMode();
+    navigate({ to: "/app" });
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 relative overflow-hidden">
@@ -91,6 +97,14 @@ function LoginPage() {
             <span className="text-sm font-medium">Continue with Google</span>
           </button>
         </div>
+
+        <button
+          onClick={handleGuest}
+          className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-3 rounded-xl border border-dashed border-border text-muted-foreground hover:text-foreground hover:border-border-strong hover:bg-white/[0.03] transition-all text-sm"
+        >
+          <User className="w-3.5 h-3.5" />
+          Continue as Guest
+        </button>
 
         <p className="text-center text-xs text-muted-foreground/50 mt-6">
           Powered by Privy · Secured by decentralized infrastructure

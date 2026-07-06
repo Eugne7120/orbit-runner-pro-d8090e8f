@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect } from "react";
+import { useGuestMode } from "@/lib/guest";
 import { motion } from "motion/react";
 import {
   MessageSquare,
@@ -57,15 +58,16 @@ function Placeholder({ title, desc }: { title: string; desc: string }) {
 
 function AppHome() {
   const { authenticated, ready, user } = usePrivy();
+  const guest = useGuestMode();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (ready && !authenticated) navigate({ to: "/app/login" });
-  }, [ready, authenticated]);
+    if (ready && !authenticated && !guest) navigate({ to: "/app/login" });
+  }, [ready, authenticated, guest]);
 
-  if (!ready || !authenticated) return null;
+  if (!ready || (!authenticated && !guest)) return null;
 
-  const name = user?.twitter?.name ?? user?.google?.name ?? "there";
+  const name = user?.twitter?.name ?? user?.google?.name ?? (guest ? "Guest" : "there");
 
   return (
     <AppShell>

@@ -1,8 +1,9 @@
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { Menu, Search, LogOut, User, Wallet } from "lucide-react";
-import { useRouterState } from "@tanstack/react-router";
+import { useRouterState, useNavigate } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useGuestMode, exitGuestMode } from "@/lib/guest";
 
 function shortenAddress(address: string) {
   return `${address.slice(0, 4)}...${address.slice(-4)}`;
@@ -30,6 +31,8 @@ interface AppTopbarProps {
 export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
   const { logout, user } = usePrivy();
   const { wallets } = useWallets();
+  const guest = useGuestMode();
+  const navigate = useNavigate();
   const router = useRouterState();
   const pathname = router.location.pathname;
   const title = getPageTitle(pathname);
@@ -37,10 +40,17 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
   const connectedWallet = wallets[0];
   const walletAddress = connectedWallet?.address;
 
-  const displayName =
-    user?.twitter?.name ??
-    user?.google?.name ??
-    (walletAddress ? shortenAddress(walletAddress) : "User");
+  const displayName = guest
+    ? "Guest"
+    : (user?.twitter?.name ??
+      user?.google?.name ??
+      (walletAddress ? shortenAddress(walletAddress) : "User"));
+
+  const handleLogout = () => {
+    exitGuestMode();
+    if (guest) navigate({ to: "/app/login" });
+    else logout().then(() => navigate({ to: "/app/login" }));
+  };
 
   const avatarLetter = displayName[0]?.toUpperCase() ?? "U";
   const avatarUrl = user?.twitter?.profilePictureUrl;
@@ -111,7 +121,7 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
             )}
           </div>
           <button
-            onClick={() => logout()}
+            onClick={handleLogout}
             className="w-full flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground hover:text-destructive hover:bg-white/[0.04] transition-colors"
           >
             <LogOut className="w-3 h-3" />

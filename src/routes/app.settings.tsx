@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { useEffect, useState } from "react";
+import { useGuestMode, exitGuestMode } from "@/lib/guest";
 import { motion } from "motion/react";
 import { UserProfile } from "@/components/app/UserProfile";
 import { User, Palette, Globe, Wallet, Link2, Shield, Bell, Check } from "lucide-react";
@@ -63,14 +64,15 @@ function Row({
 
 function SettingsPage() {
   const { authenticated, ready, user, logout } = usePrivy();
+  const guest = useGuestMode();
   const { wallets } = useWallets();
   const navigate = useNavigate();
   const [section, setSection] = useState("profile");
 
   useEffect(() => {
-    if (ready && !authenticated) navigate({ to: "/app/login" });
-  }, [ready, authenticated]);
-  if (!ready || !authenticated) return null;
+    if (ready && !authenticated && !guest) navigate({ to: "/app/login" });
+  }, [ready, authenticated, guest]);
+  if (!ready || (!authenticated && !guest)) return null;
 
   const wallet = wallets[0];
 
@@ -198,7 +200,11 @@ function SettingsPage() {
                 <Row label="Session active" value="Yes" />
                 <div className="pt-3">
                   <button
-                    onClick={() => logout().then(() => navigate({ to: "/app/login" }))}
+                    onClick={() => {
+                      exitGuestMode();
+                      if (guest) navigate({ to: "/app/login" });
+                      else logout().then(() => navigate({ to: "/app/login" }));
+                    }}
                     className="px-4 py-2 rounded-lg bg-destructive/15 border border-destructive/25 text-destructive hover:bg-destructive/25 transition-colors text-sm font-medium"
                   >
                     Sign out

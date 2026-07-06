@@ -1,6 +1,7 @@
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { Wallet, Twitter, Mail, Calendar, Shield } from "lucide-react";
 import { motion } from "motion/react";
+import { useGuestMode } from "@/lib/guest";
 
 function shortenAddress(address: string) {
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
@@ -9,19 +10,23 @@ function shortenAddress(address: string) {
 export function UserProfile() {
   const { user } = usePrivy();
   const { wallets } = useWallets();
+  const guest = useGuestMode();
   const wallet = wallets[0];
 
-  const displayName =
-    user?.twitter?.name ??
-    user?.google?.name ??
-    (wallet?.address ? shortenAddress(wallet.address) : "Anonymous");
+  const displayName = guest
+    ? "Guest"
+    : (user?.twitter?.name ??
+      user?.google?.name ??
+      (wallet?.address ? shortenAddress(wallet.address) : "Anonymous"));
 
   const avatarUrl = user?.twitter?.profilePictureUrl;
   const avatarLetter = displayName[0]?.toUpperCase() ?? "U";
 
-  const memberSince = user?.createdAt
-    ? new Date(user.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })
-    : "July 2025";
+  const memberSince = guest
+    ? "This session"
+    : user?.createdAt
+      ? new Date(user.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+      : "July 2025";
 
   return (
     <motion.div
@@ -41,7 +46,9 @@ export function UserProfile() {
         </div>
         <div className="min-w-0">
           <h3 className="text-base font-semibold text-foreground truncate">{displayName}</h3>
-          <p className="text-xs text-muted-foreground mt-0.5">0RBIT Member</p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            {guest ? "Browsing as guest" : "0RBIT Member"}
+          </p>
         </div>
       </div>
 
@@ -97,7 +104,9 @@ export function UserProfile() {
           </div>
           <div>
             <p className="text-[11px] text-muted-foreground">Security</p>
-            <p className="text-xs text-foreground">Privy authenticated</p>
+            <p className="text-xs text-foreground">
+              {guest ? "Guest session (no login)" : "Privy authenticated"}
+            </p>
           </div>
         </div>
       </div>
