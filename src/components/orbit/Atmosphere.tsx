@@ -17,6 +17,7 @@
  */
 import { useEffect, useRef } from "react";
 import { useRouterState } from "@tanstack/react-router";
+import { useRuntime } from "@/lib/runtime-context";
 
 type Area =
   | "home" // distributed inference topology
@@ -152,6 +153,20 @@ function nodeById(id: string): Node {
   return NODES.find((n) => n.id === id)!;
 }
 
+// Exposed so the chat page can pick a plausible worker for a request without
+// duplicating the topology definition.
+export const WORKER_NODE_IDS: string[] = NODES.filter((n) => n.cluster === "worker").map(
+  (n) => n.id,
+);
+
+// Representative ingress chain used to animate "Load Context" the request
+// entering the runtime through an edge node, gateway, router and scheduler.
+const ENTRY_CHAIN: Array<[string, string]> = [
+  ["e2", "g1"],
+  ["g1", "r1"],
+  ["r1", "s1"],
+];
+
 // Slightly curved bezier between two node centers so the network feels
 // hand-routed rather than mechanical.
 function edgePath(a: Node, b: Node): string {
@@ -231,6 +246,9 @@ export function Atmosphere() {
   const ref = useScrollParallax();
   const signalIdx = SIGNAL_INDICES[area];
   const emphasis = AREA_EMPHASIS[area];
+  const { stage: runtimeStage, workerId } = useRuntime();
+  const activeWorker = workerId ? nodeById(workerId) : null;
+  const scheduler = nodeById("s1");
 
   return (
     <div
@@ -414,6 +432,125 @@ export function Atmosphere() {
           );
         })}
       </svg>
+
+      {/* Layer 5 Runtime overlay. Reacts to the chat's Runtime Pipeline. */}
+      {runtimeStage !== "idle" && activeWorker && (
+        <svg
+          className="absolute inset-0 h-full w-full transition-opacity duration-[1400ms] ease-out"
+          viewBox="0 0 2400 1400"
+          preserveAspectRatio="xMidYMid slice"
+          style={{
+            opacity: runtimeStage === "complete" ? 0 : 1,
+            mixBlendMode: "screen",
+            transform: "translate3d(0, calc(var(--sy) * -0.14px), 0)",
+          }}
+        >
+          <defs>
+            <radialGradient id="runtime-node-glow">
+              <stop offset="0%" stopColor="oklch(0.88 0.16 232)" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="oklch(0.78 0.14 232)" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* Stage 1 the scheduler connection to the allocated worker
+              stays highlighted for the whole request. */}
+          <path
+            d={edgePath(scheduler, activeWorker)}
+            stroke="oklch(0.85 0.15 232)"
+            strokeWidth={1.4}
+            fill="none"
+            opacity={0.75}
+            className="transition-opacity duration-700"
+          />
+
+          {/* Worker node glow gentle breathing while inference runs. */}
+          <circle
+            cx={activeWorker.x}
+            cy={activeWorker.y}
+            r={38}
+            fill="url(#runtime-node-glow)"
+            opacity={runtimeStage === "inference" ? undefined : 0.7}
+            className={
+              runtimeStage === "inference"
+                ? "animate-atmos-runtime-breathe"
+                : "transition-opacity duration-700"
+            }
+          />
+
+          {/* Stage 3 a second node (the scheduler) activates while
+              preparing / running / streaming. */}
+          {(runtimeStage === "prepare" ||
+            runtimeStage === "inference" ||
+            runtimeStage === "stream") && (
+            <circle
+              cx={scheduler.x}
+              cy={scheduler.y}
+              r={30}
+              fill="url(#runtime-node-glow)"
+              opacity={0.55}
+              className="transition-opacity duration-700"
+            />
+          )}
+
+          {/* Stage 2 a slow signal pulse travels from the edge through
+              the gateway/router into the scheduler. Plays once per stage. */}
+          {runtimeStage === "load" && (
+            <g key={`load-${workerId}`}>
+              {ENTRY_CHAIN.map(([a, b], i) => (
+                <circle key={`load-${i}`} r={2.4} fill="oklch(0.92 0.15 232)">
+                  <animateMotion
+                    dur="1.1s"
+                    begin={`${i * 0.4}s`}
+                    repeatCount="1"
+                    fill="freeze"
+                    path={edgePath(nodeById(a), nodeById(b))}
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0;0.95;0.95;0"
+                    keyTimes="0;0.15;0.8;1"
+                    dur="1.1s"
+                    begin={`${i * 0.4}s`}
+                    repeatCount="1"
+                    fill="freeze"
+                  />
+                </circle>
+              ))}
+            </g>
+          )}
+
+          {/* Stage 5 the signal travels back from the worker toward the
+              chat area, timed to begin exactly as streaming starts. */}
+          {runtimeStage === "stream" && (
+            <g key={`stream-${workerId}`}>
+              {[
+                [workerId!, "s1"],
+                ["s1", "sk1"],
+                ["sk1", "sk2"],
+              ].map(([a, b], i) => (
+                <circle key={`stream-${i}`} r={2.4} fill="oklch(0.92 0.15 232)">
+                  <animateMotion
+                    dur="1s"
+                    begin={`${i * 0.35}s`}
+                    repeatCount="1"
+                    fill="freeze"
+                    path={edgePath(nodeById(a), nodeById(b))}
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0;0.95;0.95;0"
+                    keyTimes="0;0.15;0.8;1"
+                    dur="1s"
+                    begin={`${i * 0.35}s`}
+                    repeatCount="1"
+                    fill="freeze"
+                  />
+                </circle>
+              ))}
+            </g>
+          )}
+        </svg>
+      )}
 
       {/* Top & bottom edge fades no hard seams */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent" />

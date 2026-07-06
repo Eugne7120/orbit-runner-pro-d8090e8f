@@ -1,50 +1,30 @@
-import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import type { RuntimeStage } from "@/lib/runtime-context";
 
 const STEPS = [
-  { label: "Allocate Worker", delay: 320 },
-  { label: "Load Context", delay: 680 },
-  { label: "Prepare Runtime", delay: 1050 },
-  { label: "Run Inference", delay: null }, // stays active until streaming begins
-  { label: "Stream Response", delay: null }, // activated externally
-  { label: "Complete", delay: null }, // activated externally
-] as const;
+  { label: "Allocate Worker", stage: "allocate" },
+  { label: "Load Context", stage: "load" },
+  { label: "Prepare Runtime", stage: "prepare" },
+  { label: "Run Inference", stage: "inference" },
+  { label: "Stream Response", stage: "stream" },
+  { label: "Complete", stage: "complete" },
+] as const satisfies ReadonlyArray<{ label: string; stage: RuntimeStage }>;
 
 type StepState = "pending" | "active" | "done";
 
 interface RuntimePipelineProps {
-  /** True while waiting for the first token from the API */
-  waiting: boolean;
+  /** Current runtime stage. Drives which pipeline step is active/done. */
+  stage: RuntimeStage;
 }
 
-export function RuntimePipeline({ waiting }: RuntimePipelineProps) {
-  const [stepStates, setStepStates] = useState<StepState[]>(
-    STEPS.map((_, i) => (i === 3 ? "active" : i < 3 ? "pending" : "pending")),
-  );
-
-  // Stagger the first three steps to "done" on mount
-  useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
-    STEPS.forEach((step, i) => {
-      if (step.delay === null) return;
-      timers.push(
-        setTimeout(() => {
-          setStepStates((prev) => {
-            const next = [...prev];
-            next[i] = "done";
-            // Activate next step if it's still pending
-            if (i + 1 < next.length && next[i + 1] === "pending") {
-              next[i + 1] = "active";
-            }
-            return next;
-          });
-        }, step.delay),
-      );
-    });
-
-    return () => timers.forEach(clearTimeout);
-  }, []);
+export function RuntimePipeline({ stage }: RuntimePipelineProps) {
+  const currentIndex = STEPS.findIndex((s) => s.stage === stage);
+  const stepStates: StepState[] = STEPS.map((_, i) => {
+    if (currentIndex < 0) return "pending";
+    if (i < currentIndex) return "done";
+    if (i === currentIndex) return "active";
+    return "pending";
+  });
 
   return (
     <motion.div

@@ -5,9 +5,13 @@ import { z } from "zod";
 import { ChatMessage } from "@/components/chat/ChatMessage";
 import { ChatComposer } from "@/components/chat/ChatComposer";
 import { RuntimePipeline } from "@/components/chat/RuntimePipeline";
+import { RuntimeSummary } from "@/components/chat/RuntimeSummary";
 import { ModelSelector } from "@/components/app/ModelSelector";
 import { chatStore, type Message } from "@/lib/chat-store";
 import { resolveModel, type OrbitModelId } from "@/lib/openai";
+import { useRuntime } from "@/lib/runtime-context";
+import { WORKER_NODE_IDS } from "@/components/orbit/Atmosphere";
+import { generateRuntimeSummary, type RuntimeSummaryData } from "@/lib/runtime-metrics";
 import { Plus } from "lucide-react";
 
 export const Route = createFileRoute("/app/chat/$id")({
@@ -89,6 +93,7 @@ function ChatView() {
   const [streaming, setStreaming] = useState(false);
   const [waitingFirstToken, setWaitingFirstToken] = useState(false);
   const [autoScroll, setAutoScroll] = useState(true);
+  const [summaries, setSummaries] = useState<Record<string, RuntimeSummaryData>>({});
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -96,6 +101,16 @@ function ChatView() {
   // Stores the conversation id whose q-prompt has already been sent,
   // so remounts (React strict-mode, HMR) never trigger a second send.
   const didInitQ = useRef<string | null>(null);
+
+  const { stage: runtimeStage, setRuntime, reset: resetRuntime } = useRuntime();
+  const stageTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const sendStartRef = useRef<number>(0);
+  const firstTokenAtRef = useRef<number | null>(null);
+
+  const clearStageTimers = useCallback(() => {
+    stageTimersRef.current.forEach(clearTimeout);
+    stageTimersRef.current = [];
+  }, []);
 
   useEffect(() => {
     const conv = chatStore.get(id);
@@ -128,8 +143,10 @@ function ChatView() {
   useEffect(() => {
     return () => {
       abortRef.current?.abort();
+      clearStageTimers();
+      resetRuntime();
     };
-  }, [id]);
+  }, [id, clearStageTimers, resetRuntime]);
 
   const handleScroll = () => {
     const el = scrollRef.current;
@@ -153,6 +170,21 @@ function ChatView() {
       setWaitingFirstToken(true);
       abortRef.current = new AbortController();
 
+      // Drive the connected runtime experience: pick a worker for this
+      // request and stage through Allocate → Load → Prepare → Inference
+      // while we wait for the first token, synchronized with the
+      // background's node glow / signal pulses (see Atmosphere.tsx).
+      sendStartRef.current = performance.now();
+      firstTokenAtRef.current = null;
+      clearStageTimers();
+      const workerId = WORKER_NODE_IDS[Math.floor(Math.random() * WORKER_NODE_IDS.length)];
+      setRuntime({ stage: "allocate", workerId });
+      stageTimersRef.current.push(
+        setTimeout(() => setRuntime({ stage: "load" }), 350),
+        setTimeout(() => setRuntime({ stage: "prepare" }), 700),
+        setTimeout(() => setRuntime({ stage: "inference" }), 1100),
+      );
+
       try {
         const conv = chatStore.get(id);
         const history = (conv?.messages ?? [])
@@ -173,9 +205,39 @@ function ChatView() {
             });
           },
           abortRef.current.signal,
-          () => setWaitingFirstToken(false),
+          () => {
+            clearStageTimers();
+            firstTokenAtRef.current = performance.now();
+            setWaitingFirstToken(false);
+            setRuntime({ stage: "stream" });
+          },
+        );
+
+        // Success the response finished streaming. Compute the Runtime
+        // Summary and let the pipeline settle on "Complete" briefly before
+        // the background fades back to its idle, breathing state.
+        const now = performance.now();
+        const elapsedMs = now - sendStartRef.current;
+        const firstTokenMs = firstTokenAtRef.current
+          ? firstTokenAtRef.current - sendStartRef.current
+          : elapsedMs;
+        const streamMs = firstTokenAtRef.current ? now - firstTokenAtRef.current : elapsedMs;
+        setSummaries((prev) => ({
+          ...prev,
+          [assistantMsg.id]: generateRuntimeSummary({
+            firstTokenMs,
+            elapsedMs,
+            streamMs,
+            responseLength: full.length,
+          }),
+        }));
+        setRuntime({ stage: "complete" });
+        stageTimersRef.current.push(
+          setTimeout(() => setRuntime({ stage: "idle", workerId: null }), 1600),
         );
       } catch (err) {
+        clearStageTimers();
+        setRuntime({ stage: "idle", workerId: null });
         if (err instanceof Error && err.name !== "AbortError") {
           const errMsg =
             err.message === "The model didn't respond in time. Please try again."
@@ -194,11 +256,13 @@ function ChatView() {
         abortRef.current = null;
       }
     },
-    [id, model, streaming],
+    [id, model, streaming, clearStageTimers, setRuntime],
   );
 
   const handleStop = () => {
     abortRef.current?.abort();
+    clearStageTimers();
+    setRuntime({ stage: "idle", workerId: null });
     setStreaming(false);
     setWaitingFirstToken(false);
   };
@@ -256,18 +320,26 @@ function ChatView() {
               if (waitingFirstToken && isLast && msg.role === "assistant" && !msg.content) {
                 return null;
               }
+              const summary = summaries[msg.id];
+              const showSummary = msg.role === "assistant" && summary && !(streaming && isLast);
               return (
-                <ChatMessage
-                  key={msg.id}
-                  message={msg}
-                  isStreaming={streaming && isLast && msg.role === "assistant"}
-                  onRegenerate={
-                    !streaming && msg.role === "assistant" && isLast ? handleRegenerate : undefined
-                  }
-                />
+                <div key={msg.id}>
+                  <ChatMessage
+                    message={msg}
+                    isStreaming={streaming && isLast && msg.role === "assistant"}
+                    onRegenerate={
+                      !streaming && msg.role === "assistant" && isLast
+                        ? handleRegenerate
+                        : undefined
+                    }
+                  />
+                  {showSummary && <RuntimeSummary data={summary} />}
+                </div>
               );
             })}
-            {waitingFirstToken && <RuntimePipeline waiting={true} />}
+            {runtimeStage !== "idle" && (
+              <RuntimePipeline key="runtime-pipeline" stage={runtimeStage} />
+            )}
           </AnimatePresence>
           <div ref={bottomRef} className="h-4" />
         </div>
