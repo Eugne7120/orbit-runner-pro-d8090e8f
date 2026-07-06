@@ -89,10 +89,10 @@ export function Nav() {
             X/Twitter
           </a>
           <Link
-            to="/pricing"
+            to="/app/login"
             className="group hidden items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:inline-flex"
           >
-            Get access
+            App
             <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
           </Link>
           <button
@@ -158,10 +158,10 @@ export function Nav() {
               X/Twitter
             </a>
             <Link
-              to="/pricing"
+              to="/app/login"
               className="inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-3.5 text-[15px] font-medium text-background transition-all hover:bg-foreground/90"
             >
-              Get access
+              App
               <span>→</span>
             </Link>
           </div>
