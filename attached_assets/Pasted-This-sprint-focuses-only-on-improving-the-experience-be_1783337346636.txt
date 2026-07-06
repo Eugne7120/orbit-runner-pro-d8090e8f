@@ -1,0 +1,321 @@
+This sprint focuses only on improving the experience before the AI starts responding.
+
+The goal is to make every AI response feel like it is processed by a real AI runtime instead of a simple chatbot.
+
+---
+
+# Replace the Current Loading State
+
+Remove the simple loading spinner or generic "Thinking..." indicator.
+
+Instead, create a Runtime Pipeline panel that appears immediately after the user sends a message.
+
+The panel should appear directly above the incoming AI response.
+
+It should feel like the system is preparing the request.
+
+---
+
+# Runtime Pipeline
+
+Create a compact pipeline component.
+
+Example:
+
+Runtime Pipeline
+
+○ Allocate Worker
+
+○ Load Context
+
+○ Prepare Runtime
+
+○ Run Inference
+
+○ Stream Response
+
+○ Complete
+
+Each step changes automatically.
+
+Status meaning:
+
+○ Pending
+
+◉ Running
+
+✓ Completed
+
+Only one step should be running at a time.
+
+The animation should smoothly progress from top to bottom.
+
+---
+
+# Runtime Sequence
+
+The sequence should always follow this order.
+
+1. Allocate Worker
+
+↓
+
+2. Load Context
+
+↓
+
+3. Prepare Runtime
+
+↓
+
+4. Run Inference
+
+↓
+
+5. Stream Response
+
+↓
+
+6. Complete
+
+Each stage takes a short amount of time.
+
+Use natural timing.
+
+Do not make everything appear instantly.
+
+---
+
+# Response Streaming
+
+The AI response should NOT appear immediately.
+
+Only start streaming the response when the pipeline reaches:
+
+Run Inference
+
+or
+
+Stream Response
+
+Once the pipeline reaches "Stream Response",
+
+the AI message begins appearing token by token underneath.
+
+The user should clearly understand that the runtime has started generating the answer.
+
+---
+
+# Runtime Summary
+
+When the response finishes,
+
+collapse the Runtime Pipeline into a compact Runtime Summary card.
+
+Example:
+
+Runtime Summary
+
+✓ Worker #214
+
+✓ Region: Singapore
+
+✓ Routing Latency: 38 ms
+
+✓ First Token: 412 ms
+
+✓ Stream Time: 2.1 s
+
+✓ Tokens Generated: 428
+
+The summary should remain visible below the AI message.
+
+Allow users to expand or collapse it.
+
+---
+
+# Different Runtime Events
+
+Do not always display the exact same wording.
+
+Prepare several realistic runtime events.
+
+Examples:
+
+Allocate Worker
+
+Worker Accepted
+
+Checking Queue
+
+Queue Ready
+
+Loading Context
+
+Preparing Runtime
+
+Loading Prompt Cache
+
+Connecting Runtime
+
+Selecting Best Route
+
+Checking Latency
+
+Preparing Stream
+
+Run Inference
+
+Generating First Token
+
+Stream Response
+
+Completed
+
+Randomly choose a few of them while keeping the overall pipeline consistent.
+
+This makes every request feel slightly different.
+
+---
+
+# Different Models
+
+If different models exist,
+
+slightly customize the runtime pipeline.
+
+Example:
+
+ORBIT FAST
+
+Allocate Worker
+
+Fast Route
+
+Run Inference
+
+Stream Response
+
+---
+
+ORBIT PRO
+
+Allocate Worker
+
+Load Extended Context
+
+Prepare Runtime
+
+Run Inference
+
+Stream Response
+
+---
+
+ORBIT REASON
+
+Allocate Worker
+
+Build Reasoning Pipeline
+
+Load Extended Context
+
+Run Multi-Step Inference
+
+Generate Final Response
+
+Never expose chain-of-thought.
+
+Never reveal internal reasoning.
+
+Only display runtime events.
+
+---
+
+# Micro Animations
+
+Every stage should animate smoothly.
+
+Pending
+
+Low opacity.
+
+Running
+
+Small glowing indicator.
+
+Soft pulse.
+
+Completed
+
+Fade to green/check icon.
+
+Transition between stages should be smooth.
+
+No flashing.
+
+No hacker effects.
+
+No terminal typing.
+
+Everything should feel like a premium infrastructure platform.
+
+---
+
+# Optional Live Metrics
+
+While the pipeline is running,
+
+display one or two small runtime metrics.
+
+Example:
+
+Worker #214
+
+Singapore
+
+Latency 38 ms
+
+42 tok/s
+
+These values can update subtly during generation.
+
+---
+
+# Visual Style
+
+Rounded corners.
+
+Glass card.
+
+Thin border.
+
+Dark theme.
+
+Small monospace text.
+
+Professional spacing.
+
+Premium animation.
+
+Inspired by modern observability dashboards rather than terminal windows.
+
+---
+
+# Performance
+
+Animations must remain lightweight.
+
+Avoid unnecessary rendering.
+
+Keep the experience smooth on desktop and mobile.
+
+---
+
+# Final Goal
+
+The loading experience should become one of the signature interactions of 0RBIT.
+
+Users should feel like they are watching a real distributed AI runtime preparing and executing their request.
+
+The experience should communicate technical sophistication without becoming visually noisy.

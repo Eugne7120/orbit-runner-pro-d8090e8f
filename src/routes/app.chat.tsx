@@ -1,13 +1,13 @@
 import { createFileRoute, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect, useState, useCallback } from "react";
-import { ConversationSidebar } from "@/components/chat/ConversationSidebar";
-import { AppTopbar } from "@/components/app/AppTopbar";
-import { AppSidebar } from "@/components/app/AppSidebar";
+import { ChatSidebar } from "@/components/chat/ChatSidebar";
 import { chatStore, type Conversation } from "@/lib/chat-store";
 import { useGuestMode } from "@/lib/guest";
 import { motion, AnimatePresence } from "motion/react";
 import { Atmosphere } from "@/components/orbit/Atmosphere";
+import { Menu } from "lucide-react";
+import { ChatRefreshContext } from "@/lib/chat-context";
 
 export const Route = createFileRoute("/app/chat")({
   component: ChatLayout,
@@ -28,9 +28,6 @@ function ChatLayout() {
   }, [ready, authenticated, guest]);
 
   useEffect(() => {
-    // Guests get a clean slate on every new page load / tab open.
-    // sessionStorage is automatically wiped when the tab closes, so
-    // the next visit will always start fresh.
     if (guest && !sessionStorage.getItem("orbit_guest_session")) {
       chatStore.clearAll();
       sessionStorage.setItem("orbit_guest_session", "1");
@@ -43,49 +40,54 @@ function ChatLayout() {
   return (
     <div className="flex h-screen bg-background overflow-hidden relative">
       <Atmosphere />
-      <div className="absolute inset-0 bg-background/40 backdrop-blur-[2px] pointer-events-none" />
+      <div className="absolute inset-0 bg-background/50 pointer-events-none" />
 
-      <AppSidebar mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
+      <ChatSidebar
+        conversations={conversations}
+        mobileOpen={mobileOpen}
+        onMobileClose={() => setMobileOpen(false)}
+        onNew={() => {
+          const c = chatStore.create();
+          refresh();
+          navigate({ to: "/app/chat/$id", params: { id: c.id } });
+        }}
+        onDelete={(id) => {
+          chatStore.delete(id);
+          refresh();
+          navigate({ to: "/app/chat" });
+        }}
+        onRename={(id, t) => { chatStore.rename(id, t); refresh(); }}
+        onPin={(id) => { chatStore.togglePin(id); refresh(); }}
+        onRefresh={refresh}
+      />
+
+      {/* Main area */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10">
-        <AppTopbar onMenuOpen={() => setMobileOpen(true)} />
-        <div className="flex flex-1 overflow-hidden relative">
-          <ConversationSidebar
-            conversations={conversations}
-            onNew={() => {
-              const c = chatStore.create();
-              refresh();
-              navigate({ to: "/app/chat/$id", params: { id: c.id } });
-            }}
-            onDelete={(id) => {
-              chatStore.delete(id);
-              refresh();
-              navigate({ to: "/app/chat" });
-            }}
-            onRename={(id, t) => {
-              chatStore.rename(id, t);
-              refresh();
-            }}
-            onPin={(id) => {
-              chatStore.togglePin(id);
-              refresh();
-            }}
-            onRefresh={refresh}
-          />
-          <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={router.location.pathname}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="flex-1 flex flex-col min-w-0 overflow-hidden"
-              >
-                <Outlet />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+        {/* Mobile top bar */}
+        <div className="lg:hidden flex items-center gap-3 px-4 py-3 border-b border-border bg-background/80 backdrop-blur-md flex-shrink-0">
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/[0.05] transition-colors"
+          >
+            <Menu className="w-4 h-4" />
+          </button>
+          <span className="text-sm font-semibold text-foreground">0RBIT</span>
         </div>
+
+        <ChatRefreshContext.Provider value={refresh}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={router.location.pathname}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="flex-1 flex flex-col min-w-0 overflow-hidden"
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
+        </ChatRefreshContext.Provider>
       </div>
     </div>
   );
