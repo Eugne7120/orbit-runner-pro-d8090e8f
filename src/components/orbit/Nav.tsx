@@ -80,12 +80,14 @@ export function Nav() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <Link
-            to="/developers"
+          <a
+            href="https://x.com/OrbitCompute"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden rounded-full px-3 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:inline-flex"
           >
             Sign in
-          </Link>
+          </a>
           <Link
             to="/pricing"
             className="group hidden items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:inline-flex"
@@ -147,12 +149,14 @@ export function Nav() {
             ))}
           </div>
           <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6">
-            <Link
-              to="/developers"
+            <a
+              href="https://x.com/OrbitCompute"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-border-strong px-4 py-3.5 text-center text-[15px] font-medium text-foreground/80 transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Sign in
-            </Link>
+            </a>
             <Link
               to="/pricing"
               className="inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-3.5 text-[15px] font-medium text-background transition-all hover:bg-foreground/90"
