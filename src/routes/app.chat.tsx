@@ -22,7 +22,9 @@ function ChatLayout() {
     if (ready && !authenticated) navigate({ to: "/app/login" });
   }, [ready, authenticated]);
 
-  useEffect(() => { refresh(); }, []);
+  useEffect(() => {
+    refresh();
+  }, []);
 
   if (!ready || !authenticated) return null;
 
@@ -44,8 +46,14 @@ function ChatLayout() {
               refresh();
               navigate({ to: "/app/chat" });
             }}
-            onRename={(id, t) => { chatStore.rename(id, t); refresh(); }}
-            onPin={(id) => { chatStore.togglePin(id); refresh(); }}
+            onRename={(id, t) => {
+              chatStore.rename(id, t);
+              refresh();
+            }}
+            onPin={(id) => {
+              chatStore.togglePin(id);
+              refresh();
+            }}
             onRefresh={refresh}
           />
           <div className="flex flex-col flex-1 min-w-0 overflow-hidden">

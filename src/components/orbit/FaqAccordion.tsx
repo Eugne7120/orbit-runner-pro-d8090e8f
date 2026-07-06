@@ -39,7 +39,9 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
                 style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
               >
                 <div className="overflow-hidden">
-                  <p className="px-6 pb-5 text-[14px] leading-relaxed text-muted-foreground">{item.a}</p>
+                  <p className="px-6 pb-5 text-[14px] leading-relaxed text-muted-foreground">
+                    {item.a}
+                  </p>
                 </div>
               </div>
             </div>

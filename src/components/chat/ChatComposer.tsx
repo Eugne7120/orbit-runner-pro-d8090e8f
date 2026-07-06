@@ -55,7 +55,10 @@ export function ChatComposer({
           {SUGGESTED_PROMPTS.map((p) => (
             <button
               key={p}
-              onClick={() => { onChange(p); textareaRef.current?.focus(); }}
+              onClick={() => {
+                onChange(p);
+                textareaRef.current?.focus();
+              }}
               className="px-3 py-1.5 text-xs rounded-full border border-border bg-white/[0.03] text-muted-foreground hover:text-foreground hover:bg-white/[0.07] hover:border-border-strong transition-all"
             >
               {p}
@@ -81,7 +84,10 @@ export function ChatComposer({
         <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-3 pb-2.5">
           {/* Left: attachment + model indicator */}
           <div className="flex items-center gap-2">
-            <button className="p-1.5 rounded-lg text-muted-foreground/50 hover:text-muted-foreground hover:bg-white/[0.05] transition-colors" title="Attach file (coming soon)">
+            <button
+              className="p-1.5 rounded-lg text-muted-foreground/50 hover:text-muted-foreground hover:bg-white/[0.05] transition-colors"
+              title="Attach file (coming soon)"
+            >
               <Paperclip className="w-3.5 h-3.5" />
             </button>
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground/50">
@@ -106,7 +112,7 @@ export function ChatComposer({
                 "flex items-center justify-center w-8 h-8 rounded-lg transition-all",
                 value.trim()
                   ? "bg-signal text-background hover:bg-signal/90 shadow-md"
-                  : "bg-white/[0.05] text-muted-foreground/40 cursor-not-allowed"
+                  : "bg-white/[0.05] text-muted-foreground/40 cursor-not-allowed",
               )}
             >
               <Send className="w-3.5 h-3.5" />
@@ -114,7 +120,9 @@ export function ChatComposer({
           )}
         </div>
       </div>
-      <p className="text-center text-[11px] text-muted-foreground/40">0RBIT can make mistakes. Verify important information.</p>
+      <p className="text-center text-[11px] text-muted-foreground/40">
+        0RBIT can make mistakes. Verify important information.
+      </p>
     </div>
   );
 }

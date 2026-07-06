@@ -11,21 +11,47 @@ export const Route = createFileRoute("/product")({
   head: () => ({
     meta: [
       { title: "Product — 0RBIT" },
-      { name: "description", content: "A runtime for AI that routes, executes and settles every request across a distributed mesh." },
+      {
+        name: "description",
+        content:
+          "A runtime for AI that routes, executes and settles every request across a distributed mesh.",
+      },
       { property: "og:title", content: "Product — 0RBIT" },
-      { property: "og:description", content: "A runtime for AI that routes, executes and settles every request across a distributed mesh." },
+      {
+        property: "og:description",
+        content:
+          "A runtime for AI that routes, executes and settles every request across a distributed mesh.",
+      },
     ],
   }),
   component: ProductPage,
 });
 
 const capabilities = [
-  { title: "Adaptive routing", body: "Every call is scored against latency, price, load and locality. The best worker wins in under a millisecond." },
-  { title: "Streaming natively", body: "Token-level streams from the first byte. No polling. No queues you can see." },
-  { title: "Model-agnostic", body: "Open models, closed models, private fine-tunes. Same endpoint. Same billing." },
-  { title: "Deterministic quotas", body: "Credits, not surprises. Set a ceiling, get exact behavior at the ceiling." },
-  { title: "Verifiable receipts", body: "Every request produces a signed receipt: worker, region, tokens, cost. Auditable, ignorable." },
-  { title: "Zero cold start", body: "Warm pools per region keep TTFT under 50ms on production workloads." },
+  {
+    title: "Adaptive routing",
+    body: "Every call is scored against latency, price, load and locality. The best worker wins in under a millisecond.",
+  },
+  {
+    title: "Streaming natively",
+    body: "Token-level streams from the first byte. No polling. No queues you can see.",
+  },
+  {
+    title: "Model-agnostic",
+    body: "Open models, closed models, private fine-tunes. Same endpoint. Same billing.",
+  },
+  {
+    title: "Deterministic quotas",
+    body: "Credits, not surprises. Set a ceiling, get exact behavior at the ceiling.",
+  },
+  {
+    title: "Verifiable receipts",
+    body: "Every request produces a signed receipt: worker, region, tokens, cost. Auditable, ignorable.",
+  },
+  {
+    title: "Zero cold start",
+    body: "Warm pools per region keep TTFT under 50ms on production workloads.",
+  },
 ];
 
 function ProductPage() {
@@ -54,13 +80,21 @@ function ProductPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c, i) => (
             <Reveal key={c.title} delay={i * 80}>
-              <LiveCard eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={c.title} description={c.body} />
+              <LiveCard
+                eyebrow={`/ ${String(i + 1).padStart(2, "0")}`}
+                title={c.title}
+                description={c.body}
+              />
             </Reveal>
           ))}
         </div>
       </Section>
 
-      <Section eyebrow="/ observability" title="See the runtime, always." intro="The dashboard is a live view of your traffic, not a weekly digest.">
+      <Section
+        eyebrow="/ observability"
+        title="See the runtime, always."
+        intro="The dashboard is a live view of your traffic, not a weekly digest."
+      >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <Reveal>
             <LiveCard eyebrow="Latency" title="p50 · p95 · p99">

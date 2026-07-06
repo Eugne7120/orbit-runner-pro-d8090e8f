@@ -88,8 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "0RBIT — The decentralized runtime for AI" },
       {
         property: "og:description",
-        content:
-          "Inference, routing and streaming across a global network of workers.",
+        content: "Inference, routing and streaming across a global network of workers.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

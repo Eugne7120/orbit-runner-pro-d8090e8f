@@ -27,7 +27,7 @@ export const Route = createFileRoute("/app-chat-api")({
                 content:
                   "You are 0RBIT, an AI assistant powered by the 0RBIT decentralized AI network. You are helpful, knowledgeable, and concise.",
               },
-              ...(messages as any),
+              ...(messages as OpenAI.Chat.Completions.ChatCompletionMessageParam[]),
             ],
             stream: true,
             max_completion_tokens: 4096,
@@ -41,16 +41,14 @@ export const Route = createFileRoute("/app-chat-api")({
                   const delta = chunk.choices[0]?.delta?.content ?? "";
                   if (delta) {
                     controller.enqueue(
-                      encoder.encode(`data: ${JSON.stringify({ content: delta })}\n\n`)
+                      encoder.encode(`data: ${JSON.stringify({ content: delta })}\n\n`),
                     );
                   }
                 }
-                controller.enqueue(
-                  encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`)
-                );
+                controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`));
               } catch (err) {
                 controller.enqueue(
-                  encoder.encode(`data: ${JSON.stringify({ error: "Stream error" })}\n\n`)
+                  encoder.encode(`data: ${JSON.stringify({ error: "Stream error" })}\n\n`),
                 );
               } finally {
                 controller.close();

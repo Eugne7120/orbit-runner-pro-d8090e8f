@@ -53,18 +53,56 @@ export function CreditFlow() {
           const x = 60 + (i / (cols.length - 1)) * 880;
           return (
             <g key={c.key}>
-              <circle cx={x} cy={130} r="26" fill="oklch(0.19 0.011 250)" stroke="oklch(0.78 0.14 232 / 0.4)" strokeWidth="1" />
+              <circle
+                cx={x}
+                cy={130}
+                r="26"
+                fill="oklch(0.19 0.011 250)"
+                stroke="oklch(0.78 0.14 232 / 0.4)"
+                strokeWidth="1"
+              />
               <circle cx={x} cy={130} r="3" fill="oklch(0.9 0.14 232)" />
-              <text x={x} y={80} textAnchor="middle" fill="oklch(0.62 0.012 250)" fontSize="10" fontFamily="JetBrains Mono, monospace" letterSpacing="0.14em">
+              <text
+                x={x}
+                y={80}
+                textAnchor="middle"
+                fill="oklch(0.62 0.012 250)"
+                fontSize="10"
+                fontFamily="JetBrains Mono, monospace"
+                letterSpacing="0.14em"
+              >
                 {String(i + 1).padStart(2, "0")}
               </text>
-              <text x={x} y={190} textAnchor="middle" fill="oklch(0.95 0.004 250)" fontSize="14" fontFamily="Inter Tight, sans-serif" fontWeight="500">
+              <text
+                x={x}
+                y={190}
+                textAnchor="middle"
+                fill="oklch(0.95 0.004 250)"
+                fontSize="14"
+                fontFamily="Inter Tight, sans-serif"
+                fontWeight="500"
+              >
                 {c.top}
               </text>
-              <text x={x} y={208} textAnchor="middle" fill="oklch(0.62 0.012 250)" fontSize="12" fontFamily="Inter Tight, sans-serif">
+              <text
+                x={x}
+                y={208}
+                textAnchor="middle"
+                fill="oklch(0.62 0.012 250)"
+                fontSize="12"
+                fontFamily="Inter Tight, sans-serif"
+              >
                 {c.bottom}
               </text>
-              <text x={x} y={228} textAnchor="middle" fill="oklch(0.45 0.008 250)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+              <text
+                x={x}
+                y={228}
+                textAnchor="middle"
+                fill="oklch(0.45 0.008 250)"
+                fontSize="9.5"
+                fontFamily="JetBrains Mono, monospace"
+                letterSpacing="0.1em"
+              >
                 {c.note}
               </text>
             </g>

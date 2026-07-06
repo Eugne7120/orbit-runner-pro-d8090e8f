@@ -28,7 +28,9 @@ function ChatIndex() {
         <ChatEmptyState
           model={model}
           onModelChange={setModel}
-          onPrompt={(p) => { setInput(p); }}
+          onPrompt={(p) => {
+            setInput(p);
+          }}
         />
       </div>
       <div className="p-4 border-t border-border">

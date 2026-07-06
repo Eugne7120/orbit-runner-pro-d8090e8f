@@ -43,7 +43,7 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
     (walletAddress ? shortenAddress(walletAddress) : "User");
 
   const avatarLetter = displayName[0]?.toUpperCase() ?? "U";
-  const avatarUrl = user?.twitter?.profilePictureUrl ?? user?.google?.picture;
+  const avatarUrl = user?.twitter?.profilePictureUrl;
 
   return (
     <header className="sticky top-0 z-30 flex items-center h-14 px-4 border-b border-border bg-background/80 backdrop-blur-md gap-3">
@@ -62,7 +62,9 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
       <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-border text-muted-foreground/60 text-xs cursor-pointer hover:bg-white/[0.07] transition-colors min-w-32">
         <Search className="w-3 h-3 flex-shrink-0" />
         <span>Search...</span>
-        <kbd className="ml-auto font-mono text-[10px] px-1 py-0.5 rounded bg-white/[0.06] text-muted-foreground/50">⌘K</kbd>
+        <kbd className="ml-auto font-mono text-[10px] px-1 py-0.5 rounded bg-white/[0.06] text-muted-foreground/50">
+          ⌘K
+        </kbd>
       </div>
 
       {/* Credits badge */}
@@ -89,7 +91,9 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
               <span className="text-xs font-semibold text-signal">{avatarLetter}</span>
             )}
           </div>
-          <span className="hidden sm:block text-xs text-muted-foreground max-w-24 truncate">{displayName}</span>
+          <span className="hidden sm:block text-xs text-muted-foreground max-w-24 truncate">
+            {displayName}
+          </span>
         </button>
 
         {/* Dropdown */}
@@ -97,7 +101,9 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
           <div className="px-3 py-2 border-b border-border">
             <p className="text-xs font-medium text-foreground truncate">{displayName}</p>
             {walletAddress && (
-              <p className="text-[10px] text-muted-foreground font-mono truncate mt-0.5">{shortenAddress(walletAddress)}</p>
+              <p className="text-[10px] text-muted-foreground font-mono truncate mt-0.5">
+                {shortenAddress(walletAddress)}
+              </p>
             )}
           </div>
           <button

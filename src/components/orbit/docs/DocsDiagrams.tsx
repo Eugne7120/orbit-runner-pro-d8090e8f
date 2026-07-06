@@ -160,7 +160,14 @@ export function InferencePipeline() {
   return (
     <Frame height={160}>
       {stages.map((s, i) => (
-        <Node key={s.label} x={s.x} y={80} label={s.label} sub={s.sub} accent={i === 1 || i === 4} />
+        <Node
+          key={s.label}
+          x={s.x}
+          y={80}
+          label={s.label}
+          sub={s.sub}
+          accent={i === 1 || i === 4}
+        />
       ))}
       {stages.slice(0, -1).map((s, i) => (
         <Flow key={i} d={`M ${s.x + 60} 80 L ${stages[i + 1].x - 60} 80`} delay={i * 0.3} />

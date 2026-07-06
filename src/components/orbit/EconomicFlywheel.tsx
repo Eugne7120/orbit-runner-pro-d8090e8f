@@ -43,7 +43,12 @@ export function EconomicFlywheel() {
 
   return (
     <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-      <svg viewBox="0 0 1000 640" className="mx-auto h-auto w-full min-w-[640px] max-w-3xl sm:min-w-0" role="img" aria-label="Economic flywheel">
+      <svg
+        viewBox="0 0 1000 640"
+        className="mx-auto h-auto w-full min-w-[640px] max-w-3xl sm:min-w-0"
+        role="img"
+        aria-label="Economic flywheel"
+      >
         <defs>
           <radialGradient id="fw-center-glow">
             <stop offset="0%" stopColor="oklch(0.78 0.14 232)" stopOpacity="0.25" />
@@ -55,13 +60,23 @@ export function EconomicFlywheel() {
           </radialGradient>
         </defs>
 
-        <circle cx={CENTER.x} cy={CENTER.y} r={RADIUS * 0.55} fill="url(#fw-center-glow)" className="animate-orbit-breathe" />
+        <circle
+          cx={CENTER.x}
+          cy={CENTER.y}
+          r={RADIUS * 0.55}
+          fill="url(#fw-center-glow)"
+          className="animate-orbit-breathe"
+        />
 
         <path d={ringPath} fill="none" stroke="oklch(1 0 0 / 0.1)" strokeWidth="1" />
 
         {/* Orbiting signal */}
         <circle r="4" fill="oklch(0.9 0.15 232)">
-          <animateMotion dur={`${STAGES.length * 1.3}s`} repeatCount="indefinite" path={`${ringPath} Z`} />
+          <animateMotion
+            dur={`${STAGES.length * 1.3}s`}
+            repeatCount="indefinite"
+            path={`${ringPath} Z`}
+          />
         </circle>
 
         <text

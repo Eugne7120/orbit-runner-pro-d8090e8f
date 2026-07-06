@@ -19,13 +19,13 @@ import { useEffect, useRef } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
 type Area =
-  | "home"      // distributed inference topology
-  | "runtime"   // conversation routing
-  | "developers"// software architecture
-  | "docs"      // documentation blueprint
-  | "workers"   // GPU network
-  | "economy"   // treasury flow
-  | "company";  // global infrastructure map
+  | "home" // distributed inference topology
+  | "runtime" // conversation routing
+  | "developers" // software architecture
+  | "docs" // documentation blueprint
+  | "workers" // GPU network
+  | "economy" // treasury flow
+  | "company"; // global infrastructure map
 
 function areaFromPath(pathname: string): Area {
   if (pathname === "/" || pathname === "") return "home";
@@ -101,24 +101,51 @@ const NODES: Node[] = [
 
 const EDGES: Array<[string, string]> = [
   // edge → gateway
-  ["e1", "g1"], ["e2", "g1"], ["e3", "g1"],
-  ["e3", "g2"], ["e4", "g2"], ["e5", "g2"],
+  ["e1", "g1"],
+  ["e2", "g1"],
+  ["e3", "g1"],
+  ["e3", "g2"],
+  ["e4", "g2"],
+  ["e5", "g2"],
   // gateway → router
-  ["g1", "r1"], ["g1", "r2"], ["g2", "r1"], ["g2", "r2"],
+  ["g1", "r1"],
+  ["g1", "r2"],
+  ["g2", "r1"],
+  ["g2", "r2"],
   // router → scheduler
-  ["r1", "s1"], ["r2", "s1"],
+  ["r1", "s1"],
+  ["r2", "s1"],
   // scheduler → workers (first column)
-  ["s1", "w1"], ["s1", "w2"], ["s1", "w3"], ["s1", "w4"],
-  ["s1", "w5"], ["s1", "w6"], ["s1", "w7"],
+  ["s1", "w1"],
+  ["s1", "w2"],
+  ["s1", "w3"],
+  ["s1", "w4"],
+  ["s1", "w5"],
+  ["s1", "w6"],
+  ["s1", "w7"],
   // worker column A → column B
-  ["w1", "w8"], ["w2", "w8"], ["w2", "w9"], ["w3", "w9"],
-  ["w4", "w10"], ["w5", "w10"], ["w5", "w11"], ["w6", "w11"],
-  ["w6", "w12"], ["w7", "w12"], ["w7", "w13"],
+  ["w1", "w8"],
+  ["w2", "w8"],
+  ["w2", "w9"],
+  ["w3", "w9"],
+  ["w4", "w10"],
+  ["w5", "w10"],
+  ["w5", "w11"],
+  ["w6", "w11"],
+  ["w6", "w12"],
+  ["w7", "w12"],
+  ["w7", "w13"],
   // workers → storage/treasury
-  ["w8", "st1"], ["w9", "st1"], ["w10", "st2"], ["w11", "st2"],
-  ["w12", "st3"], ["w13", "st3"],
+  ["w8", "st1"],
+  ["w9", "st1"],
+  ["w10", "st2"],
+  ["w11", "st2"],
+  ["w12", "st3"],
+  ["w13", "st3"],
   // scheduler → stream → response
-  ["s1", "sk1"], ["sk1", "sk2"], ["sk2", "r2"],
+  ["s1", "sk1"],
+  ["sk1", "sk2"],
+  ["sk2", "r2"],
 ];
 
 function nodeById(id: string): Node {
@@ -128,8 +155,10 @@ function nodeById(id: string): Node {
 // Slightly curved bezier between two node centers so the network feels
 // hand-routed rather than mechanical.
 function edgePath(a: Node, b: Node): string {
-  const ax = a.x, ay = a.y;
-  const bx = b.x, by = b.y;
+  const ax = a.x,
+    ay = a.y;
+  const bx = b.x,
+    by = b.y;
   const mx = (ax + bx) / 2;
   return `M${ax},${ay} C${mx},${ay} ${mx},${by} ${bx},${by}`;
 }
@@ -141,25 +170,25 @@ function edgePath(a: Node, b: Node): string {
 // Each area highlights a different band of clusters. Values are opacity
 // multipliers applied to nodes / edges of that cluster.
 const AREA_EMPHASIS: Record<Area, Record<Node["cluster"], number>> = {
-  home:       { edge: 0.9, router: 1.0, worker: 1.0, storage: 0.7, sink: 0.7 },
-  runtime:    { edge: 1.0, router: 1.0, worker: 0.7, storage: 0.4, sink: 1.0 },
+  home: { edge: 0.9, router: 1.0, worker: 1.0, storage: 0.7, sink: 0.7 },
+  runtime: { edge: 1.0, router: 1.0, worker: 0.7, storage: 0.4, sink: 1.0 },
   developers: { edge: 0.7, router: 1.0, worker: 1.0, storage: 0.7, sink: 0.7 },
-  docs:       { edge: 0.7, router: 0.8, worker: 0.6, storage: 0.8, sink: 0.5 },
-  workers:    { edge: 0.5, router: 0.7, worker: 1.0, storage: 0.6, sink: 0.6 },
-  economy:    { edge: 0.5, router: 0.6, worker: 0.6, storage: 1.0, sink: 0.9 },
-  company:    { edge: 1.0, router: 0.9, worker: 0.8, storage: 0.9, sink: 0.7 },
+  docs: { edge: 0.7, router: 0.8, worker: 0.6, storage: 0.8, sink: 0.5 },
+  workers: { edge: 0.5, router: 0.7, worker: 1.0, storage: 0.6, sink: 0.6 },
+  economy: { edge: 0.5, router: 0.6, worker: 0.6, storage: 1.0, sink: 0.9 },
+  company: { edge: 1.0, router: 0.9, worker: 0.8, storage: 0.9, sink: 0.7 },
 };
 
 // Which edges get a runtime signal pulse — chosen for visual balance,
 // not exhaustively. Shuffled per area so different pages feel different.
 const SIGNAL_INDICES: Record<Area, number[]> = {
-  home:       [0, 6, 10, 14, 21, 27, 32],
-  runtime:    [0, 3, 7, 11, 15, 30, 33],
+  home: [0, 6, 10, 14, 21, 27, 32],
+  runtime: [0, 3, 7, 11, 15, 30, 33],
   developers: [1, 6, 9, 13, 18, 25, 31],
-  docs:       [2, 8, 12, 20, 24, 29],
-  workers:    [10, 12, 14, 16, 18, 20, 22],
-  economy:    [24, 25, 26, 27, 28, 29, 32],
-  company:    [0, 2, 4, 8, 13, 19, 26, 31],
+  docs: [2, 8, 12, 20, 24, 29],
+  workers: [10, 12, 14, 16, 18, 20, 22],
+  economy: [24, 25, 26, 27, 28, 29, 32],
+  company: [0, 2, 4, 8, 13, 19, 26, 31],
 };
 
 /* ------------------------------------------------------------------ */
@@ -225,22 +254,19 @@ export function Atmosphere() {
         <div
           className="absolute left-1/2 top-[-30%] h-[80vh] w-[80vh] -translate-x-1/2 rounded-full opacity-25 blur-3xl animate-atmos-slow-a"
           style={{
-            background:
-              "radial-gradient(circle, oklch(0.78 0.14 232 / 0.22), transparent 62%)",
+            background: "radial-gradient(circle, oklch(0.78 0.14 232 / 0.22), transparent 62%)",
           }}
         />
         <div
           className="absolute right-[-14%] top-[30%] h-[60vh] w-[60vh] rounded-full opacity-20 blur-3xl animate-atmos-slow-b"
           style={{
-            background:
-              "radial-gradient(circle, oklch(0.6 0.1 260 / 0.30), transparent 60%)",
+            background: "radial-gradient(circle, oklch(0.6 0.1 260 / 0.30), transparent 60%)",
           }}
         />
         <div
           className="absolute left-[-10%] bottom-[6%] h-[52vh] w-[52vh] rounded-full opacity-15 blur-3xl animate-atmos-slow-c"
           style={{
-            background:
-              "radial-gradient(circle, oklch(0.7 0.09 210 / 0.30), transparent 60%)",
+            background: "radial-gradient(circle, oklch(0.7 0.09 210 / 0.30), transparent 60%)",
           }}
         />
       </div>
@@ -259,8 +285,14 @@ export function Atmosphere() {
           <circle cx="900" cy="700" r="820" />
           <circle cx="1700" cy="600" r="520" />
           <rect x="200" y="140" width="2000" height="1120" rx="120" ry="120" />
-          <path d="M 100,900 C 600,780 1200,1020 1900,860 S 2600,900 2800,940" strokeDasharray="6 12" />
-          <path d="M 100,500 C 500,540 900,380 1400,500 S 2200,540 2500,480" strokeDasharray="3 14" />
+          <path
+            d="M 100,900 C 600,780 1200,1020 1900,860 S 2600,900 2800,940"
+            strokeDasharray="6 12"
+          />
+          <path
+            d="M 100,500 C 500,540 900,380 1400,500 S 2200,540 2500,480"
+            strokeDasharray="3 14"
+          />
         </g>
       </svg>
 
@@ -363,7 +395,12 @@ export function Atmosphere() {
           return (
             <g key={`sig-${idx}-${k}`}>
               <circle r={1.8} fill="oklch(0.9 0.14 232)" opacity={0.9}>
-                <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite" path={d} />
+                <animateMotion
+                  dur={`${dur}s`}
+                  begin={`${begin}s`}
+                  repeatCount="indefinite"
+                  path={d}
+                />
                 <animate
                   attributeName="opacity"
                   values="0;0.9;0.9;0"

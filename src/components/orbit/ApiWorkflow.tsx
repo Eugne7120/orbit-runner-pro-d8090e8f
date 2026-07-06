@@ -64,9 +64,7 @@ export function ApiWorkflow() {
               >
                 {n.label}
               </div>
-              <div className="mt-0.5 font-mono text-[10.5px] text-muted-foreground/80">
-                {n.sub}
-              </div>
+              <div className="mt-0.5 font-mono text-[10.5px] text-muted-foreground/80">{n.sub}</div>
             </div>
 
             {i < NODES.length - 1 && (

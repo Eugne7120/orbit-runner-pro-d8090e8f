@@ -46,8 +46,7 @@ const CONTENT: Record<string, { title: string; kicker: string; body: string; cod
   intro: {
     title: "Introduction",
     kicker: "1 min read",
-    body:
-      "0RBIT is a distributed runtime for AI inference. One endpoint routes every request to the best-fitting worker across a global mesh, streams tokens back, and settles usage invisibly.",
+    body: "0RBIT is a distributed runtime for AI inference. One endpoint routes every request to the best-fitting worker across a global mesh, streams tokens back, and settles usage invisibly.",
   },
   auth: {
     title: "Authentication",

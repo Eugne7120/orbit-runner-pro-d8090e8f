@@ -38,7 +38,8 @@ const COMING_SOON_ITEMS: NavItem[] = [
 
 function NavLink({ item, onClick }: { item: NavItem; onClick?: () => void }) {
   const router = useRouterState();
-  const isActive = router.location.pathname === item.to ||
+  const isActive =
+    router.location.pathname === item.to ||
     (item.to !== "/app" && router.location.pathname.startsWith(item.to));
 
   if (item.comingSoon) {
@@ -46,7 +47,9 @@ function NavLink({ item, onClick }: { item: NavItem; onClick?: () => void }) {
       <div className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground/40 cursor-not-allowed select-none">
         <item.icon className="w-4 h-4 flex-shrink-0" />
         <span className="text-sm font-medium flex-1">{item.label}</span>
-        <span className="text-[10px] font-mono tracking-widest text-muted-foreground/30 uppercase">Soon</span>
+        <span className="text-[10px] font-mono tracking-widest text-muted-foreground/30 uppercase">
+          Soon
+        </span>
       </div>
     );
   }
@@ -59,7 +62,7 @@ function NavLink({ item, onClick }: { item: NavItem; onClick?: () => void }) {
         "relative flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group",
         isActive
           ? "text-foreground"
-          : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+          : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]",
       )}
     >
       {isActive && (
@@ -71,9 +74,7 @@ function NavLink({ item, onClick }: { item: NavItem; onClick?: () => void }) {
       )}
       <item.icon className={cn("w-4 h-4 flex-shrink-0 relative z-10", isActive && "text-signal")} />
       <span className="text-sm font-medium relative z-10 flex-1">{item.label}</span>
-      {isActive && (
-        <div className="w-1 h-1 rounded-full bg-signal relative z-10" />
-      )}
+      {isActive && <div className="w-1 h-1 rounded-full bg-signal relative z-10" />}
     </Link>
   );
 }
@@ -136,7 +137,7 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
             "relative flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200",
             isSettingsActive
               ? "text-foreground"
-              : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+              : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]",
           )}
         >
           {isSettingsActive && (
@@ -146,7 +147,9 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
               transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
             />
           )}
-          <Settings className={cn("w-4 h-4 flex-shrink-0 relative z-10", isSettingsActive && "text-signal")} />
+          <Settings
+            className={cn("w-4 h-4 flex-shrink-0 relative z-10", isSettingsActive && "text-signal")}
+          />
           <span className="text-sm font-medium relative z-10">Settings</span>
         </Link>
       </div>

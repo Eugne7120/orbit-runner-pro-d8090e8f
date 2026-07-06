@@ -19,17 +19,37 @@ function nowTs() {
   return `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
 }
 
-const REGIONS = ["us-west-2", "us-east-1", "eu-west-1", "eu-central-1", "ap-northeast-1", "ap-southeast-1", "sa-east-1"];
+const REGIONS = [
+  "us-west-2",
+  "us-east-1",
+  "eu-west-1",
+  "eu-central-1",
+  "ap-northeast-1",
+  "ap-southeast-1",
+  "sa-east-1",
+];
 const GPUS = ["H100", "A100", "RTX 4090", "L40S", "RTX 5090"];
 
 const TEMPLATES: { kind: Kind; text: () => string }[] = [
-  { kind: "connect", text: () => `Worker wrk_${hex(4)} connected · ${REGIONS[rand(REGIONS.length)]}` },
-  { kind: "complete", text: () => `Inference completed · ${240 + rand(1600)} tokens · ${28 + rand(180)}ms` },
+  {
+    kind: "connect",
+    text: () => `Worker wrk_${hex(4)} connected · ${REGIONS[rand(REGIONS.length)]}`,
+  },
+  {
+    kind: "complete",
+    text: () => `Inference completed · ${240 + rand(1600)} tokens · ${28 + rand(180)}ms`,
+  },
   { kind: "assign", text: () => `Job assigned to wrk_${hex(4)} · ${GPUS[rand(GPUS.length)]}` },
   { kind: "reward", text: () => `Reward distributed · 0.0${rand(90)} cr → wrk_${hex(4)}` },
-  { kind: "upgrade", text: () => `Worker wrk_${hex(4)} upgraded · driver v${1 + rand(3)}.${rand(9)}.${rand(9)}` },
+  {
+    kind: "upgrade",
+    text: () => `Worker wrk_${hex(4)} upgraded · driver v${1 + rand(3)}.${rand(9)}.${rand(9)}`,
+  },
   { kind: "sync", text: () => `Node synchronized · ${REGIONS[rand(REGIONS.length)]} · quorum ok` },
-  { kind: "offline", text: () => `Worker wrk_${hex(4)} went idle · ${REGIONS[rand(REGIONS.length)]}` },
+  {
+    kind: "offline",
+    text: () => `Worker wrk_${hex(4)} went idle · ${REGIONS[rand(REGIONS.length)]}`,
+  },
 ];
 
 const KIND_STYLE: Record<Kind, { dot: string; label: string }> = {
@@ -54,13 +74,19 @@ export function ActivityFeed({ className = "" }: { className?: string }) {
   );
 
   useEffect(() => {
-    const t = setInterval(() => {
-      const tpl = TEMPLATES[rand(TEMPLATES.length)];
-      setEvents((prev) => {
-        const next = [...prev, { id: seed.current++, kind: tpl.kind, text: tpl.text(), ts: nowTs() }];
-        return next.length > MAX ? next.slice(next.length - MAX) : next;
-      });
-    }, 1500 + Math.random() * 900);
+    const t = setInterval(
+      () => {
+        const tpl = TEMPLATES[rand(TEMPLATES.length)];
+        setEvents((prev) => {
+          const next = [
+            ...prev,
+            { id: seed.current++, kind: tpl.kind, text: tpl.text(), ts: nowTs() },
+          ];
+          return next.length > MAX ? next.slice(next.length - MAX) : next;
+        });
+      },
+      1500 + Math.random() * 900,
+    );
     return () => clearInterval(t);
   }, []);
 
@@ -94,8 +120,12 @@ export function ActivityFeed({ className = "" }: { className?: string }) {
                 <span className="min-w-[46px] shrink-0 font-mono text-[9.5px] uppercase tracking-[0.1em] text-muted-foreground/70 sm:min-w-[64px]">
                   {style.label}
                 </span>
-                <span className="min-w-0 flex-1 truncate text-[13px] text-foreground/90">{e.text}</span>
-                <span className="hidden shrink-0 font-mono text-[10.5px] tabular-nums text-muted-foreground/60 sm:inline">{e.ts}</span>
+                <span className="min-w-0 flex-1 truncate text-[13px] text-foreground/90">
+                  {e.text}
+                </span>
+                <span className="hidden shrink-0 font-mono text-[10.5px] tabular-nums text-muted-foreground/60 sm:inline">
+                  {e.ts}
+                </span>
               </div>
             );
           })}

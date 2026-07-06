@@ -68,12 +68,16 @@ export function MetricTile({
       <div className="mt-3 font-display text-3xl font-medium tabular-nums tracking-tight md:text-4xl">
         {fmt(v)}
       </div>
-      {hint && (
-        <div className="mt-1 font-mono text-[10.5px] text-muted-foreground/70">{hint}</div>
-      )}
+      {hint && <div className="mt-1 font-mono text-[10.5px] text-muted-foreground/70">{hint}</div>}
       {chart && (
         <div className="mt-3">
-          <AreaChart seed={seed} base={base} variance={base * variance * 2} color={chartColor} height={64} />
+          <AreaChart
+            seed={seed}
+            base={base}
+            variance={base * variance * 2}
+            color={chartColor}
+            height={64}
+          />
         </div>
       )}
     </div>

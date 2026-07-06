@@ -47,7 +47,12 @@ export function ValueFlowDiagram() {
 
   return (
     <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-      <svg viewBox="0 0 1000 680" className="mx-auto h-auto w-full min-w-[560px] max-w-2xl sm:min-w-0" role="img" aria-label="Value flow diagram">
+      <svg
+        viewBox="0 0 1000 680"
+        className="mx-auto h-auto w-full min-w-[560px] max-w-2xl sm:min-w-0"
+        role="img"
+        aria-label="Value flow diagram"
+      >
         <defs>
           <linearGradient id="vf-edge" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="oklch(1 0 0 / 0.03)" />
@@ -110,7 +115,9 @@ export function ValueFlowDiagram() {
                 rx="24"
                 ry="24"
                 fill="oklch(0.18 0.011 250 / 0.9)"
-                stroke={isTreasury || isStakers ? "oklch(0.85 0.15 232)" : "oklch(0.78 0.14 232 / 0.45)"}
+                stroke={
+                  isTreasury || isStakers ? "oklch(0.85 0.15 232)" : "oklch(0.78 0.14 232 / 0.45)"
+                }
                 strokeWidth={isTreasury || isStakers ? 1.4 : 1}
               />
               <text

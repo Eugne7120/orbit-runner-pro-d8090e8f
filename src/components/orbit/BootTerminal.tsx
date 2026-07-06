@@ -98,7 +98,10 @@ export function BootTerminal({ className = "" }: { className?: string }) {
       const id = seed.current++;
       // add empty line, then progressively fill it (typing)
       setLines((prev) => {
-        const next = [...prev, { id, text: "", tone: b.tone, ts: b.tone === "cmd" ? undefined : nowTs(), typing: true }];
+        const next = [
+          ...prev,
+          { id, text: "", tone: b.tone, ts: b.tone === "cmd" ? undefined : nowTs(), typing: true },
+        ];
         return next.length > MAX ? next.slice(next.length - MAX) : next;
       });
       let charIdx = 0;
@@ -108,7 +111,9 @@ export function BootTerminal({ className = "" }: { className?: string }) {
         charIdx++;
         setLines((prev) =>
           prev.map((l) =>
-            l.id === id ? { ...l, text: b.text.slice(0, charIdx), typing: charIdx < b.text.length } : l,
+            l.id === id
+              ? { ...l, text: b.text.slice(0, charIdx), typing: charIdx < b.text.length }
+              : l,
           ),
         );
         if (charIdx >= b.text.length) {
@@ -167,8 +172,12 @@ export function BootTerminal({ className = "" }: { className?: string }) {
         </div>
         <div className="flex items-center gap-1.5 font-mono text-[10.5px] text-muted-foreground">
           <span className="relative flex h-1.5 w-1.5">
-            <span className={`absolute inset-0 rounded-full ${booted ? "bg-signal/60" : "bg-amber-300/60"} animate-orbit-ping`} />
-            <span className={`relative h-1.5 w-1.5 rounded-full ${booted ? "bg-signal" : "bg-amber-300"}`} />
+            <span
+              className={`absolute inset-0 rounded-full ${booted ? "bg-signal/60" : "bg-amber-300/60"} animate-orbit-ping`}
+            />
+            <span
+              className={`relative h-1.5 w-1.5 rounded-full ${booted ? "bg-signal" : "bg-amber-300"}`}
+            />
           </span>
           {booted ? "live" : "booting"}
         </div>
@@ -184,14 +193,14 @@ export function BootTerminal({ className = "" }: { className?: string }) {
                 className="animate-orbit-log-in flex items-baseline gap-3 whitespace-nowrap"
                 style={{ opacity }}
               >
-                {l.ts && (
-                  <span className="w-[62px] shrink-0 text-muted-foreground/50">{l.ts}</span>
-                )}
+                {l.ts && <span className="w-[62px] shrink-0 text-muted-foreground/50">{l.ts}</span>}
                 {!l.ts && <span className="w-[62px] shrink-0" />}
                 <span className={`w-3 shrink-0 ${toneClass[l.tone]}`}>{toneGlyph[l.tone]}</span>
                 <span className={toneClass[l.tone]}>
                   {l.text}
-                  {l.typing && <span className="ml-0.5 inline-block h-3 w-1.5 -mb-0.5 bg-signal animate-orbit-blink" />}
+                  {l.typing && (
+                    <span className="ml-0.5 inline-block h-3 w-1.5 -mb-0.5 bg-signal animate-orbit-blink" />
+                  )}
                 </span>
               </div>
             );

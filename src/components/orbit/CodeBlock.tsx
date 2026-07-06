@@ -73,12 +73,51 @@ export function CodeBlock({
 
 /* ----- tiny tokenizer, safe subset ----- */
 const KEYWORDS = new Set([
-  "const", "let", "var", "function", "return", "import", "from", "export",
-  "await", "async", "if", "else", "for", "while", "class", "new", "true",
-  "false", "null", "undefined", "as", "in", "of", "typeof", "interface",
-  "type", "throw", "try", "catch", "def", "print", "self", "None", "True",
-  "False", "package", "func", "struct", "impl", "let", "fn", "mut", "use",
-  "pub", "match",
+  "const",
+  "let",
+  "var",
+  "function",
+  "return",
+  "import",
+  "from",
+  "export",
+  "await",
+  "async",
+  "if",
+  "else",
+  "for",
+  "while",
+  "class",
+  "new",
+  "true",
+  "false",
+  "null",
+  "undefined",
+  "as",
+  "in",
+  "of",
+  "typeof",
+  "interface",
+  "type",
+  "throw",
+  "try",
+  "catch",
+  "def",
+  "print",
+  "self",
+  "None",
+  "True",
+  "False",
+  "package",
+  "func",
+  "struct",
+  "impl",
+  "let",
+  "fn",
+  "mut",
+  "use",
+  "pub",
+  "match",
 ]);
 
 function escapeHtml(s: string) {
@@ -103,7 +142,10 @@ function highlight(code: string, _lang: string): string {
         return match;
       });
       if (last < p.v.length) chunks.push({ t: "code", v: p.v.slice(last) });
-      if (chunks.length) parts.splice(i, 1, ...chunks), (i += chunks.length - 1);
+      if (chunks.length) {
+        parts.splice(i, 1, ...chunks);
+        i += chunks.length - 1;
+      }
     }
   };
 

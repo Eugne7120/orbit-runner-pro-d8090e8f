@@ -263,12 +263,16 @@ export function ApiCodeDemo({ className = "" }: { className?: string }) {
           <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
             <span
               className={`h-1.5 w-1.5 rounded-full ${
-                running ? "bg-signal animate-orbit-pulse shadow-[0_0_10px] shadow-signal" : "bg-emerald-400/80"
+                running
+                  ? "bg-signal animate-orbit-pulse shadow-[0_0_10px] shadow-signal"
+                  : "bg-emerald-400/80"
               }`}
             />
             response · {running ? "streaming" : "complete"}
           </div>
-          <span className="font-mono text-[10.5px] text-muted-foreground/70">text/event-stream</span>
+          <span className="font-mono text-[10.5px] text-muted-foreground/70">
+            text/event-stream
+          </span>
         </div>
         <div
           ref={scrollRef}
@@ -279,14 +283,7 @@ export function ApiCodeDemo({ className = "" }: { className?: string }) {
             const isTyping = i === lines.length - 1 && l.typed.length < l.text.length;
             if (l.text === "") return <div key={i} className="h-3" />;
             return (
-              <div
-                key={i}
-                className={
-                  isMeta
-                    ? "text-signal/90"
-                    : "text-foreground/90"
-                }
-              >
+              <div key={i} className={isMeta ? "text-signal/90" : "text-foreground/90"}>
                 {l.typed}
                 {isTyping && (
                   <span className="ml-0.5 -mb-0.5 inline-block h-3 w-1.5 animate-orbit-blink bg-signal align-baseline" />

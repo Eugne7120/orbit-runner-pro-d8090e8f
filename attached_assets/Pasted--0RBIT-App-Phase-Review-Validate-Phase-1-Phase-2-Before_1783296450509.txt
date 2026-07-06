@@ -1,0 +1,331 @@
+# 0RBIT App
+## Phase Review — Validate Phase 1 & Phase 2
+
+Before starting Phase 3, perform a complete review of the current project.
+
+Do NOT add any new features.
+
+Do NOT redesign the interface.
+
+Do NOT refactor unless necessary to fix issues.
+
+Your only objective is to verify that everything implemented in Phase 1 and Phase 2 is complete, functional, responsive, and production-ready.
+
+---
+
+# Objective
+
+Act as a Senior QA Engineer and Senior Full Stack Engineer.
+
+Review the entire application from the perspective of a real user.
+
+Check every page, every component, every interaction, and every responsive layout.
+
+Identify anything that is incomplete, broken, inconsistent, or missing.
+
+If an issue is found, fix it immediately.
+
+---
+
+# Review Scope
+
+Review every feature implemented in:
+
+✅ Phase 1 — Foundation & Authentication
+
+✅ Phase 2 — AI Chat MVP
+
+Nothing should be skipped.
+
+---
+
+# Authentication Review
+
+Verify:
+
+- Privy initializes correctly.
+- Phantom login works.
+- Backpack login works.
+- Solflare login works.
+- X login works.
+- Google login works.
+- Session persists after refresh.
+- Logout works.
+- User is redirected correctly.
+- Protected routes cannot be accessed without authentication.
+
+Fix any issue found.
+
+---
+
+# Navigation Review
+
+Verify:
+
+- Sidebar navigation
+- Mobile drawer
+- Top navigation
+- Active menu highlighting
+- Route transitions
+- Browser back/forward navigation
+
+No broken links.
+
+No dead pages.
+
+---
+
+# Responsive Review
+
+Test all pages on:
+
+- Mobile
+- Tablet
+- Laptop
+- Desktop
+- Ultrawide
+
+Verify:
+
+- No overflowing components
+- No cropped text
+- No horizontal scrolling
+- Correct spacing
+- Proper touch targets
+- Responsive sidebar
+- Responsive chat layout
+
+Fix all layout issues.
+
+---
+
+# Chat Review
+
+Verify:
+
+- Create new chat
+- Conversation history
+- Rename chat
+- Delete chat
+- Model selector
+- Auto scroll
+- Streaming responses
+- Markdown rendering
+- Code blocks
+- Copy response
+- Regenerate response
+- Suggested prompts
+- Loading states
+- Empty states
+
+Ensure every interaction works smoothly.
+
+---
+
+# UI Review
+
+Inspect every page.
+
+Verify:
+
+- Consistent spacing
+- Consistent typography
+- Border radius
+- Shadows
+- Hover states
+- Focus states
+- Glass effects
+- Colors
+- Animations
+
+No visual inconsistencies.
+
+---
+
+# Animation Review
+
+Check all animations.
+
+Verify:
+
+- Smooth page transitions
+- Button hover animations
+- Card hover effects
+- Sidebar animation
+- Modal animation
+- Scroll behavior
+- Loading animation
+
+Animations should feel smooth and premium.
+
+Remove any animation that feels distracting.
+
+---
+
+# Theme Review
+
+Verify:
+
+- Dark theme consistency
+- No hardcoded colors
+- Theme provider works correctly
+- Contrast is readable
+- Accent colors are consistent
+
+---
+
+# Accessibility Review
+
+Verify:
+
+- Keyboard navigation
+- Focus indicators
+- Buttons have labels
+- Forms are accessible
+- Color contrast is acceptable
+
+Improve accessibility where necessary.
+
+---
+
+# Performance Review
+
+Review:
+
+- Bundle size
+- Unused components
+- Unused imports
+- Duplicate code
+- Large renders
+- Re-render issues
+
+Optimize where possible.
+
+Do not prematurely optimize.
+
+---
+
+# Code Quality Review
+
+Check:
+
+- Folder structure
+- Component organization
+- Naming consistency
+- Reusable components
+- TypeScript types
+- ESLint
+- Prettier
+
+Remove unnecessary code.
+
+---
+
+# Error Handling Review
+
+Verify graceful handling of:
+
+- Network failure
+- Authentication failure
+- Missing data
+- API errors
+- Empty conversations
+- Invalid routes
+
+No blank screens.
+
+No crashes.
+
+---
+
+# Dashboard Review
+
+Verify:
+
+- Dashboard cards
+- Credits widget
+- Profile page
+- Settings page
+- Activity section
+- Network status
+
+Ensure placeholder data renders correctly.
+
+---
+
+# Coming Soon Pages
+
+Verify that every placeholder page:
+
+- Opens correctly
+- Matches the design system
+- Has a title
+- Has a description
+- Shows development status
+- Does not feel unfinished
+
+---
+
+# Final QA Checklist
+
+Confirm all of the following:
+
+✅ Authentication works correctly
+
+✅ Responsive on all devices
+
+✅ Chat works correctly
+
+✅ Sidebar navigation works
+
+✅ Settings page complete
+
+✅ Dashboard complete
+
+✅ Profile complete
+
+✅ Animations smooth
+
+✅ No broken routes
+
+✅ No console errors
+
+✅ No TypeScript errors
+
+✅ No ESLint errors
+
+✅ Build succeeds
+
+✅ Production deployment succeeds
+
+---
+
+# Expected Output
+
+After the review, provide a QA report with this format:
+
+## Phase 1 Review
+
+- Completed Features
+- Issues Found
+- Issues Fixed
+- Remaining Improvements (if any)
+
+## Phase 2 Review
+
+- Completed Features
+- Issues Found
+- Issues Fixed
+- Remaining Improvements (if any)
+
+## Final Status
+
+One of the following:
+
+🟢 Ready for Phase 3
+
+🟡 Ready with Minor Improvements
+
+🔴 Not Ready (explain why)
+
+Only after all critical issues have been fixed should the project be considered ready to continue to Phase 3.

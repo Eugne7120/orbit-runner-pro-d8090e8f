@@ -20,7 +20,9 @@ const HISTORY = [
 function CreditsPage() {
   const { authenticated, ready } = usePrivy();
   const navigate = useNavigate();
-  useEffect(() => { if (ready && !authenticated) navigate({ to: "/app/login" }); }, [ready, authenticated]);
+  useEffect(() => {
+    if (ready && !authenticated) navigate({ to: "/app/login" });
+  }, [ready, authenticated]);
   if (!ready || !authenticated) return null;
 
   return (
@@ -39,13 +41,20 @@ function CreditsPage() {
             </div>
             <div className="space-y-2 flex-1">
               {[100, 500, 1000, 2500].map((amt) => (
-                <button key={amt} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg border border-border hover:border-signal/40 hover:bg-signal/[0.04] transition-all text-sm group">
+                <button
+                  key={amt}
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg border border-border hover:border-signal/40 hover:bg-signal/[0.04] transition-all text-sm group"
+                >
                   <span className="text-foreground font-medium">{amt} Credits</span>
-                  <span className="text-muted-foreground group-hover:text-signal transition-colors">${(amt * 0.01).toFixed(2)}</span>
+                  <span className="text-muted-foreground group-hover:text-signal transition-colors">
+                    ${(amt * 0.01).toFixed(2)}
+                  </span>
                 </button>
               ))}
             </div>
-            <button className="mt-4 w-full py-2.5 rounded-xl bg-signal/15 border border-signal/25 text-signal text-sm font-medium opacity-60 cursor-not-allowed">Coming soon</button>
+            <button className="mt-4 w-full py-2.5 rounded-xl bg-signal/15 border border-signal/25 text-signal text-sm font-medium opacity-60 cursor-not-allowed">
+              Coming soon
+            </button>
           </div>
         </div>
         <div className="rounded-xl border border-border bg-surface p-5">
@@ -54,13 +63,19 @@ function CreditsPage() {
             <span className="text-sm font-medium text-foreground">Transaction History</span>
           </div>
           {HISTORY.map((h, i) => (
-            <div key={i} className="flex items-center justify-between py-2.5 border-b border-border last:border-0">
+            <div
+              key={i}
+              className="flex items-center justify-between py-2.5 border-b border-border last:border-0"
+            >
               <div>
                 <p className="text-xs font-medium text-foreground">{h.desc}</p>
                 <p className="text-[11px] text-muted-foreground mt-0.5">{h.date}</p>
               </div>
-              <span className={`text-sm font-semibold tabular-nums ${h.amount > 0 ? "text-signal" : "text-muted-foreground"}`}>
-                {h.amount > 0 ? "+" : ""}{h.amount}
+              <span
+                className={`text-sm font-semibold tabular-nums ${h.amount > 0 ? "text-signal" : "text-muted-foreground"}`}
+              >
+                {h.amount > 0 ? "+" : ""}
+                {h.amount}
               </span>
             </div>
           ))}

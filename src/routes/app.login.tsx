@@ -36,7 +36,10 @@ function LoginPage() {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative w-14 h-14 mb-4">
-            <div className="absolute inset-0 rounded-full bg-signal/10 animate-pulse" style={{ animationDuration: "3s" }} />
+            <div
+              className="absolute inset-0 rounded-full bg-signal/10 animate-pulse"
+              style={{ animationDuration: "3s" }}
+            />
             <div className="absolute inset-2 rounded-full bg-signal/20" />
             <div className="absolute inset-3.5 rounded-full bg-background border border-signal/40" />
             <Zap className="absolute inset-0 m-auto w-5 h-5 text-signal" />

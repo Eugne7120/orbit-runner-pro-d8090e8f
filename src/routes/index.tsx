@@ -21,7 +21,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "0RBIT — The decentralized runtime for AI" },
       {
         property: "og:description",
-        content: "A global mesh of workers routes every inference request to wherever it is cheapest, fastest and closest.",
+        content:
+          "A global mesh of workers routes every inference request to wherever it is cheapest, fastest and closest.",
       },
       { name: "twitter:title", content: "0RBIT — The decentralized runtime for AI" },
       {
@@ -55,9 +56,8 @@ function Home() {
             className="animate-orbit-fade-up mx-auto mt-7 max-w-2xl text-pretty text-[17px] leading-relaxed text-muted-foreground md:text-[19px]"
             style={{ animationDelay: "140ms" }}
           >
-            0RBIT routes every request through a global mesh of workers.
-            Inference happens where it is cheapest, fastest and closest —
-            settled invisibly on-chain, delivered like software.
+            0RBIT routes every request through a global mesh of workers. Inference happens where it
+            is cheapest, fastest and closest — settled invisibly on-chain, delivered like software.
           </p>
           <div
             className="animate-orbit-fade-up mt-10 flex flex-wrap items-center justify-center gap-3"
@@ -68,7 +68,9 @@ function Home() {
               className="btn-sheen group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[14px] font-medium text-background transition-all duration-300 hover:bg-foreground/90 hover:scale-[1.01] shadow-[0_10px_30px_-10px_oklch(1_0_0/0.25)]"
             >
               Start App
-              <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                →
+              </span>
             </Link>
             <Link
               to="/product"
@@ -169,22 +171,16 @@ function Home() {
               <BootTerminal />
             </div>
             <div className="grid gap-4 lg:col-span-2">
-              <LiveCard
-                eyebrow="Install"
-                title="One line, any language"
-              >
+              <LiveCard eyebrow="Install" title="One line, any language">
                 <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0.008_250)] p-3 font-mono text-[12.5px] text-foreground/90">
-{`$ npm i @orbit/sdk
+                  {`$ npm i @orbit/sdk
 $ orbit login`}
                 </pre>
               </LiveCard>
-              <LiveCard
-                eyebrow="Call"
-                title="Familiar shape, better runtime"
-              >
+              <LiveCard eyebrow="Call" title="Familiar shape, better runtime">
                 <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0.008_250)] p-3 font-mono text-[12.5px] leading-relaxed">
-<span className="text-muted-foreground">{`// stream tokens from anywhere\n`}</span>
-<span className="text-foreground/90">{`const res = await orbit.chat({\n  model: "orbit-1",\n  stream: true,\n  messages,\n});`}</span>
+                  <span className="text-muted-foreground">{`// stream tokens from anywhere\n`}</span>
+                  <span className="text-foreground/90">{`const res = await orbit.chat({\n  model: "orbit-1",\n  stream: true,\n  messages,\n});`}</span>
                 </pre>
               </LiveCard>
             </div>
@@ -217,14 +213,87 @@ $ orbit login`}
         intro="No stock diagrams. No brains, no hexagons, no globes. Just the actual shape of the system — nodes, edges, queues, streams. Alive on every page."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-          <Reveal delay={0}><MetricTile label="workers online" base={214} variance={0.02} seed={1} hint="12 regions · 4 continents" /></Reveal>
-          <Reveal delay={80}><MetricTile label="p50 latency" base={41} variance={0.14} unit="ms" chartColor="muted" seed={2} hint="rolling 5m" /></Reveal>
-          <Reveal delay={160}><MetricTile label="requests / sec" base={38} variance={0.22} seed={4} hint="↑ 18% wow" /></Reveal>
-          <Reveal delay={240}><MetricTile label="credits processed" base={17} variance={0.6} format={(n) => `+${Math.max(1, Math.round(n))}`} chartColor="warm" seed={5} hint="last minute" /></Reveal>
-          <Reveal delay={80}><MetricTile label="uptime" base={99.994} variance={0.00002} format={(n) => `${n.toFixed(3)}%`} chart={false} hint="rolling 30d" /></Reveal>
-          <Reveal delay={160}><MetricTile label="ttft · warm" base={38} variance={0.15} unit="ms" seed={6} hint="median" /></Reveal>
-          <Reveal delay={240}><MetricTile label="cost / 1m tokens" base={0.42} variance={0.06} format={(n) => `$${n.toFixed(2)}`} chartColor="muted" seed={8} hint="orbit-1 · avg" /></Reveal>
-          <Reveal delay={320}><MetricTile label="tokens / day" base={1.2} variance={0.05} format={(n) => `${n.toFixed(2)}b`} seed={9} hint="24h rolling" /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile
+              label="workers online"
+              base={214}
+              variance={0.02}
+              seed={1}
+              hint="12 regions · 4 continents"
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="p50 latency"
+              base={41}
+              variance={0.14}
+              unit="ms"
+              chartColor="muted"
+              seed={2}
+              hint="rolling 5m"
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="requests / sec"
+              base={38}
+              variance={0.22}
+              seed={4}
+              hint="↑ 18% wow"
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="credits processed"
+              base={17}
+              variance={0.6}
+              format={(n) => `+${Math.max(1, Math.round(n))}`}
+              chartColor="warm"
+              seed={5}
+              hint="last minute"
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="uptime"
+              base={99.994}
+              variance={0.00002}
+              format={(n) => `${n.toFixed(3)}%`}
+              chart={false}
+              hint="rolling 30d"
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="ttft · warm"
+              base={38}
+              variance={0.15}
+              unit="ms"
+              seed={6}
+              hint="median"
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="cost / 1m tokens"
+              base={0.42}
+              variance={0.06}
+              format={(n) => `$${n.toFixed(2)}`}
+              chartColor="muted"
+              seed={8}
+              hint="orbit-1 · avg"
+            />
+          </Reveal>
+          <Reveal delay={320}>
+            <MetricTile
+              label="tokens / day"
+              base={1.2}
+              variance={0.05}
+              format={(n) => `${n.toFixed(2)}b`}
+              seed={9}
+              hint="24h rolling"
+            />
+          </Reveal>
         </div>
       </Section>
 
@@ -247,9 +316,8 @@ $ orbit login`}
                 Move your first request in an afternoon.
               </h2>
               <p className="mt-5 max-w-xl text-pretty text-[16px] leading-relaxed text-muted-foreground md:text-[17px]">
-                A drop-in SDK, an OpenAI-compatible endpoint, and a network that
-                scales the moment you send traffic. No infra to provision. No
-                chain to touch. Just a runtime.
+                A drop-in SDK, an OpenAI-compatible endpoint, and a network that scales the moment
+                you send traffic. No infra to provision. No chain to touch. Just a runtime.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
@@ -257,7 +325,9 @@ $ orbit login`}
                   className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[14px] font-medium text-background transition-all hover:bg-foreground/90"
                 >
                   Read the docs
-                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                    →
+                  </span>
                 </Link>
                 <Link
                   to="/pricing"

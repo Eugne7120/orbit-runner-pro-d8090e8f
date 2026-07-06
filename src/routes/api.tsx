@@ -13,7 +13,10 @@ export const Route = createFileRoute("/api")({
   head: () => ({
     meta: [
       { title: "API — 0RBIT" },
-      { name: "description", content: "OpenAI-compatible endpoints, streaming by default, priced per token served." },
+      {
+        name: "description",
+        content: "OpenAI-compatible endpoints, streaming by default, priced per token served.",
+      },
       { property: "og:title", content: "API — 0RBIT" },
       { property: "og:description", content: "OpenAI-compatible endpoints, streaming by default." },
     ],
@@ -53,7 +56,11 @@ function ApiPage() {
       />
 
       {/* Lifecycle */}
-      <Section eyebrow="/ lifecycle" title="A single request, timed." intro="Every millisecond a request spends inside the runtime. This is the real shape.">
+      <Section
+        eyebrow="/ lifecycle"
+        title="A single request, timed."
+        intro="Every millisecond a request spends inside the runtime. This is the real shape."
+      >
         <Reveal>
           <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
             <RequestLifecycle />
@@ -70,7 +77,9 @@ function ApiPage() {
                 key={e.p}
                 className={`grid grid-cols-[80px_1fr_auto] items-center gap-4 px-5 py-4 transition-colors hover:bg-surface ${i > 0 ? "border-t border-border" : ""}`}
               >
-                <span className="font-mono text-[11px] uppercase tracking-widest text-signal">{e.m}</span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-signal">
+                  {e.m}
+                </span>
                 <span className="font-mono text-[13px] text-foreground">{e.p}</span>
                 <span className="text-[13px] text-muted-foreground">{e.d}</span>
               </div>
@@ -80,7 +89,11 @@ function ApiPage() {
       </Section>
 
       {/* Example request */}
-      <Section eyebrow="/ example" title="Streaming, in seconds." intro="A single POST. The response starts before the model finishes.">
+      <Section
+        eyebrow="/ example"
+        title="Streaming, in seconds."
+        intro="A single POST. The response starts before the model finishes."
+      >
         <Reveal>
           <div className="grid gap-6 lg:grid-cols-2">
             <CodeBlock
@@ -129,21 +142,53 @@ for c in stream: print(c.delta, end="", flush=True)`,
       {/* Live perf */}
       <Section eyebrow="/ performance" title="Live, network-wide.">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <Reveal delay={0}><MetricTile label="req · avg" base={4820} seed={31} /></Reveal>
-          <Reveal delay={80}><MetricTile label="TTFT · p50" base={38} unit="ms" seed={32} chartColor="warm" /></Reveal>
-          <Reveal delay={160}><MetricTile label="stream · tok/s" base={182} seed={33} /></Reveal>
-          <Reveal delay={240}><MetricTile label="errors · 5xx / 1k" base={0.4} variance={0.5} seed={34} chartColor="muted" hint="target < 1" /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile label="req · avg" base={4820} seed={31} />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile label="TTFT · p50" base={38} unit="ms" seed={32} chartColor="warm" />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile label="stream · tok/s" base={182} seed={33} />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="errors · 5xx / 1k"
+              base={0.4}
+              variance={0.5}
+              seed={34}
+              chartColor="muted"
+              hint="target < 1"
+            />
+          </Reveal>
         </div>
       </Section>
 
       {/* Errors */}
-      <Section eyebrow="/ errors" title="Every failure, named." intro="One consistent error envelope. Every code has a documented meaning and a documented recovery.">
+      <Section
+        eyebrow="/ errors"
+        title="Every failure, named."
+        intro="One consistent error envelope. Every code has a documented meaning and a documented recovery."
+      >
         <Reveal>
           <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
             <div className="overflow-hidden rounded-2xl border border-border bg-surface/40">
               {errors.map((e, i) => (
-                <div key={e.code} className={`grid grid-cols-[70px_180px_1fr] items-center gap-4 px-5 py-3 font-mono text-[12.5px] transition-colors hover:bg-surface ${i > 0 ? "border-t border-border" : ""}`}>
-                  <span className={e.code >= 500 ? "text-rose-300" : e.code >= 400 ? "text-amber-300" : "text-signal"}>{e.code}</span>
+                <div
+                  key={e.code}
+                  className={`grid grid-cols-[70px_180px_1fr] items-center gap-4 px-5 py-3 font-mono text-[12.5px] transition-colors hover:bg-surface ${i > 0 ? "border-t border-border" : ""}`}
+                >
+                  <span
+                    className={
+                      e.code >= 500
+                        ? "text-rose-300"
+                        : e.code >= 400
+                          ? "text-amber-300"
+                          : "text-signal"
+                    }
+                  >
+                    {e.code}
+                  </span>
                   <span className="text-foreground">{e.name}</span>
                   <span className="text-muted-foreground">{e.d}</span>
                 </div>
@@ -182,7 +227,9 @@ for c in stream: print(c.delta, end="", flush=True)`,
           ].map((r, i) => (
             <Reveal key={r.t} delay={i * 80}>
               <div className="rounded-2xl border border-border bg-surface/40 p-6 h-full">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">{r.t}</div>
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {r.t}
+                </div>
                 <div className="mt-3 font-display text-2xl tracking-tight">{r.r}</div>
                 <div className="mt-1 font-mono text-[11.5px] text-muted-foreground">{r.c}</div>
               </div>

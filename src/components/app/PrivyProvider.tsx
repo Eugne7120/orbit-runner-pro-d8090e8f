@@ -15,7 +15,9 @@ export function PrivyProvider({ children }: { children: ReactNode }) {
   if (error) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <p className="text-sm text-muted-foreground">Failed to load configuration. Please refresh.</p>
+        <p className="text-sm text-muted-foreground">
+          Failed to load configuration. Please refresh.
+        </p>
       </div>
     );
   }
@@ -34,7 +36,8 @@ export function PrivyProvider({ children }: { children: ReactNode }) {
         <div className="max-w-sm text-center space-y-3">
           <p className="text-sm font-medium text-foreground">Configuration missing</p>
           <p className="text-xs text-muted-foreground">
-            <code className="font-mono bg-white/[0.06] px-1 rounded">PRIVY_APP_ID</code> is not set. Add it in your Replit Secrets.
+            <code className="font-mono bg-white/[0.06] px-1 rounded">PRIVY_APP_ID</code> is not set.
+            Add it in your Replit Secrets.
           </p>
         </div>
       </div>
@@ -51,10 +54,10 @@ export function PrivyProvider({ children }: { children: ReactNode }) {
           logo: "/favicon.ico",
         },
         loginMethods: ["wallet", "twitter", "google"],
-        embeddedWallets: { createOnLogin: "off" },
-        solanaClusters: [
-          { name: "mainnet-beta", rpcUrl: "https://api.mainnet-beta.solana.com" },
-        ],
+        embeddedWallets: {
+          ethereum: { createOnLogin: "off" },
+          solana: { createOnLogin: "off" },
+        },
       }}
     >
       {children}

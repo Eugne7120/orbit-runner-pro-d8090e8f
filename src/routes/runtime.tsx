@@ -14,7 +14,11 @@ export const Route = createFileRoute("/runtime")({
   head: () => ({
     meta: [
       { title: "Runtime — 0RBIT" },
-      { name: "description", content: "Live operational view of the 0RBIT network — requests, workers, latency, throughput, credits." },
+      {
+        name: "description",
+        content:
+          "Live operational view of the 0RBIT network — requests, workers, latency, throughput, credits.",
+      },
       { property: "og:title", content: "Runtime — 0RBIT" },
       { property: "og:description", content: "Live view of the 0RBIT network." },
     ],
@@ -46,18 +50,58 @@ function RuntimePage() {
         </Reveal>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Reveal delay={0}><MetricTile label="requests / s" base={4820} variance={0.08} seed={11} /></Reveal>
-          <Reveal delay={80}><MetricTile label="workers online" base={214} variance={0.02} chartColor="muted" seed={22} /></Reveal>
-          <Reveal delay={160}><MetricTile label="p50 latency" base={41} unit="ms" variance={0.14} seed={33} /></Reveal>
-          <Reveal delay={240}><MetricTile label="tokens / s" base={12400} variance={0.16} seed={44} /></Reveal>
-          <Reveal delay={80}><MetricTile label="queue depth" base={0} variance={0.5} chartColor="muted" seed={55} hint="target 0" /></Reveal>
-          <Reveal delay={160}><MetricTile label="gpu util · fleet" base={68} unit="%" variance={0.08} seed={66} /></Reveal>
-          <Reveal delay={240}><MetricTile label="credits burned · min" base={182} unit=" cr" variance={0.12} chartColor="warm" seed={77} /></Reveal>
-          <Reveal delay={320}><MetricTile label="stream throughput" base={9200} variance={0.14} seed={88} /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile label="requests / s" base={4820} variance={0.08} seed={11} />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="workers online"
+              base={214}
+              variance={0.02}
+              chartColor="muted"
+              seed={22}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile label="p50 latency" base={41} unit="ms" variance={0.14} seed={33} />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile label="tokens / s" base={12400} variance={0.16} seed={44} />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="queue depth"
+              base={0}
+              variance={0.5}
+              chartColor="muted"
+              seed={55}
+              hint="target 0"
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile label="gpu util · fleet" base={68} unit="%" variance={0.08} seed={66} />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="credits burned · min"
+              base={182}
+              unit=" cr"
+              variance={0.12}
+              chartColor="warm"
+              seed={77}
+            />
+          </Reveal>
+          <Reveal delay={320}>
+            <MetricTile label="stream throughput" base={9200} variance={0.14} seed={88} />
+          </Reveal>
         </div>
       </Section>
 
-      <Section eyebrow="/ regions" title="Traffic by region." intro="Each region is a set of independent workers under a shared router. The mesh rebalances continuously.">
+      <Section
+        eyebrow="/ regions"
+        title="Traffic by region."
+        intro="Each region is a set of independent workers under a shared router. The mesh rebalances continuously."
+      >
         <Reveal>
           <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
             <RegionMap />
@@ -65,7 +109,11 @@ function RuntimePage() {
         </Reveal>
       </Section>
 
-      <Section eyebrow="/ latency" title="Latency, unbucketed." intro="Live p50 · p95 · p99 across the network. The gap between percentiles is the fingerprint of the system.">
+      <Section
+        eyebrow="/ latency"
+        title="Latency, unbucketed."
+        intro="Live p50 · p95 · p99 across the network. The gap between percentiles is the fingerprint of the system."
+      >
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <Reveal delay={0}>
             <div className="rounded-2xl border border-border bg-surface/40 p-5">
@@ -74,18 +122,38 @@ function RuntimePage() {
           </Reveal>
           <Reveal delay={80}>
             <div className="rounded-2xl border border-border bg-surface/40 p-5">
-              <AreaChart label="p95" base={140} variance={30} unit="ms" seed={102} height={160} color="warm" />
+              <AreaChart
+                label="p95"
+                base={140}
+                variance={30}
+                unit="ms"
+                seed={102}
+                height={160}
+                color="warm"
+              />
             </div>
           </Reveal>
           <Reveal delay={160}>
             <div className="rounded-2xl border border-border bg-surface/40 p-5">
-              <AreaChart label="p99" base={210} variance={55} unit="ms" seed={103} height={160} color="muted" />
+              <AreaChart
+                label="p99"
+                base={210}
+                variance={55}
+                unit="ms"
+                seed={103}
+                height={160}
+                color="muted"
+              />
             </div>
           </Reveal>
         </div>
       </Section>
 
-      <Section eyebrow="/ workers" title="Fleet state." intro="A sample of active workers. Real fleet is larger and rotates constantly.">
+      <Section
+        eyebrow="/ workers"
+        title="Fleet state."
+        intro="A sample of active workers. Real fleet is larger and rotates constantly."
+      >
         <Reveal>
           <WorkerTable />
         </Reveal>
@@ -134,9 +202,12 @@ function WorkerTable() {
 function WorkerRow({ w, i }: { w: (typeof SAMPLE_WORKERS)[number]; i: number }) {
   const [rps, setRps] = useState(20 + Math.floor(Math.random() * 60));
   useEffect(() => {
-    const t = setInterval(() => {
-      setRps((r) => Math.max(2, r + Math.round((Math.random() - 0.5) * 8)));
-    }, 1400 + i * 90);
+    const t = setInterval(
+      () => {
+        setRps((r) => Math.max(2, r + Math.round((Math.random() - 0.5) * 8)));
+      },
+      1400 + i * 90,
+    );
     return () => clearInterval(t);
   }, [i]);
   const stateColor =

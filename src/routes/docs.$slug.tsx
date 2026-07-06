@@ -11,10 +11,7 @@ export const Route = createFileRoute("/docs/$slug")({
     const p = loaderData ? PAGE_MAP[loaderData.slug] : null;
     if (!p) {
       return {
-        meta: [
-          { title: "Not found — 0RBIT Docs" },
-          { name: "robots", content: "noindex" },
-        ],
+        meta: [{ title: "Not found — 0RBIT Docs" }, { name: "robots", content: "noindex" }],
       };
     }
     return {
@@ -42,7 +39,8 @@ function NotFound() {
     <main className="min-w-0">
       <h1 className="font-display text-3xl tracking-tight">Page not found</h1>
       <p className="mt-3 text-muted-foreground">
-        No doc titled <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-[13px]">{slug}</code>.
+        No doc titled{" "}
+        <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-[13px]">{slug}</code>.
       </p>
     </main>
   );

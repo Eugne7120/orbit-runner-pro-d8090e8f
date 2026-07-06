@@ -60,7 +60,9 @@ export function CreditsWidget({
       {/* Main metric */}
       <div className="mb-4">
         <div className="flex items-end gap-1.5">
-          <span className="text-3xl font-semibold text-foreground tabular-nums">{displayCredits.toLocaleString()}</span>
+          <span className="text-3xl font-semibold text-foreground tabular-nums">
+            {displayCredits.toLocaleString()}
+          </span>
           <span className="text-sm text-muted-foreground mb-1">remaining</span>
         </div>
       </div>
@@ -88,7 +90,9 @@ export function CreditsWidget({
             <TrendingDown className="w-3 h-3 text-muted-foreground" />
             <span className="text-[11px] text-muted-foreground">Used</span>
           </div>
-          <span className="text-sm font-semibold text-foreground tabular-nums">{displayUsed.toLocaleString()}</span>
+          <span className="text-sm font-semibold text-foreground tabular-nums">
+            {displayUsed.toLocaleString()}
+          </span>
         </div>
         <div className="rounded-lg bg-white/[0.03] border border-border p-3">
           <div className="flex items-center gap-1.5 mb-1">

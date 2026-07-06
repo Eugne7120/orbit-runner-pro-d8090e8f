@@ -87,7 +87,12 @@ export function RuntimeFlow() {
             <g key={`${a}-${b}-${i}`}>
               <path d={d} stroke="url(#edge-grad)" strokeWidth="1" fill="none" />
               <circle r="2.4" fill="oklch(0.85 0.15 232)">
-                <animateMotion dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" path={d} />
+                <animateMotion
+                  dur={`${dur}s`}
+                  begin={`${delay}s`}
+                  repeatCount="indefinite"
+                  path={d}
+                />
                 <animate
                   attributeName="opacity"
                   values="0;1;1;0"
@@ -134,12 +139,7 @@ export function RuntimeFlow() {
           const d = pathBetween(s, r);
           return (
             <circle key={`tok-${i}`} r="1.4" fill="oklch(0.85 0.15 232)" opacity="0.8">
-              <animateMotion
-                dur="1.8s"
-                begin={`${i * 0.3}s`}
-                repeatCount="indefinite"
-                path={d}
-              />
+              <animateMotion dur="1.8s" begin={`${i * 0.3}s`} repeatCount="indefinite" path={d} />
               <animate
                 attributeName="opacity"
                 values="0;0.9;0.9;0"
@@ -164,7 +164,9 @@ export function RuntimeFlow() {
                 r={isBusy ? 22 : 18}
                 fill={glowId}
                 opacity={isBusy ? 0.75 : 0.45}
-                style={{ transition: "opacity 900ms var(--ease-out-soft), r 900ms var(--ease-out-soft)" }}
+                style={{
+                  transition: "opacity 900ms var(--ease-out-soft), r 900ms var(--ease-out-soft)",
+                }}
               />
               <circle
                 cx={n.x}

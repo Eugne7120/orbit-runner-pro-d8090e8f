@@ -19,10 +19,14 @@ export const Route = createFileRoute("/workers")({
       { title: "Workers — 0RBIT" },
       {
         name: "description",
-        content: "How the 0RBIT worker network operates — live topology, worker status, rewards and how to join the mesh.",
+        content:
+          "How the 0RBIT worker network operates — live topology, worker status, rewards and how to join the mesh.",
       },
       { property: "og:title", content: "Workers — 0RBIT" },
-      { property: "og:description", content: "A live look at the decentralized workers powering 0RBIT." },
+      {
+        property: "og:description",
+        content: "A live look at the decentralized workers powering 0RBIT.",
+      },
     ],
   }),
   component: WorkersPage,
@@ -81,14 +85,64 @@ function WorkersPage() {
         intro="A live dashboard view of the mesh. Every number below moves continuously — this is the same telemetry our schedulers see."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Reveal delay={0}><MetricTile label="workers online" base={214} variance={0.02} seed={201} /></Reveal>
-          <Reveal delay={80}><MetricTile label="available gpus" base={891} variance={0.03} chartColor="muted" seed={202} /></Reveal>
-          <Reveal delay={160}><MetricTile label="jobs running" base={3402} variance={0.12} seed={203} /></Reveal>
-          <Reveal delay={240}><MetricTile label="inference requests / s" base={4820} variance={0.1} seed={204} /></Reveal>
-          <Reveal delay={80}><MetricTile label="avg latency" base={41} unit="ms" variance={0.14} chartColor="warm" seed={205} /></Reveal>
-          <Reveal delay={160}><MetricTile label="success rate" base={99.6} unit="%" variance={0.002} chartColor="muted" seed={206} format={(n) => `${n.toFixed(2)}%`} /></Reveal>
-          <Reveal delay={240}><MetricTile label="network throughput" base={12400} unit=" tok/s" variance={0.16} seed={207} /></Reveal>
-          <Reveal delay={320}><MetricTile label="credits processed / min" base={1820} unit=" cr" variance={0.12} chartColor="warm" seed={208} /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile label="workers online" base={214} variance={0.02} seed={201} />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="available gpus"
+              base={891}
+              variance={0.03}
+              chartColor="muted"
+              seed={202}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile label="jobs running" base={3402} variance={0.12} seed={203} />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile label="inference requests / s" base={4820} variance={0.1} seed={204} />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="avg latency"
+              base={41}
+              unit="ms"
+              variance={0.14}
+              chartColor="warm"
+              seed={205}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="success rate"
+              base={99.6}
+              unit="%"
+              variance={0.002}
+              chartColor="muted"
+              seed={206}
+              format={(n) => `${n.toFixed(2)}%`}
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="network throughput"
+              base={12400}
+              unit=" tok/s"
+              variance={0.16}
+              seed={207}
+            />
+          </Reveal>
+          <Reveal delay={320}>
+            <MetricTile
+              label="credits processed / min"
+              base={1820}
+              unit=" cr"
+              variance={0.12}
+              chartColor="warm"
+              seed={208}
+            />
+          </Reveal>
         </div>
       </Section>
 
@@ -147,17 +201,40 @@ function WorkersPage() {
           </Reveal>
           <Reveal delay={80}>
             <div className="rounded-2xl border border-border bg-surface/40 p-5">
-              <AreaChart label="gpu usage · fleet" base={68} variance={10} unit="%" seed={302} height={150} color="warm" />
+              <AreaChart
+                label="gpu usage · fleet"
+                base={68}
+                variance={10}
+                unit="%"
+                seed={302}
+                height={150}
+                color="warm"
+              />
             </div>
           </Reveal>
           <Reveal delay={160}>
             <div className="rounded-2xl border border-border bg-surface/40 p-5">
-              <AreaChart label="queue length" base={4} variance={3} seed={303} height={150} color="muted" />
+              <AreaChart
+                label="queue length"
+                base={4}
+                variance={3}
+                seed={303}
+                height={150}
+                color="muted"
+              />
             </div>
           </Reveal>
           <Reveal delay={80}>
             <div className="rounded-2xl border border-border bg-surface/40 p-5">
-              <AreaChart label="success rate" base={99.6} variance={0.3} unit="%" seed={304} height={150} format={(n) => `${n.toFixed(2)}%`} />
+              <AreaChart
+                label="success rate"
+                base={99.6}
+                variance={0.3}
+                unit="%"
+                seed={304}
+                height={150}
+                format={(n) => `${n.toFixed(2)}%`}
+              />
             </div>
           </Reveal>
           <Reveal delay={160}>
@@ -198,8 +275,12 @@ function WorkersPage() {
                   <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
                     step {String(i + 1).padStart(2, "0")}
                   </div>
-                  <h3 className="mt-3 font-display text-lg font-medium tracking-tight text-foreground">{s.title}</h3>
-                  <p className="mt-1.5 text-[14px] leading-relaxed text-muted-foreground">{s.body}</p>
+                  <h3 className="mt-3 font-display text-lg font-medium tracking-tight text-foreground">
+                    {s.title}
+                  </h3>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-muted-foreground">
+                    {s.body}
+                  </p>
                 </div>
                 {i < BECOME_STEPS.length - 1 && (
                   <div className="pointer-events-none absolute -right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground/40 lg:block">
@@ -229,7 +310,11 @@ function WorkersPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {BENEFITS.map((b, i) => (
             <Reveal key={b.title} delay={i * 80}>
-              <LiveCard eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={b.title} description={b.body} />
+              <LiveCard
+                eyebrow={`/ ${String(i + 1).padStart(2, "0")}`}
+                title={b.title}
+                description={b.body}
+              />
             </Reveal>
           ))}
         </div>
@@ -243,11 +328,11 @@ function WorkersPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {HARDWARE.map((h, i) => (
             <Reveal key={h.name} delay={i * 80}>
-              <div
-                className="rounded-2xl border border-border bg-surface/40 p-6 transition-all duration-500 hover:border-border-strong hover:bg-surface h-full"
-              >
+              <div className="rounded-2xl border border-border bg-surface/40 p-6 transition-all duration-500 hover:border-border-strong hover:bg-surface h-full">
                 <div className="flex items-start justify-between">
-                  <h3 className="font-display text-lg font-medium tracking-tight text-foreground">{h.name}</h3>
+                  <h3 className="font-display text-lg font-medium tracking-tight text-foreground">
+                    {h.name}
+                  </h3>
                   <span className="rounded-full border border-border bg-surface/60 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
                     {h.tier}
                   </span>
@@ -269,13 +354,27 @@ function WorkersPage() {
 function Row({ label, value, accent = false }: { label: string; value: string; accent?: boolean }) {
   return (
     <div className="flex items-baseline justify-between border-t border-border py-2 first:border-t-0">
-      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{label}</span>
-      <span className={`font-mono text-[13px] tabular-nums ${accent ? "text-signal" : "text-foreground"}`}>{value}</span>
+      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+        {label}
+      </span>
+      <span
+        className={`font-mono text-[13px] tabular-nums ${accent ? "text-signal" : "text-foreground"}`}
+      >
+        {value}
+      </span>
     </div>
   );
 }
 
-function StatCard({ label, base, variance = 0.2 }: { label: string; base: number; variance?: number }) {
+function StatCard({
+  label,
+  base,
+  variance = 0.2,
+}: {
+  label: string;
+  base: number;
+  variance?: number;
+}) {
   const [v, setV] = useState(base);
   useEffect(() => {
     const t = setInterval(() => {
@@ -289,8 +388,12 @@ function StatCard({ label, base, variance = 0.2 }: { label: string; base: number
   }, [base, variance]);
   return (
     <div className="flex h-full flex-col justify-center rounded-2xl border border-border bg-surface/40 p-6">
-      <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">{label}</div>
-      <div className="mt-2 font-display text-3xl font-medium tabular-nums tracking-tight">{Math.round(v)}</div>
+      <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
+        {label}
+      </div>
+      <div className="mt-2 font-display text-3xl font-medium tabular-nums tracking-tight">
+        {Math.round(v)}
+      </div>
     </div>
   );
 }
@@ -309,12 +412,66 @@ type WorkerDef = {
 };
 
 const SAMPLE_WORKERS: WorkerDef[] = [
-  { id: "wrk_a19f2c", location: "Portland, US", gpu: "H100", status: "Streaming", jobs: 48210, latency: 32, uptime: "99.98%", reward: "1.4×" },
-  { id: "wrk_c72e91", location: "Ashburn, US", gpu: "RTX 4090", status: "Busy", jobs: 21904, latency: 44, uptime: "99.81%", reward: "1.1×" },
-  { id: "wrk_9d10bb", location: "Dublin, IE", gpu: "H100", status: "Idle", jobs: 61233, latency: 38, uptime: "99.95%", reward: "1.3×" },
-  { id: "wrk_88bafe", location: "Frankfurt, DE", gpu: "RTX 3090", status: "Busy", jobs: 15877, latency: 51, uptime: "99.62%", reward: "1.0×" },
-  { id: "wrk_4501aa", location: "Tokyo, JP", gpu: "RTX 5090", status: "Streaming", jobs: 9021, latency: 29, uptime: "99.90%", reward: "1.6×" },
-  { id: "wrk_2bebcd", location: "São Paulo, BR", gpu: "M3 Max", status: "Offline", jobs: 4310, latency: 68, uptime: "97.10%", reward: "0.8×" },
+  {
+    id: "wrk_a19f2c",
+    location: "Portland, US",
+    gpu: "H100",
+    status: "Streaming",
+    jobs: 48210,
+    latency: 32,
+    uptime: "99.98%",
+    reward: "1.4×",
+  },
+  {
+    id: "wrk_c72e91",
+    location: "Ashburn, US",
+    gpu: "RTX 4090",
+    status: "Busy",
+    jobs: 21904,
+    latency: 44,
+    uptime: "99.81%",
+    reward: "1.1×",
+  },
+  {
+    id: "wrk_9d10bb",
+    location: "Dublin, IE",
+    gpu: "H100",
+    status: "Idle",
+    jobs: 61233,
+    latency: 38,
+    uptime: "99.95%",
+    reward: "1.3×",
+  },
+  {
+    id: "wrk_88bafe",
+    location: "Frankfurt, DE",
+    gpu: "RTX 3090",
+    status: "Busy",
+    jobs: 15877,
+    latency: 51,
+    uptime: "99.62%",
+    reward: "1.0×",
+  },
+  {
+    id: "wrk_4501aa",
+    location: "Tokyo, JP",
+    gpu: "RTX 5090",
+    status: "Streaming",
+    jobs: 9021,
+    latency: 29,
+    uptime: "99.90%",
+    reward: "1.6×",
+  },
+  {
+    id: "wrk_2bebcd",
+    location: "São Paulo, BR",
+    gpu: "M3 Max",
+    status: "Offline",
+    jobs: 4310,
+    latency: 68,
+    uptime: "97.10%",
+    reward: "0.8×",
+  },
 ];
 
 const STATUS_STYLE: Record<WorkerStatus, { dot: string; text: string }> = {
@@ -333,13 +490,16 @@ function WorkerCard({ worker, index }: { worker: WorkerDef; index: number }) {
 
   useEffect(() => {
     if (worker.status === "Offline") return;
-    const t = setInterval(() => {
-      setStatus((s) => {
-        const opts = cycle.current;
-        const idx = opts.indexOf(s);
-        return opts[(idx + 1) % opts.length];
-      });
-    }, 4200 + index * 380);
+    const t = setInterval(
+      () => {
+        setStatus((s) => {
+          const opts = cycle.current;
+          const idx = opts.indexOf(s);
+          return opts[(idx + 1) % opts.length];
+        });
+      },
+      4200 + index * 380,
+    );
     return () => clearInterval(t);
   }, [worker.status, index]);
 
@@ -362,7 +522,13 @@ function WorkerCard({ worker, index }: { worker: WorkerDef; index: number }) {
       <div className="flex items-center justify-between">
         <span className="font-mono text-[13px] text-foreground">{worker.id}</span>
         <StatusPill
-          status={status === "Streaming" || status === "Idle" ? "operational" : status === "Busy" ? "elevated" : "degraded"}
+          status={
+            status === "Streaming" || status === "Idle"
+              ? "operational"
+              : status === "Busy"
+                ? "elevated"
+                : "degraded"
+          }
           label={status}
         />
       </div>
@@ -376,7 +542,9 @@ function WorkerCard({ worker, index }: { worker: WorkerDef; index: number }) {
         <Row label="reward ×" value={worker.reward} accent />
       </div>
       <div className={`mt-4 flex items-center gap-1.5 font-mono text-[10.5px] ${s.text}`}>
-        <span className={`h-1.5 w-1.5 rounded-full ${s.dot} ${status !== "Offline" ? "animate-orbit-pulse" : ""}`} />
+        <span
+          className={`h-1.5 w-1.5 rounded-full ${s.dot} ${status !== "Offline" ? "animate-orbit-pulse" : ""}`}
+        />
         {status === "Offline" ? "last seen 14m ago" : "reporting now"}
       </div>
     </div>
@@ -403,7 +571,9 @@ function WorkerDistribution() {
       <div className="space-y-2.5">
         {DATA.map((d) => (
           <div key={d.label} className="flex items-center gap-3">
-            <span className="w-16 shrink-0 font-mono text-[10.5px] uppercase text-muted-foreground">{d.label}</span>
+            <span className="w-16 shrink-0 font-mono text-[10.5px] uppercase text-muted-foreground">
+              {d.label}
+            </span>
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-surface-2">
               <div
                 className="h-full rounded-full bg-signal/70 transition-all duration-1000"
@@ -421,26 +591,74 @@ function WorkerDistribution() {
 }
 
 const BECOME_STEPS = [
-  { title: "Download Worker", body: "Grab the runtime binary for Linux, macOS or Windows. No account required to start." },
-  { title: "Connect GPU", body: "The installer detects your hardware and benchmarks it against the network's baseline." },
-  { title: "Receive Jobs", body: "Once verified, the scheduler starts routing inference and embedding jobs to your node." },
-  { title: "Earn Rewards", body: "Credits settle per completed job and accrue toward your on-chain balance in real time." },
+  {
+    title: "Download Worker",
+    body: "Grab the runtime binary for Linux, macOS or Windows. No account required to start.",
+  },
+  {
+    title: "Connect GPU",
+    body: "The installer detects your hardware and benchmarks it against the network's baseline.",
+  },
+  {
+    title: "Receive Jobs",
+    body: "Once verified, the scheduler starts routing inference and embedding jobs to your node.",
+  },
+  {
+    title: "Earn Rewards",
+    body: "Credits settle per completed job and accrue toward your on-chain balance in real time.",
+  },
 ];
 
 const BENEFITS = [
-  { title: "Earn passive income", body: "Idle GPU time converts directly into credits — no marketplace listing, no negotiation." },
-  { title: "Privacy focused", body: "Workers never see raw request content beyond what's required to execute the job." },
-  { title: "No central servers", body: "There is no 0RBIT data center to fail. The network is the infrastructure." },
-  { title: "Global network", body: "Nodes across six continents mean requests are served from wherever they originate." },
-  { title: "Stake for higher rewards", body: "Staking credits against your node raises its priority tier and reward multiplier." },
-  { title: "Open infrastructure", body: "The routing protocol and worker spec are open — anyone can build a compatible client." },
+  {
+    title: "Earn passive income",
+    body: "Idle GPU time converts directly into credits — no marketplace listing, no negotiation.",
+  },
+  {
+    title: "Privacy focused",
+    body: "Workers never see raw request content beyond what's required to execute the job.",
+  },
+  {
+    title: "No central servers",
+    body: "There is no 0RBIT data center to fail. The network is the infrastructure.",
+  },
+  {
+    title: "Global network",
+    body: "Nodes across six continents mean requests are served from wherever they originate.",
+  },
+  {
+    title: "Stake for higher rewards",
+    body: "Staking credits against your node raises its priority tier and reward multiplier.",
+  },
+  {
+    title: "Open infrastructure",
+    body: "The routing protocol and worker spec are open — anyone can build a compatible client.",
+  },
 ];
 
 const HARDWARE = [
   { name: "RTX 5090", memory: "32GB GDDR7", tier: "tier 1", perf: "~410 tok/s", reward: "1.6×" },
   { name: "RTX 4090", memory: "24GB GDDR6X", tier: "tier 1", perf: "~340 tok/s", reward: "1.4×" },
   { name: "RTX 3090", memory: "24GB GDDR6X", tier: "tier 2", perf: "~210 tok/s", reward: "1.0×" },
-  { name: "Apple M3 Max", memory: "128GB unified", tier: "tier 2", perf: "~180 tok/s", reward: "0.9×" },
-  { name: "RX 7900 XTX", memory: "24GB GDDR6", tier: "tier 2", perf: "~195 tok/s", reward: "0.95×" },
-  { name: "H100 (datacenter)", memory: "80GB HBM3", tier: "tier 0", perf: "~980 tok/s", reward: "2.2×" },
+  {
+    name: "Apple M3 Max",
+    memory: "128GB unified",
+    tier: "tier 2",
+    perf: "~180 tok/s",
+    reward: "0.9×",
+  },
+  {
+    name: "RX 7900 XTX",
+    memory: "24GB GDDR6",
+    tier: "tier 2",
+    perf: "~195 tok/s",
+    reward: "0.95×",
+  },
+  {
+    name: "H100 (datacenter)",
+    memory: "80GB HBM3",
+    tier: "tier 0",
+    perf: "~980 tok/s",
+    reward: "2.2×",
+  },
 ];

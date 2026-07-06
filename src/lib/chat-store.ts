@@ -20,11 +20,16 @@ function load(): Conversation[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return parsed.map((c: any) => ({
+    const parsed = JSON.parse(raw) as Array<
+      Omit<Conversation, "createdAt" | "messages"> & {
+        createdAt: string;
+        messages: Array<Omit<Message, "createdAt"> & { createdAt: string }>;
+      }
+    >;
+    return parsed.map((c) => ({
       ...c,
       createdAt: new Date(c.createdAt),
-      messages: c.messages.map((m: any) => ({ ...m, createdAt: new Date(m.createdAt) })),
+      messages: c.messages.map((m) => ({ ...m, createdAt: new Date(m.createdAt) })),
     }));
   } catch {
     return [];
@@ -76,9 +81,7 @@ export const chatStore = {
     const all = load().map((c) => {
       if (c.id !== conversationId) return c;
       const title =
-        c.messages.length === 0 && msg.role === "user"
-          ? msg.content.slice(0, 50)
-          : c.title;
+        c.messages.length === 0 && msg.role === "user" ? msg.content.slice(0, 50) : c.title;
       return { ...c, title, messages: [...c.messages, message] };
     });
     save(all);
@@ -89,7 +92,8 @@ export const chatStore = {
     const all = load().map((c) => {
       if (c.id !== conversationId) return c;
       const messages = [...c.messages];
-      if (messages.length > 0) messages[messages.length - 1] = { ...messages[messages.length - 1], content };
+      if (messages.length > 0)
+        messages[messages.length - 1] = { ...messages[messages.length - 1], content };
       return { ...c, messages };
     });
     save(all);

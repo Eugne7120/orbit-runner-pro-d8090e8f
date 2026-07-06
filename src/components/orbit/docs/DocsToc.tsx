@@ -33,9 +33,7 @@ export function DocsToc({ page }: { page: DocPage }) {
   const prev = idx > 0 ? PAGES[idx - 1] : null;
   const next = idx < PAGES.length - 1 ? PAGES[idx + 1] : null;
 
-  const related = PAGES.filter(
-    (p) => p.group === page.group && p.slug !== page.slug,
-  ).slice(0, 3);
+  const related = PAGES.filter((p) => p.group === page.group && p.slug !== page.slug).slice(0, 3);
 
   return (
     <aside className="hidden xl:block">

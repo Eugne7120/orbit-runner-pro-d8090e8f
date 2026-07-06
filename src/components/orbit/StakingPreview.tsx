@@ -66,8 +66,17 @@ export function StakingPreview() {
       </div>
 
       <div className="grid grid-cols-1 gap-px bg-border md:grid-cols-4">
-        <StatBlock label="Available balance" value={`${available.toLocaleString(undefined, { maximumFractionDigits: 2 })}`} unit="$0RBIT" />
-        <StatBlock label="Staked balance" value={`${staked.toLocaleString(undefined, { maximumFractionDigits: 2 })}`} unit="$0RBIT" accent />
+        <StatBlock
+          label="Available balance"
+          value={`${available.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
+          unit="$0RBIT"
+        />
+        <StatBlock
+          label="Staked balance"
+          value={`${staked.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
+          unit="$0RBIT"
+          accent
+        />
         <StatBlock label="Pending rewards" value={pending.toFixed(2)} unit="USDC" pulse />
         <StatBlock label="Estimated APR" value={APR.toFixed(1)} unit="%" />
       </div>
@@ -117,7 +126,10 @@ export function StakingPreview() {
             </button>
           </div>
         </div>
-        <div className="mt-4 h-5 font-mono text-[12px] text-signal transition-opacity duration-300" style={{ opacity: flash ? 1 : 0 }}>
+        <div
+          className="mt-4 h-5 font-mono text-[12px] text-signal transition-opacity duration-300"
+          style={{ opacity: flash ? 1 : 0 }}
+        >
           {flash ?? ""}
         </div>
       </div>
@@ -140,8 +152,12 @@ function StatBlock({
 }) {
   return (
     <div className="bg-surface/60 p-6">
-      <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">{label}</div>
-      <div className={`mt-2 flex items-baseline gap-1.5 font-display text-2xl font-medium tabular-nums tracking-tight md:text-[28px] ${accent ? "text-signal" : "text-foreground"}`}>
+      <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
+        {label}
+      </div>
+      <div
+        className={`mt-2 flex items-baseline gap-1.5 font-display text-2xl font-medium tabular-nums tracking-tight md:text-[28px] ${accent ? "text-signal" : "text-foreground"}`}
+      >
         {pulse && <span className="h-1.5 w-1.5 rounded-full bg-signal animate-orbit-pulse" />}
         {value}
         <span className="font-mono text-[11px] font-normal text-muted-foreground">{unit}</span>

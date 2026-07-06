@@ -29,7 +29,7 @@ function DocsLayout() {
 
   // derive active slug from URL; /docs → intro
   const path = location.pathname.replace(/\/$/, "");
-  const slug = path === "/docs" ? "intro" : path.split("/").pop() ?? "intro";
+  const slug = path === "/docs" ? "intro" : (path.split("/").pop() ?? "intro");
   const activeSlug = PAGE_MAP[slug] ? slug : "intro";
 
   useEffect(() => setMobileOpen(false), [location.pathname]);

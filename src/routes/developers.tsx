@@ -18,7 +18,10 @@ export const Route = createFileRoute("/developers")({
   head: () => ({
     meta: [
       { title: "Developers — 0RBIT" },
-      { name: "description", content: "The complete developer portal — SDKs, docs, playground, runtime, deployment." },
+      {
+        name: "description",
+        content: "The complete developer portal — SDKs, docs, playground, runtime, deployment.",
+      },
       { property: "og:title", content: "Developers — 0RBIT" },
       { property: "og:description", content: "SDKs, docs, playground, runtime." },
     ],
@@ -58,14 +61,20 @@ function DevPage() {
       <Section eyebrow="/ why · build on 0rbit" title="A runtime that argues for itself.">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
           {[
-            { k: "OpenAI-shape", v: "Drop-in", h: "Same endpoints, same SDK shape. Change the base URL." },
+            {
+              k: "OpenAI-shape",
+              v: "Drop-in",
+              h: "Same endpoints, same SDK shape. Change the base URL.",
+            },
             { k: "Streams first", v: "SSE", h: "Streaming is on by default. First token in 38ms." },
             { k: "Every language", v: "6 SDKs", h: "TS, Python, Go, Rust, Swift, Kotlin." },
             { k: "Receipts", v: "Signed", h: "Every request produces a verifiable proof of work." },
           ].map((r, i) => (
             <Reveal key={r.k} delay={i * 80}>
               <div className="rounded-2xl border border-border bg-surface/40 p-5 h-full">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">{r.k}</div>
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {r.k}
+                </div>
                 <div className="mt-3 font-display text-2xl tracking-tight">{r.v}</div>
                 <div className="mt-1.5 text-[13px] text-muted-foreground">{r.h}</div>
               </div>
@@ -75,7 +84,11 @@ function DevPage() {
       </Section>
 
       {/* Quickstart */}
-      <Section eyebrow="/ quickstart" title="From zero to streaming in 90 seconds." intro="A live terminal boots the runtime, then monitors it. Follow the numbered steps on the right.">
+      <Section
+        eyebrow="/ quickstart"
+        title="From zero to streaming in 90 seconds."
+        intro="A live terminal boots the runtime, then monitors it. Follow the numbered steps on the right."
+      >
         <Reveal>
           <div className="grid gap-6 lg:grid-cols-5">
             <div className="lg:col-span-3">
@@ -83,7 +96,12 @@ function DevPage() {
             </div>
             <div className="grid gap-4 lg:col-span-2">
               <StepCard n="1" title="Install">
-                <CodeBlock tabs={[{ label: "bun", code: "bun add @orbit/sdk" }, { label: "pip", code: "pip install orbit-sdk" }]} />
+                <CodeBlock
+                  tabs={[
+                    { label: "bun", code: "bun add @orbit/sdk" },
+                    { label: "pip", code: "pip install orbit-sdk" },
+                  ]}
+                />
               </StepCard>
               <StepCard n="2" title="Auth">
                 <CodeBlock tabs={[{ label: "cli", code: "orbit login\norbit keys create prod" }]} />
@@ -141,7 +159,11 @@ function DevPage() {
       </Section>
 
       {/* Streaming */}
-      <Section eyebrow="/ streaming" title="Streaming, without ceremony." intro="Async iterables. Tools that stream. Backpressure the runtime respects.">
+      <Section
+        eyebrow="/ streaming"
+        title="Streaming, without ceremony."
+        intro="Async iterables. Tools that stream. Backpressure the runtime respects."
+      >
         <Reveal>
           <div className="grid gap-6 lg:grid-cols-2">
             <CodeBlock
@@ -178,17 +200,29 @@ print(stream.receipt().worker)`,
               ]}
             />
             <div className="grid grid-cols-2 gap-3">
-              <Reveal delay={0}><MetricTile label="TTFT · p50" base={38} unit="ms" seed={1} /></Reveal>
-              <Reveal delay={80}><MetricTile label="Tokens / s · p50" base={182} seed={2} chartColor="warm" /></Reveal>
-              <Reveal delay={160}><MetricTile label="TTFT · p99" base={112} unit="ms" seed={3} chartColor="muted" /></Reveal>
-              <Reveal delay={240}><MetricTile label="Stream complete · p50" base={620} unit="ms" seed={4} /></Reveal>
+              <Reveal delay={0}>
+                <MetricTile label="TTFT · p50" base={38} unit="ms" seed={1} />
+              </Reveal>
+              <Reveal delay={80}>
+                <MetricTile label="Tokens / s · p50" base={182} seed={2} chartColor="warm" />
+              </Reveal>
+              <Reveal delay={160}>
+                <MetricTile label="TTFT · p99" base={112} unit="ms" seed={3} chartColor="muted" />
+              </Reveal>
+              <Reveal delay={240}>
+                <MetricTile label="Stream complete · p50" base={620} unit="ms" seed={4} />
+              </Reveal>
             </div>
           </div>
         </Reveal>
       </Section>
 
       {/* SDK architecture */}
-      <Section eyebrow="/ architecture" title="How your call reaches a worker." intro="Every layer between your code and the model. Nothing hidden.">
+      <Section
+        eyebrow="/ architecture"
+        title="How your call reaches a worker."
+        intro="Every layer between your code and the model. Nothing hidden."
+      >
         <Reveal>
           <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-8">
             <SDKGraph />
@@ -197,7 +231,11 @@ print(stream.receipt().worker)`,
       </Section>
 
       {/* Models */}
-      <Section eyebrow="/ models" title="What the network runs." intro="Prices are per 1M tokens unless noted. Same endpoint, different worker.">
+      <Section
+        eyebrow="/ models"
+        title="What the network runs."
+        intro="Prices are per 1M tokens unless noted. Same endpoint, different worker."
+      >
         <Reveal>
           <div className="overflow-hidden rounded-2xl border border-border bg-surface/40">
             <div className="grid grid-cols-[1.2fr_0.7fr_0.7fr_0.9fr_0.7fr] gap-4 border-b border-border px-5 py-3 font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
@@ -208,7 +246,10 @@ print(stream.receipt().worker)`,
               <span>tag</span>
             </div>
             {models.map((m) => (
-              <div key={m.id} className="grid grid-cols-[1.2fr_0.7fr_0.7fr_0.9fr_0.7fr] gap-4 border-t border-border/60 px-5 py-3 font-mono text-[12.5px] transition-colors hover:bg-surface first:border-t-0">
+              <div
+                key={m.id}
+                className="grid grid-cols-[1.2fr_0.7fr_0.7fr_0.9fr_0.7fr] gap-4 border-t border-border/60 px-5 py-3 font-mono text-[12.5px] transition-colors hover:bg-surface first:border-t-0"
+              >
                 <span className="text-foreground">{m.id}</span>
                 <span className="text-muted-foreground">{m.ctx}</span>
                 <span className="text-muted-foreground tabular-nums">{m.tps}</span>
@@ -228,7 +269,9 @@ print(stream.receipt().worker)`,
               <div className="group rounded-xl border border-border bg-surface/40 p-5 transition-all hover:border-border-strong hover:bg-surface h-full">
                 <div className="flex items-center justify-between">
                   <div className="font-display text-lg tracking-tight">{s.name}</div>
-                  <span className="font-mono text-[10.5px] text-muted-foreground">v{s.version}</span>
+                  <span className="font-mono text-[10.5px] text-muted-foreground">
+                    v{s.version}
+                  </span>
                 </div>
                 <pre className="mt-3 overflow-hidden rounded-lg border border-border bg-[oklch(0.13_0.008_250)] px-3 py-2 font-mono text-[11.5px] text-foreground/80">
                   {s.cmd}
@@ -240,9 +283,22 @@ print(stream.receipt().worker)`,
       </Section>
 
       {/* Deploy */}
-      <Section eyebrow="/ deploy" title="Ships anywhere your code ships." intro="No sidecars. No agents. HTTPS, a key, and a network.">
+      <Section
+        eyebrow="/ deploy"
+        title="Ships anywhere your code ships."
+        intro="No sidecars. No agents. HTTPS, a key, and a network."
+      >
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
-          {["Vercel", "Cloudflare", "Fly.io", "AWS · Lambda", "Kubernetes", "Bare metal", "Local dev", "Edge functions"].map((p, i) => (
+          {[
+            "Vercel",
+            "Cloudflare",
+            "Fly.io",
+            "AWS · Lambda",
+            "Kubernetes",
+            "Bare metal",
+            "Local dev",
+            "Edge functions",
+          ].map((p, i) => (
             <Reveal key={p} delay={(i % 4) * 80}>
               <div className="flex items-center justify-between rounded-xl border border-border bg-surface/40 px-4 py-3.5 transition-all hover:border-border-strong hover:bg-surface h-full">
                 <span className="text-[14px] text-foreground/90">{p}</span>
@@ -254,15 +310,34 @@ print(stream.receipt().worker)`,
       </Section>
 
       {/* Best practices */}
-      <Section eyebrow="/ production" title="Best practices, from operators." intro="What our largest customers do. What we do ourselves.">
+      <Section
+        eyebrow="/ production"
+        title="Best practices, from operators."
+        intro="What our largest customers do. What we do ourselves."
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {[
-            { t: "Pin a region only when you must.", b: "The router is usually smarter than you. Let it move traffic." },
-            { t: "Set credit budgets per key.", b: "Never let a bug melt your bill. Every key has a hard cap." },
-            { t: "Verify receipts async.", b: "Don't block a response on settlement. The receipt is always available." },
+            {
+              t: "Pin a region only when you must.",
+              b: "The router is usually smarter than you. Let it move traffic.",
+            },
+            {
+              t: "Set credit budgets per key.",
+              b: "Never let a bug melt your bill. Every key has a hard cap.",
+            },
+            {
+              t: "Verify receipts async.",
+              b: "Don't block a response on settlement. The receipt is always available.",
+            },
             { t: "Retry on 429, not on 500.", b: "5xx is us. 429 is you. Backoff differently." },
-            { t: "Stream everything.", b: "TTFT is the felt latency. Streaming halves it for your users." },
-            { t: "Log the worker ID.", b: "When something is off, we ask which worker. Give the answer immediately." },
+            {
+              t: "Stream everything.",
+              b: "TTFT is the felt latency. Streaming halves it for your users.",
+            },
+            {
+              t: "Log the worker ID.",
+              b: "When something is off, we ask which worker. Give the answer immediately.",
+            },
           ].map((p, i) => (
             <Reveal key={p.t} delay={(i % 2) * 80}>
               <div className="rounded-2xl border border-border bg-surface/40 p-5 transition-all hover:border-border-strong hover:bg-surface h-full">
@@ -275,16 +350,42 @@ print(stream.receipt().worker)`,
       </Section>
 
       {/* Live developer metrics */}
-      <Section
-        eyebrow="/ live"
-        title="What the network is doing right now."
-      >
+      <Section eyebrow="/ live" title="What the network is doing right now.">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
-          <Reveal delay={0}><MetricTile label="avg latency" base={41} unit="ms" seed={41} /></Reveal>
-          <Reveal delay={80}><MetricTile label="api uptime" base={99.994} format={(n) => `${n.toFixed(3)}%`} chart={false} hint="rolling 30d" /></Reveal>
-          <Reveal delay={160}><MetricTile label="workers online" base={214} variance={0.02} seed={42} /></Reveal>
-          <Reveal delay={240}><MetricTile label="requests · today" base={1.84} variance={0.06} format={(n) => `${n.toFixed(2)}m`} seed={43} chartColor="warm" /></Reveal>
-          <Reveal delay={320}><MetricTile label="streaming · now" base={318} variance={0.12} seed={44} chartColor="signal" /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile label="avg latency" base={41} unit="ms" seed={41} />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="api uptime"
+              base={99.994}
+              format={(n) => `${n.toFixed(3)}%`}
+              chart={false}
+              hint="rolling 30d"
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile label="workers online" base={214} variance={0.02} seed={42} />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="requests · today"
+              base={1.84}
+              variance={0.06}
+              format={(n) => `${n.toFixed(2)}m`}
+              seed={43}
+              chartColor="warm"
+            />
+          </Reveal>
+          <Reveal delay={320}>
+            <MetricTile
+              label="streaming · now"
+              base={318}
+              variance={0.12}
+              seed={44}
+              chartColor="signal"
+            />
+          </Reveal>
         </div>
       </Section>
 
@@ -307,7 +408,8 @@ print(stream.receipt().worker)`,
                 Start building on the runtime.
               </h2>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:text-[16px]">
-                A key, a base URL, an SDK. That's it. Move your first request in an afternoon, then keep the same code as you scale to millions.
+                A key, a base URL, an SDK. That's it. Move your first request in an afternoon, then
+                keep the same code as you scale to millions.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">

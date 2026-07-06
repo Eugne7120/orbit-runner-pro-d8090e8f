@@ -68,10 +68,7 @@ export function RegionMap() {
               const mx = (a.x + b.x) / 2;
               const my = (a.y + b.y) / 2 - d * 0.12;
               return (
-                <path
-                  key={`${a.id}-${b.id}`}
-                  d={`M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}`}
-                />
+                <path key={`${a.id}-${b.id}`} d={`M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}`} />
               );
             }),
           )}

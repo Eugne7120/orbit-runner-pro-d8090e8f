@@ -31,7 +31,7 @@ export function RequestLifecycle() {
 
   useEffect(() => {
     let raf = 0;
-    let start = performance.now();
+    const start = performance.now();
     const DUR = 6200;
     const tick = (now: number) => {
       const elapsed = ((now - start) % DUR) / DUR;

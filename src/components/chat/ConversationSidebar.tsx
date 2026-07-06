@@ -21,7 +21,10 @@ function groupConversations(convs: Conversation[]) {
   };
 
   for (const c of convs) {
-    if (c.pinned) { groups.Pinned.push(c); continue; }
+    if (c.pinned) {
+      groups.Pinned.push(c);
+      continue;
+    }
     const d = new Date(c.createdAt);
     if (d >= today) groups.Today.push(c);
     else if (d >= yesterday) groups.Yesterday.push(c);
@@ -75,7 +78,9 @@ function ConvItem({
       params={{ id: conv.id }}
       className={cn(
         "group relative flex items-center gap-2 px-3 py-2 rounded-lg transition-all",
-        isActive ? "bg-white/[0.08] text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+        isActive
+          ? "bg-white/[0.08] text-foreground"
+          : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]",
       )}
     >
       {conv.pinned && <Pin className="w-3 h-3 text-signal flex-shrink-0" />}
@@ -85,7 +90,10 @@ function ConvItem({
           value={editVal}
           onChange={(e) => setEditVal(e.target.value)}
           onBlur={commitEdit}
-          onKeyDown={(e) => { if (e.key === "Enter") commitEdit(); if (e.key === "Escape") setEditing(false); }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") commitEdit();
+            if (e.key === "Escape") setEditing(false);
+          }}
           onClick={(e) => e.preventDefault()}
           className="flex-1 bg-transparent text-xs text-foreground outline-none border-b border-signal/50"
         />
@@ -94,14 +102,37 @@ function ConvItem({
       )}
 
       {/* Hover actions */}
-      <div className={cn("flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity", editing && "hidden")}>
-        <button onClick={(e) => { e.preventDefault(); startEdit(); }} className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors">
+      <div
+        className={cn(
+          "flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity",
+          editing && "hidden",
+        )}
+      >
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            startEdit();
+          }}
+          className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors"
+        >
           <Edit2 className="w-2.5 h-2.5" />
         </button>
-        <button onClick={(e) => { e.preventDefault(); onPin(); }} className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onPin();
+          }}
+          className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors"
+        >
           <Pin className={cn("w-2.5 h-2.5", conv.pinned && "text-signal")} />
         </button>
-        <button onClick={(e) => { e.preventDefault(); onDelete(); }} className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-destructive transition-colors">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onDelete();
+          }}
+          className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-destructive transition-colors"
+        >
           <Trash2 className="w-2.5 h-2.5" />
         </button>
       </div>
@@ -160,15 +191,26 @@ export function ConversationSidebar({
           if (!convs.length) return null;
           return (
             <div key={label}>
-              <p className="px-2 py-1 text-[10px] font-semibold text-muted-foreground/50 uppercase tracking-widest">{label}</p>
+              <p className="px-2 py-1 text-[10px] font-semibold text-muted-foreground/50 uppercase tracking-widest">
+                {label}
+              </p>
               {convs.map((conv) => (
                 <ConvItem
                   key={conv.id}
                   conv={conv}
                   isActive={conv.id === activeId}
-                  onDelete={() => { onDelete(conv.id); onRefresh(); }}
-                  onRename={(t) => { onRename(conv.id, t); onRefresh(); }}
-                  onPin={() => { onPin(conv.id); onRefresh(); }}
+                  onDelete={() => {
+                    onDelete(conv.id);
+                    onRefresh();
+                  }}
+                  onRename={(t) => {
+                    onRename(conv.id, t);
+                    onRefresh();
+                  }}
+                  onPin={() => {
+                    onPin(conv.id);
+                    onRefresh();
+                  }}
                 />
               ))}
             </div>

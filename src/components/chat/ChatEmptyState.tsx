@@ -60,7 +60,9 @@ export function ChatEmptyState({ model, onModelChange, onPrompt }: ChatEmptyStat
             onClick={() => onPrompt(s.label + " " + s.sub)}
             className="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border border-border bg-white/[0.03] hover:bg-white/[0.07] hover:border-border-strong text-left transition-all group"
           >
-            <span className="text-sm font-medium text-foreground group-hover:text-signal transition-colors">{s.label}</span>
+            <span className="text-sm font-medium text-foreground group-hover:text-signal transition-colors">
+              {s.label}
+            </span>
             <span className="text-xs text-muted-foreground">{s.sub}</span>
           </button>
         ))}

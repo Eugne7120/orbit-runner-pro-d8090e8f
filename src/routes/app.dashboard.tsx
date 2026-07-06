@@ -3,6 +3,7 @@ import { usePrivy } from "@privy-io/react-auth";
 import { useEffect } from "react";
 import { motion } from "motion/react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import type { TooltipProps } from "recharts";
 import { Activity, Zap, Clock, TrendingUp } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 
@@ -11,9 +12,12 @@ export const Route = createFileRoute("/app/dashboard")({
 });
 
 const chartData = [
-  { day: "Mon", tokens: 12000 }, { day: "Tue", tokens: 19000 },
-  { day: "Wed", tokens: 9000 }, { day: "Thu", tokens: 24000 },
-  { day: "Fri", tokens: 31000 }, { day: "Sat", tokens: 18000 },
+  { day: "Mon", tokens: 12000 },
+  { day: "Tue", tokens: 19000 },
+  { day: "Wed", tokens: 9000 },
+  { day: "Thu", tokens: 24000 },
+  { day: "Fri", tokens: 31000 },
+  { day: "Sat", tokens: 18000 },
   { day: "Sun", tokens: 22000 },
 ];
 const STATS = [
@@ -26,7 +30,9 @@ const STATS = [
 function DashboardPage() {
   const { authenticated, ready } = usePrivy();
   const navigate = useNavigate();
-  useEffect(() => { if (ready && !authenticated) navigate({ to: "/app/login" }); }, [ready, authenticated]);
+  useEffect(() => {
+    if (ready && !authenticated) navigate({ to: "/app/login" });
+  }, [ready, authenticated]);
   if (!ready || !authenticated) return null;
 
   return (
@@ -54,7 +60,9 @@ function DashboardPage() {
               <h3 className="text-sm font-medium text-foreground">Token Usage</h3>
               <p className="text-xs text-muted-foreground">Last 7 days</p>
             </div>
-            <span className="text-xs font-mono text-signal bg-signal/10 px-2 py-1 rounded-md">Live</span>
+            <span className="text-xs font-mono text-signal bg-signal/10 px-2 py-1 rounded-md">
+              Live
+            </span>
           </div>
           <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={chartData}>
@@ -64,15 +72,33 @@ function DashboardPage() {
                   <stop offset="95%" stopColor="oklch(0.78 0.14 232)" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: "oklch(0.62 0.012 250)", fontSize: 11 }} />
+              <XAxis
+                dataKey="day"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "oklch(0.62 0.012 250)", fontSize: 11 }}
+              />
               <YAxis hide />
-              <Tooltip content={({ active, payload, label }: any) => active && payload?.length ? (
-                <div className="rounded-lg border border-border bg-popover px-3 py-2 text-xs">
-                  <p className="font-medium text-foreground">{label}</p>
-                  <p className="text-signal">{payload[0].value.toLocaleString()} tokens</p>
-                </div>
-              ) : null} />
-              <Area type="monotone" dataKey="tokens" stroke="oklch(0.78 0.14 232)" strokeWidth={2} fill="url(#tokenGrad)" dot={false} />
+              <Tooltip
+                content={({ active, payload, label }: TooltipProps<number, string>) =>
+                  active && payload?.length ? (
+                    <div className="rounded-lg border border-border bg-popover px-3 py-2 text-xs">
+                      <p className="font-medium text-foreground">{label}</p>
+                      <p className="text-signal">
+                        {Number(payload[0]?.value ?? 0).toLocaleString()} tokens
+                      </p>
+                    </div>
+                  ) : null
+                }
+              />
+              <Area
+                type="monotone"
+                dataKey="tokens"
+                stroke="oklch(0.78 0.14 232)"
+                strokeWidth={2}
+                fill="url(#tokenGrad)"
+                dot={false}
+              />
             </AreaChart>
           </ResponsiveContainer>
         </div>

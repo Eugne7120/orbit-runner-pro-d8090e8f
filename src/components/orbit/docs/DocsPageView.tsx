@@ -10,7 +10,8 @@ export function DocsPageView({ slug }: { slug: string }) {
   const page = PAGE_MAP[slug];
 
   useEffect(() => {
-    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    if (typeof window !== "undefined")
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [slug]);
 
   if (!page) return null;

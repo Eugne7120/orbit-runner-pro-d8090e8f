@@ -69,8 +69,8 @@ const intro: DocPage = {
     <>
       <H2 id="what">What is 0RBIT</H2>
       <P>
-        0RBIT exposes an OpenAI-compatible API in front of a network of independent GPU workers.
-        You send a chat, embedding, or image request; the router picks the worker with the lowest
+        0RBIT exposes an OpenAI-compatible API in front of a network of independent GPU workers. You
+        send a chat, embedding, or image request; the router picks the worker with the lowest
         expected cost that fits your latency and policy constraints; the response streams back over
         server-sent events; and a signed receipt records what happened.
       </P>
@@ -176,15 +176,18 @@ const quickstart: DocPage = {
       <div className="mt-5">
         <CodeBlock
           tabs={[
-            { label: "cli", code: `orbit login\norbit keys create prod\n# export ORBIT_API_KEY=sk_live_...` },
+            {
+              label: "cli",
+              code: `orbit login\norbit keys create prod\n# export ORBIT_API_KEY=sk_live_...`,
+            },
             { label: "env", code: `# .env\nORBIT_API_KEY=sk_live_...` },
           ]}
         />
       </div>
 
       <Note title="Key rotation">
-        Rotate a key in one call — <C>orbit keys rotate prod</C>. The old key stays valid for
-        60 seconds so in-flight requests finish cleanly.
+        Rotate a key in one call — <C>orbit keys rotate prod</C>. The old key stays valid for 60
+        seconds so in-flight requests finish cleanly.
       </Note>
 
       <H2 id="first">Your first request</H2>
@@ -235,8 +238,8 @@ print(res.output_text)`,
 
       <H2 id="stream">Stream tokens</H2>
       <P>
-        Streaming is on by default when you pass <C>stream: true</C>. Tokens arrive over
-        server-sent events; the SDK exposes them as an async iterable.
+        Streaming is on by default when you pass <C>stream: true</C>. Tokens arrive over server-sent
+        events; the SDK exposes them as an async iterable.
       </P>
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         <CodeBlock
@@ -625,16 +628,16 @@ const models: DocPage = {
           models.
         </InfoCard>
         <InfoCard title="Deprecations" kicker="lifecycle">
-          Every model publishes a <C>sunset_at</C> field. 90 days minimum notice; migration guide
-          in the changelog.
+          Every model publishes a <C>sunset_at</C> field. 90 days minimum notice; migration guide in
+          the changelog.
         </InfoCard>
       </CardGrid>
 
       <H2 id="picks">Popular picks</H2>
       <P>
-        Use <C>orbit-1-mini</C> for high-QPS agents and background pipelines. Use{" "}
-        <C>orbit-1</C> for user-facing chat where quality dominates cost. Use{" "}
-        <C>orbit-1-vision</C> for anything with an image in the prompt.
+        Use <C>orbit-1-mini</C> for high-QPS agents and background pipelines. Use <C>orbit-1</C> for
+        user-facing chat where quality dominates cost. Use <C>orbit-1-vision</C> for anything with
+        an image in the prompt.
       </P>
     </>
   ),
@@ -658,8 +661,8 @@ const streaming: DocPage = {
       <H2 id="how">How streaming works</H2>
       <P>
         When you set <C>stream: true</C> the gateway keeps the connection open, and the worker
-        pushes one event per decode step. The stream closes with a terminal <C>done</C> event and
-        a trailing usage summary.
+        pushes one event per decode step. The stream closes with a terminal <C>done</C> event and a
+        trailing usage summary.
       </P>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
@@ -762,8 +765,8 @@ const workers: DocPage = {
 
       <H2 id="policy">Pinning & policy</H2>
       <P>
-        Pass <C>routing</C> to constrain placement. Use it for compliance, latency budgets, or
-        A/B testing worker classes.
+        Pass <C>routing</C> to constrain placement. Use it for compliance, latency budgets, or A/B
+        testing worker classes.
       </P>
       <div className="mt-5">
         <CodeBlock
@@ -811,8 +814,7 @@ const credits: DocPage = {
       <H2 id="how">How metering works</H2>
       <P>
         A request is metered the moment the worker emits <C>done</C>. Input tokens are priced from
-        the model card; output tokens are priced identically regardless of which worker served
-        them.
+        the model card; output tokens are priced identically regardless of which worker served them.
       </P>
 
       <ApiTable
@@ -828,8 +830,8 @@ const credits: DocPage = {
 
       <H2 id="budget">Budgets</H2>
       <P>
-        Every workspace has a soft cap and a hard cap. The soft cap triggers a webhook; the hard
-        cap starts returning <C>402 insufficient_credits</C>.
+        Every workspace has a soft cap and a hard cap. The soft cap triggers a webhook; the hard cap
+        starts returning <C>402 insufficient_credits</C>.
       </P>
       <div className="mt-5">
         <CodeBlock
@@ -939,8 +941,7 @@ const examples: DocPage = {
   group: "SDKs",
   title: "Examples",
   kicker: "recipes",
-  description:
-    "Full working examples for the patterns we get asked about most. Copy, adapt, ship.",
+  description: "Full working examples for the patterns we get asked about most. Copy, adapt, ship.",
   toc: [
     { id: "rag", label: "Retrieval-augmented chat" },
     { id: "tool", label: "Tool calls" },
@@ -1036,8 +1037,8 @@ for doc, item in zip(docs, out.data):
       </div>
 
       <Tip>
-        The embeddings endpoint dedupes identical inputs within a batch and caches recent hashes,
-        so re-embedding a mostly-unchanged corpus is close to free.
+        The embeddings endpoint dedupes identical inputs within a batch and caches recent hashes, so
+        re-embedding a mostly-unchanged corpus is close to free.
       </Tip>
     </>
   ),
@@ -1073,9 +1074,8 @@ const faq: DocPage = {
 
       <H2 id="region">Where does data live?</H2>
       <P>
-        Requests are pinned to the region prefix in your workspace policy. We never persist
-        prompts or completions beyond the request lifetime; only usage metadata and the receipt
-        are stored.
+        Requests are pinned to the region prefix in your workspace policy. We never persist prompts
+        or completions beyond the request lifetime; only usage metadata and the receipt are stored.
       </P>
 
       <H2 id="errors">How do errors work?</H2>
@@ -1122,20 +1122,28 @@ const changelog: DocPage = {
     <>
       <H2 id="v260">v2.6.0 · 2026-06-30</H2>
       <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-        <li>· Added <C>routing.max_latency_ms</C> as a first-class constraint.</li>
-        <li>· <C>orbit-1-vision</C> promoted out of beta.</li>
+        <li>
+          · Added <C>routing.max_latency_ms</C> as a first-class constraint.
+        </li>
+        <li>
+          · <C>orbit-1-vision</C> promoted out of beta.
+        </li>
         <li>· Receipts now include the worker&apos;s GPU class.</li>
       </ul>
 
       <H2 id="v253">v2.5.3 · 2026-06-14</H2>
       <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-        <li>· Fixed a token-boundary bug on <C>orbit-1-mini</C> streams over long tools.</li>
+        <li>
+          · Fixed a token-boundary bug on <C>orbit-1-mini</C> streams over long tools.
+        </li>
         <li>· Python SDK now ships wheels for musl.</li>
       </ul>
 
       <H2 id="v250">v2.5.0 · 2026-05-28</H2>
       <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-        <li>· New endpoint: <C>/v1/embeddings</C>.</li>
+        <li>
+          · New endpoint: <C>/v1/embeddings</C>.
+        </li>
         <li>· Budgets: soft/hard split with a webhook on the soft cap.</li>
         <li>· 4 new EU regions.</li>
       </ul>
@@ -1161,9 +1169,7 @@ export const PAGES: DocPage[] = [
   changelog,
 ];
 
-export const PAGE_MAP: Record<string, DocPage> = Object.fromEntries(
-  PAGES.map((p) => [p.slug, p]),
-);
+export const PAGE_MAP: Record<string, DocPage> = Object.fromEntries(PAGES.map((p) => [p.slug, p]));
 
 export const NAV_GROUPS: { group: string; slugs: string[] }[] = [
   { group: "Get started", slugs: ["intro", "quickstart", "auth"] },

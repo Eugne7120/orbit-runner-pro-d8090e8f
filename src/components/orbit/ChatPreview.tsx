@@ -16,7 +16,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 type Segment =
   | { kind: "text"; value: string }
   | { kind: "code"; lang: "python"; value: string }
-  | { kind: "report"; title: string; rows: { label: string; value: string; tone?: "ok" | "warn" }[] };
+  | {
+      kind: "report";
+      title: string;
+      rows: { label: string; value: string; tone?: "ok" | "warn" }[];
+    };
 
 type Turn = {
   user: string;
@@ -124,9 +128,7 @@ function SignalFlow({ active }: { active: boolean }) {
         <div key={i} className="flex flex-1 items-center gap-2 last:flex-none">
           <div
             className={`flex items-center gap-1.5 rounded-full border px-2 py-1 transition-colors ${
-              active
-                ? "border-signal/40 text-foreground/90"
-                : "border-border text-muted-foreground"
+              active ? "border-signal/40 text-foreground/90" : "border-border text-muted-foreground"
             }`}
           >
             <span
@@ -320,9 +322,7 @@ export function ChatPreview({ className = "" }: { className?: string }) {
           <div className="flex items-center gap-2">
             <span
               className={`h-2 w-2 rounded-full ${
-                active
-                  ? "bg-signal shadow-[0_0_10px] shadow-signal"
-                  : "bg-muted-foreground/50"
+                active ? "bg-signal shadow-[0_0_10px] shadow-signal" : "bg-muted-foreground/50"
               }`}
             />
             <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">

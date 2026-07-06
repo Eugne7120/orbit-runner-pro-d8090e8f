@@ -28,7 +28,7 @@ export function AreaChart({
   const [pts, setPts] = useState<number[]>(() => {
     // deterministic init from seed
     let s = seed;
-    const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+    const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
     let v = base;
     const arr: number[] = [];
     for (let i = 0; i < N; i++) {

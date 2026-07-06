@@ -16,7 +16,7 @@ export function UserProfile() {
     user?.google?.name ??
     (wallet?.address ? shortenAddress(wallet.address) : "Anonymous");
 
-  const avatarUrl = user?.twitter?.profilePictureUrl ?? user?.google?.picture;
+  const avatarUrl = user?.twitter?.profilePictureUrl;
   const avatarLetter = displayName[0]?.toUpperCase() ?? "U";
 
   const memberSince = user?.createdAt
@@ -54,7 +54,9 @@ export function UserProfile() {
             </div>
             <div className="min-w-0">
               <p className="text-[11px] text-muted-foreground">Wallet</p>
-              <p className="text-xs text-foreground font-mono truncate">{shortenAddress(wallet.address)}</p>
+              <p className="text-xs text-foreground font-mono truncate">
+                {shortenAddress(wallet.address)}
+              </p>
             </div>
           </div>
         )}

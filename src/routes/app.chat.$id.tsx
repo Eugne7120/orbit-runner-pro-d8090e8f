@@ -18,7 +18,7 @@ async function streamChat(
   messages: { role: string; content: string }[],
   model: string,
   onDelta: (d: string) => void,
-  signal: AbortSignal
+  signal: AbortSignal,
 ) {
   const res = await fetch("/app-chat-api", {
     method: "POST",
@@ -45,7 +45,9 @@ async function streamChat(
         if (parsed.content) onDelta(parsed.content);
         if (parsed.done) return;
         if (parsed.error) throw new Error(parsed.error);
-      } catch {}
+      } catch {
+        /* ignore malformed SSE chunk */
+      }
     }
   }
 }
@@ -68,7 +70,10 @@ function ChatView() {
 
   useEffect(() => {
     const conv = chatStore.get(id);
-    if (!conv) { navigate({ to: "/app/chat" }); return; }
+    if (!conv) {
+      navigate({ to: "/app/chat" });
+      return;
+    }
     setMessages(conv.messages);
     setModel((conv.model as OrbitModelId) ?? "0rbit-core");
     didInitQ.current = false;
@@ -94,56 +99,59 @@ function ChatView() {
     setAutoScroll(el.scrollHeight - el.scrollTop - el.clientHeight < 80);
   };
 
-  const sendMessage = useCallback(async (text: string) => {
-    if (!text.trim() || streaming) return;
-    setInput("");
-    setAutoScroll(true);
+  const sendMessage = useCallback(
+    async (text: string) => {
+      if (!text.trim() || streaming) return;
+      setInput("");
+      setAutoScroll(true);
 
-    const userMsg = chatStore.addMessage(id, { role: "user", content: text });
-    setMessages((prev) => [...prev, userMsg]);
+      const userMsg = chatStore.addMessage(id, { role: "user", content: text });
+      setMessages((prev) => [...prev, userMsg]);
 
-    const assistantMsg = chatStore.addMessage(id, { role: "assistant", content: "" });
-    setMessages((prev) => [...prev, assistantMsg]);
+      const assistantMsg = chatStore.addMessage(id, { role: "assistant", content: "" });
+      setMessages((prev) => [...prev, assistantMsg]);
 
-    setStreaming(true);
-    abortRef.current = new AbortController();
+      setStreaming(true);
+      abortRef.current = new AbortController();
 
-    try {
-      const conv = chatStore.get(id);
-      const history = (conv?.messages ?? [])
-        .slice(0, -1)
-        .map((m) => ({ role: m.role, content: m.content }));
+      try {
+        const conv = chatStore.get(id);
+        const history = (conv?.messages ?? [])
+          .slice(0, -1)
+          .map((m) => ({ role: m.role, content: m.content }));
 
-      let full = "";
-      await streamChat(
-        history,
-        resolveModel(model),
-        (delta) => {
-          full += delta;
-          chatStore.updateLastMessage(id, full);
+        let full = "";
+        await streamChat(
+          history,
+          resolveModel(model),
+          (delta) => {
+            full += delta;
+            chatStore.updateLastMessage(id, full);
+            setMessages((prev) => {
+              const updated = [...prev];
+              updated[updated.length - 1] = { ...updated[updated.length - 1], content: full };
+              return updated;
+            });
+          },
+          abortRef.current.signal,
+        );
+      } catch (err) {
+        if (err instanceof Error && err.name !== "AbortError") {
+          const errMsg = "Something went wrong. Please try again.";
+          chatStore.updateLastMessage(id, errMsg);
           setMessages((prev) => {
             const updated = [...prev];
-            updated[updated.length - 1] = { ...updated[updated.length - 1], content: full };
+            updated[updated.length - 1] = { ...updated[updated.length - 1], content: errMsg };
             return updated;
           });
-        },
-        abortRef.current.signal
-      );
-    } catch (err: any) {
-      if (err?.name !== "AbortError") {
-        const errMsg = "Something went wrong. Please try again.";
-        chatStore.updateLastMessage(id, errMsg);
-        setMessages((prev) => {
-          const updated = [...prev];
-          updated[updated.length - 1] = { ...updated[updated.length - 1], content: errMsg };
-          return updated;
-        });
+        }
+      } finally {
+        setStreaming(false);
+        abortRef.current = null;
       }
-    } finally {
-      setStreaming(false);
-      abortRef.current = null;
-    }
-  }, [id, model, streaming]);
+    },
+    [id, model, streaming],
+  );
 
   const handleStop = () => {
     abortRef.current?.abort();
@@ -180,11 +188,7 @@ function ChatView() {
       </div>
 
       {/* Messages */}
-      <div
-        ref={scrollRef}
-        onScroll={handleScroll}
-        className="flex-1 overflow-y-auto py-4"
-      >
+      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto py-4">
         <div className="max-w-3xl mx-auto">
           <AnimatePresence initial={false}>
             {messages.map((msg, i) => (

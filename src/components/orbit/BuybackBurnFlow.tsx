@@ -29,7 +29,12 @@ export function BuybackBurnFlow() {
 
   return (
     <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-      <svg viewBox={`0 0 ${W} 160`} className="h-auto w-full min-w-[640px] sm:min-w-0" role="img" aria-label="Buyback and burn cycle">
+      <svg
+        viewBox={`0 0 ${W} 160`}
+        className="h-auto w-full min-w-[640px] sm:min-w-0"
+        role="img"
+        aria-label="Buyback and burn cycle"
+      >
         <defs>
           <linearGradient id="bb-line" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="oklch(0.78 0.14 232 / 0.08)" />

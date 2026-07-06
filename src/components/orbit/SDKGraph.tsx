@@ -29,18 +29,14 @@ export function SDKGraph() {
             <div key={l.title} className="relative">
               <div
                 className={`flex items-center gap-4 rounded-xl border p-4 transition-all duration-700 ${
-                  active
-                    ? "border-border-strong bg-surface"
-                    : "border-border bg-surface/30"
+                  active ? "border-border-strong bg-surface" : "border-border bg-surface/30"
                 }`}
               >
                 <div className="w-32 shrink-0">
                   <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
                     layer {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="mt-1 font-display text-[15px] tracking-tight">
-                    {l.title}
-                  </div>
+                  <div className="mt-1 font-display text-[15px] tracking-tight">{l.title}</div>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {l.items.map((it) => (

@@ -18,10 +18,14 @@ export const Route = createFileRoute("/economy")({
       { title: "Economy — 0RBIT" },
       {
         name: "description",
-        content: "How the $0RBIT token economy works — treasury, buyback and burn, staking rewards, and the flywheel that powers the network.",
+        content:
+          "How the $0RBIT token economy works — treasury, buyback and burn, staking rewards, and the flywheel that powers the network.",
       },
       { property: "og:title", content: "Economy — 0RBIT" },
-      { property: "og:description", content: "A transparent, usage-backed token economy for decentralized AI." },
+      {
+        property: "og:description",
+        content: "A transparent, usage-backed token economy for decentralized AI.",
+      },
     ],
   }),
   component: EconomyPage,
@@ -53,14 +57,83 @@ function EconomyPage() {
         intro="Every figure below is generated from the same telemetry the runtime uses internally — nothing here is a static snapshot."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Reveal delay={0}><MetricTile label="treasury balance" base={4820000} unit=" USDC" variance={0.02} seed={401} /></Reveal>
-          <Reveal delay={80}><MetricTile label="daily revenue" base={38200} unit=" USDC" variance={0.1} chartColor="warm" seed={402} /></Reveal>
-          <Reveal delay={160}><MetricTile label="usdc rewards / day" base={19100} unit=" USDC" variance={0.1} seed={403} /></Reveal>
-          <Reveal delay={240}><MetricTile label="buyback today" base={19100} unit=" USDC" variance={0.12} chartColor="warm" seed={404} /></Reveal>
-          <Reveal delay={80}><MetricTile label="tokens burned / day" base={214000} unit=" $0RBIT" variance={0.14} seed={405} /></Reveal>
-          <Reveal delay={160}><MetricTile label="active stakers" base={8420} variance={0.02} chartColor="muted" seed={406} /></Reveal>
-          <Reveal delay={240}><MetricTile label="staked supply" base={41.2} unit="%" variance={0.01} format={(n) => `${n.toFixed(1)}%`} chartColor="muted" seed={407} /></Reveal>
-          <Reveal delay={320}><MetricTile label="apr estimate" base={14.2} unit="%" variance={0.03} format={(n) => `${n.toFixed(1)}%`} seed={408} /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile
+              label="treasury balance"
+              base={4820000}
+              unit=" USDC"
+              variance={0.02}
+              seed={401}
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="daily revenue"
+              base={38200}
+              unit=" USDC"
+              variance={0.1}
+              chartColor="warm"
+              seed={402}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="usdc rewards / day"
+              base={19100}
+              unit=" USDC"
+              variance={0.1}
+              seed={403}
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="buyback today"
+              base={19100}
+              unit=" USDC"
+              variance={0.12}
+              chartColor="warm"
+              seed={404}
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="tokens burned / day"
+              base={214000}
+              unit=" $0RBIT"
+              variance={0.14}
+              seed={405}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="active stakers"
+              base={8420}
+              variance={0.02}
+              chartColor="muted"
+              seed={406}
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="staked supply"
+              base={41.2}
+              unit="%"
+              variance={0.01}
+              format={(n) => `${n.toFixed(1)}%`}
+              chartColor="muted"
+              seed={407}
+            />
+          </Reveal>
+          <Reveal delay={320}>
+            <MetricTile
+              label="apr estimate"
+              base={14.2}
+              unit="%"
+              variance={0.03}
+              format={(n) => `${n.toFixed(1)}%`}
+              seed={408}
+            />
+          </Reveal>
         </div>
       </Section>
 
@@ -73,7 +146,11 @@ function EconomyPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {UTILITY.map((u, i) => (
             <Reveal key={u.title} delay={i * 80}>
-              <LiveCard eyebrow={`/ ${String(i + 1).padStart(2, "0")}`} title={u.title} description={u.body} />
+              <LiveCard
+                eyebrow={`/ ${String(i + 1).padStart(2, "0")}`}
+                title={u.title}
+                description={u.body}
+              />
             </Reveal>
           ))}
         </div>
@@ -122,14 +199,86 @@ function EconomyPage() {
         intro="Supply-side numbers move slowly by design — this is a monetary policy, not a trading chart."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Reveal delay={0}><MetricTile label="total supply" base={1_000_000_000} unit="" variance={0} chart={false} seed={501} /></Reveal>
-          <Reveal delay={80}><MetricTile label="circulating supply" base={612_400_000} unit="" variance={0.001} chart={false} seed={502} /></Reveal>
-          <Reveal delay={160}><MetricTile label="burned supply" base={38_900_000} unit="" variance={0.004} chart={false} seed={503} /></Reveal>
-          <Reveal delay={240}><MetricTile label="daily volume" base={2_140_000} unit=" USDC" variance={0.18} chartColor="warm" seed={504} /></Reveal>
-          <Reveal delay={80}><MetricTile label="staking ratio" base={41.2} unit="%" variance={0.01} format={(n) => `${n.toFixed(1)}%`} chart={false} seed={505} /></Reveal>
-          <Reveal delay={160}><MetricTile label="workers staked" base={5210} variance={0.02} chartColor="muted" seed={506} /></Reveal>
-          <Reveal delay={240}><MetricTile label="premium workers" base={1840} variance={0.03} chartColor="muted" seed={507} /></Reveal>
-          <Reveal delay={320}><MetricTile label="market activity" base={98.4} unit="%" variance={0.005} format={(n) => `${n.toFixed(1)}%`} chart={false} seed={508} /></Reveal>
+          <Reveal delay={0}>
+            <MetricTile
+              label="total supply"
+              base={1_000_000_000}
+              unit=""
+              variance={0}
+              chart={false}
+              seed={501}
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="circulating supply"
+              base={612_400_000}
+              unit=""
+              variance={0.001}
+              chart={false}
+              seed={502}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="burned supply"
+              base={38_900_000}
+              unit=""
+              variance={0.004}
+              chart={false}
+              seed={503}
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="daily volume"
+              base={2_140_000}
+              unit=" USDC"
+              variance={0.18}
+              chartColor="warm"
+              seed={504}
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <MetricTile
+              label="staking ratio"
+              base={41.2}
+              unit="%"
+              variance={0.01}
+              format={(n) => `${n.toFixed(1)}%`}
+              chart={false}
+              seed={505}
+            />
+          </Reveal>
+          <Reveal delay={160}>
+            <MetricTile
+              label="workers staked"
+              base={5210}
+              variance={0.02}
+              chartColor="muted"
+              seed={506}
+            />
+          </Reveal>
+          <Reveal delay={240}>
+            <MetricTile
+              label="premium workers"
+              base={1840}
+              variance={0.03}
+              chartColor="muted"
+              seed={507}
+            />
+          </Reveal>
+          <Reveal delay={320}>
+            <MetricTile
+              label="market activity"
+              base={98.4}
+              unit="%"
+              variance={0.005}
+              format={(n) => `${n.toFixed(1)}%`}
+              chart={false}
+              seed={508}
+            />
+          </Reveal>
         </div>
       </Section>
 
@@ -146,7 +295,12 @@ function EconomyPage() {
         </Reveal>
       </Section>
 
-      <Section id="faq" eyebrow="/ 09 · faq" title="Questions, answered plainly." intro="No jargon. If something's unclear, it stays unclear until it isn't.">
+      <Section
+        id="faq"
+        eyebrow="/ 09 · faq"
+        title="Questions, answered plainly."
+        intro="No jargon. If something's unclear, it stays unclear until it isn't."
+      >
         <FaqAccordion items={FAQ} />
       </Section>
     </PageShell>
@@ -158,14 +312,15 @@ function Hero() {
     <section className="relative mx-auto max-w-6xl px-6 pb-16 pt-10">
       <div className="max-w-3xl animate-orbit-fade-up">
         <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
-          <span className="h-1.5 w-1.5 rounded-full bg-signal shadow-[0_0_8px] shadow-signal" />
-          / economy
+          <span className="h-1.5 w-1.5 rounded-full bg-signal shadow-[0_0_8px] shadow-signal" />/
+          economy
         </div>
         <h1 className="text-balance font-display text-5xl font-medium tracking-[-0.035em] text-foreground md:text-6xl">
           The economy behind every inference.
         </h1>
         <p className="mt-6 max-w-2xl text-pretty text-[17px] leading-relaxed text-muted-foreground md:text-[18px]">
-          Every AI request contributes to a sustainable token economy powered by real compute usage — not speculation.
+          Every AI request contributes to a sustainable token economy powered by real compute usage
+          — not speculation.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
@@ -189,12 +344,30 @@ function Hero() {
 }
 
 const UTILITY = [
-  { title: "Stake to earn USDC", body: "Staked $0RBIT earns a share of daily platform revenue, paid in USDC — not inflationary token emissions." },
-  { title: "Higher worker rewards", body: "Workers who stake unlock a reward multiplier on every job they complete." },
-  { title: "Daily free credits", body: "Holders above a threshold receive a small daily credit allowance, automatically." },
-  { title: "Priority job allocation", body: "Staked workers are preferred by the scheduler during periods of high demand." },
-  { title: "Governance ready", body: "Protocol parameters — fee splits, burn rate, emission schedule — move to token-holder governance over time." },
-  { title: "Deflationary economy", body: "Supply only moves in one direction: down. Every buyback permanently removes tokens from circulation." },
+  {
+    title: "Stake to earn USDC",
+    body: "Staked $0RBIT earns a share of daily platform revenue, paid in USDC — not inflationary token emissions.",
+  },
+  {
+    title: "Higher worker rewards",
+    body: "Workers who stake unlock a reward multiplier on every job they complete.",
+  },
+  {
+    title: "Daily free credits",
+    body: "Holders above a threshold receive a small daily credit allowance, automatically.",
+  },
+  {
+    title: "Priority job allocation",
+    body: "Staked workers are preferred by the scheduler during periods of high demand.",
+  },
+  {
+    title: "Governance ready",
+    body: "Protocol parameters — fee splits, burn rate, emission schedule — move to token-holder governance over time.",
+  },
+  {
+    title: "Deflationary economy",
+    body: "Supply only moves in one direction: down. Every buyback permanently removes tokens from circulation.",
+  },
 ];
 
 const FAQ = [

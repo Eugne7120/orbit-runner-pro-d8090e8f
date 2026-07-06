@@ -14,9 +14,7 @@ export function AppShell({ children }: AppShellProps) {
       <AppSidebar mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         <AppTopbar onMenuOpen={() => setMobileOpen(true)} />
-        <main className="flex-1 overflow-y-auto">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
   );

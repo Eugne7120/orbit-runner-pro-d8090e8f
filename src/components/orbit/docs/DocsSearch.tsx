@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { Search, ArrowRight, Hash, Clock, Flame } from "lucide-react";
 
-const RECENT = [
-  "streaming chat completions",
-  "rate limits",
-  "worker selection",
-];
+const RECENT = ["streaming chat completions", "rate limits", "worker selection"];
 const POPULAR = [
   { label: "Quickstart", slug: "quickstart" },
   { label: "Chat API reference", slug: "chat" },

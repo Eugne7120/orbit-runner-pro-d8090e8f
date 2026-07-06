@@ -7,7 +7,13 @@ import { useEffect, useState } from "react";
  * interconnected (mesh), and a signal periodically travels client → hub → worker.
  */
 
-type NodeDef = { id: string; x: number; y: number; label: string; kind: "client" | "hub" | "worker" };
+type NodeDef = {
+  id: string;
+  x: number;
+  y: number;
+  label: string;
+  kind: "client" | "hub" | "worker";
+};
 
 const CENTER = { x: 560, y: 230 };
 const RADIUS = 175;
@@ -36,7 +42,10 @@ function pathBetween(a: NodeDef, b: NodeDef) {
 }
 
 // Faint mesh links between neighboring workers, for a "network" feel.
-const MESH_LINKS: [string, string][] = WORKERS.map((w, i) => [w.id, WORKERS[(i + 1) % WORKERS.length].id]);
+const MESH_LINKS: [string, string][] = WORKERS.map((w, i) => [
+  w.id,
+  WORKERS[(i + 1) % WORKERS.length].id,
+]);
 
 export function NetworkTopology() {
   const [activeWorker, setActiveWorker] = useState(0);
@@ -56,7 +65,12 @@ export function NetworkTopology() {
 
   return (
     <div className="relative -mx-4 w-full overflow-x-auto px-4 sm:mx-0 sm:px-0">
-      <svg viewBox="0 0 1080 460" className="h-auto w-full min-w-[640px] sm:min-w-0" role="img" aria-label="Worker network topology">
+      <svg
+        viewBox="0 0 1080 460"
+        className="h-auto w-full min-w-[640px] sm:min-w-0"
+        role="img"
+        aria-label="Worker network topology"
+      >
         <defs>
           <radialGradient id="topo-hub-glow">
             <stop offset="0%" stopColor="oklch(0.85 0.15 232)" stopOpacity="0.9" />
@@ -99,34 +113,101 @@ export function NetworkTopology() {
         {/* Traveling signal: client → hub */}
         <circle key={`sig-a-${tick}`} r="3" fill="oklch(0.9 0.15 232)">
           <animateMotion dur="1.1s" path={clientToHub} fill="freeze" />
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.8;1" dur="1.1s" fill="freeze" />
+          <animate
+            attributeName="opacity"
+            values="0;1;1;0"
+            keyTimes="0;0.1;0.8;1"
+            dur="1.1s"
+            fill="freeze"
+          />
         </circle>
 
         {/* Traveling signal: hub → active worker */}
         <circle key={`sig-b-${tick}`} r="3" fill="oklch(0.9 0.15 232)">
           <animateMotion dur="1.1s" begin="1.05s" path={hubToWorker} fill="freeze" />
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.8;1" dur="1.1s" begin="1.05s" fill="freeze" />
+          <animate
+            attributeName="opacity"
+            values="0;1;1;0"
+            keyTimes="0;0.1;0.8;1"
+            dur="1.1s"
+            begin="1.05s"
+            fill="freeze"
+          />
         </circle>
 
         {/* Client node */}
         <g>
           <circle cx={CLIENT.x} cy={CLIENT.y} r="26" fill="url(#topo-node-glow)" opacity="0.5" />
-          <rect x={CLIENT.x - 34} y={CLIENT.y - 14} width="68" height="28" rx="14" fill="oklch(0.14 0.008 250)" stroke="oklch(0.78 0.14 232)" strokeWidth="1" />
-          <text x={CLIENT.x} y={CLIENT.y + 4} textAnchor="middle" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.08em" fill="oklch(0.85 0.06 232)">
+          <rect
+            x={CLIENT.x - 34}
+            y={CLIENT.y - 14}
+            width="68"
+            height="28"
+            rx="14"
+            fill="oklch(0.14 0.008 250)"
+            stroke="oklch(0.78 0.14 232)"
+            strokeWidth="1"
+          />
+          <text
+            x={CLIENT.x}
+            y={CLIENT.y + 4}
+            textAnchor="middle"
+            fontSize="9"
+            fontFamily="JetBrains Mono, monospace"
+            letterSpacing="0.08em"
+            fill="oklch(0.85 0.06 232)"
+          >
             CLIENT
           </text>
-          <text x={CLIENT.x} y={CLIENT.y + 40} textAnchor="middle" fontSize="8" fontFamily="JetBrains Mono, monospace" fill="oklch(0.55 0.012 250)">
+          <text
+            x={CLIENT.x}
+            y={CLIENT.y + 40}
+            textAnchor="middle"
+            fontSize="8"
+            fontFamily="JetBrains Mono, monospace"
+            fill="oklch(0.55 0.012 250)"
+          >
             request
           </text>
         </g>
 
         {/* Hub node */}
         <g>
-          <circle cx={HUB.x} cy={HUB.y} r="46" fill="url(#topo-hub-glow)" opacity="0.55" className="animate-orbit-breathe" />
-          <circle cx={HUB.x} cy={HUB.y} r="20" fill="oklch(0.14 0.008 250)" stroke="oklch(0.9 0.16 232)" strokeWidth="1.4" />
+          <circle
+            cx={HUB.x}
+            cy={HUB.y}
+            r="46"
+            fill="url(#topo-hub-glow)"
+            opacity="0.55"
+            className="animate-orbit-breathe"
+          />
+          <circle
+            cx={HUB.x}
+            cy={HUB.y}
+            r="20"
+            fill="oklch(0.14 0.008 250)"
+            stroke="oklch(0.9 0.16 232)"
+            strokeWidth="1.4"
+          />
           <circle cx={HUB.x} cy={HUB.y} r="3" fill="oklch(0.97 0.004 250)" />
-          <circle cx={HUB.x} cy={HUB.y} r="20" fill="none" stroke="oklch(0.78 0.14 232 / 0.5)" strokeWidth="0.8" className="animate-orbit-ring" />
-          <text x={HUB.x} y={HUB.y + 40} textAnchor="middle" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em" fill="oklch(0.9 0.06 232)">
+          <circle
+            cx={HUB.x}
+            cy={HUB.y}
+            r="20"
+            fill="none"
+            stroke="oklch(0.78 0.14 232 / 0.5)"
+            strokeWidth="0.8"
+            className="animate-orbit-ring"
+          />
+          <text
+            x={HUB.x}
+            y={HUB.y + 40}
+            textAnchor="middle"
+            fontSize="9.5"
+            fontFamily="JetBrains Mono, monospace"
+            letterSpacing="0.1em"
+            fill="oklch(0.9 0.06 232)"
+          >
             SCHEDULER
           </text>
         </g>
@@ -153,7 +234,12 @@ export function NetworkTopology() {
                 strokeWidth="1.1"
                 style={{ transition: "stroke 700ms" }}
               />
-              <circle cx={w.x} cy={w.y} r="2.2" fill={isActive ? "oklch(0.97 0.004 250)" : "oklch(0.7 0.03 232)"} />
+              <circle
+                cx={w.x}
+                cy={w.y}
+                r="2.2"
+                fill={isActive ? "oklch(0.97 0.004 250)" : "oklch(0.7 0.03 232)"}
+              />
               <circle
                 cx={w.x}
                 cy={w.y}

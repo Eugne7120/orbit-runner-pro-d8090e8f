@@ -34,9 +34,7 @@ export function DocsSidebar({
               onClick={() => setOpenGroups((s) => ({ ...s, [g.group]: !s[g.group] }))}
               className="mb-1 flex w-full items-center gap-1.5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
             >
-              <ChevronRight
-                className={`h-3 w-3 transition-transform ${open ? "rotate-90" : ""}`}
-              />
+              <ChevronRight className={`h-3 w-3 transition-transform ${open ? "rotate-90" : ""}`} />
               {g.group}
             </button>
             {open && (

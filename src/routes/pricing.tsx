@@ -11,9 +11,15 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — 0RBIT" },
-      { name: "description", content: "Credits per token served. No seats, no tiers, no minimums." },
+      {
+        name: "description",
+        content: "Credits per token served. No seats, no tiers, no minimums.",
+      },
       { property: "og:title", content: "Pricing — 0RBIT" },
-      { property: "og:description", content: "Credits per token served. No seats, no tiers, no minimums." },
+      {
+        property: "og:description",
+        content: "Credits per token served. No seats, no tiers, no minimums.",
+      },
     ],
   }),
   component: PricingPage,
@@ -25,7 +31,12 @@ const plans = [
     price: "Free",
     tag: "for exploring",
     line: "1M credits included",
-    features: ["Every model, every region", "10 req/s baseline", "Community support", "Signed receipts"],
+    features: [
+      "Every model, every region",
+      "10 req/s baseline",
+      "Community support",
+      "Signed receipts",
+    ],
     cta: "Start free",
   },
   {
@@ -66,7 +77,11 @@ function PricingPage() {
         intro="No seats. No tiers to unlock features. No minimum spend. You are billed for the work the network does on your behalf — and only that."
       />
 
-      <Section eyebrow="/ how billing works" title="Credits move through the network." intro="A credit is a stable unit of work. You buy them. The runtime meters them. Workers earn them. Solana settles them.">
+      <Section
+        eyebrow="/ how billing works"
+        title="Credits move through the network."
+        intro="A credit is a stable unit of work. You buy them. The runtime meters them. Workers earn them. Solana settles them."
+      >
         <Reveal>
           <CreditFlow />
         </Reveal>
@@ -84,13 +99,21 @@ function PricingPage() {
                 }`}
               >
                 {p.highlight && (
-                  <div className="pointer-events-none absolute inset-0 -z-10 opacity-60" style={{
-                    background: "radial-gradient(80% 60% at 50% 0%, oklch(0.78 0.14 232 / 0.18), transparent 70%)"
-                  }} />
+                  <div
+                    className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+                    style={{
+                      background:
+                        "radial-gradient(80% 60% at 50% 0%, oklch(0.78 0.14 232 / 0.18), transparent 70%)",
+                    }}
+                  />
                 )}
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">{p.tag}</div>
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
+                  {p.tag}
+                </div>
                 <div className="mt-1 font-display text-2xl tracking-tight">{p.name}</div>
-                <div className="mt-6 font-display text-5xl font-medium tracking-[-0.03em]">{p.price}</div>
+                <div className="mt-6 font-display text-5xl font-medium tracking-[-0.03em]">
+                  {p.price}
+                </div>
                 <div className="mt-2 font-mono text-[12px] text-muted-foreground">{p.line}</div>
                 <ul className="mt-8 space-y-2.5">
                   {p.features.map((f) => (
@@ -116,13 +139,21 @@ function PricingPage() {
         </div>
       </Section>
 
-      <Section eyebrow="/ catalog" title="Per-model pricing." intro="Prices go down as the network grows. Historical rates are recorded on-chain.">
+      <Section
+        eyebrow="/ catalog"
+        title="Per-model pricing."
+        intro="Prices go down as the network grows. Historical rates are recorded on-chain."
+      >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {CATALOG.map((r, i) => (
             <Reveal key={r.k} delay={i * 80}>
               <div className="rounded-xl border border-border bg-surface/40 p-6 h-full">
-                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{r.k}</div>
-                <div className="mt-3 font-display text-3xl tabular-nums">${r.v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "")}</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {r.k}
+                </div>
+                <div className="mt-3 font-display text-3xl tabular-nums">
+                  ${r.v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "")}
+                </div>
                 <div className="font-mono text-[11px] text-muted-foreground">{r.u}</div>
               </div>
             </Reveal>
@@ -130,7 +161,11 @@ function PricingPage() {
         </div>
       </Section>
 
-      <Section eyebrow="/ estimate" title="Estimate your monthly bill." intro="A rough model. The runtime will always meter you exactly.">
+      <Section
+        eyebrow="/ estimate"
+        title="Estimate your monthly bill."
+        intro="A rough model. The runtime will always meter you exactly."
+      >
         <Reveal>
           <Calculator />
         </Reveal>
@@ -158,7 +193,9 @@ function Calculator() {
             className="w-full rounded-lg border border-border bg-surface px-3 py-2.5 font-mono text-[13px] text-foreground focus:border-border-strong focus:outline-none"
           >
             {CATALOG.filter((c) => c.u.includes("tokens")).map((c) => (
-              <option key={c.k} value={c.k}>{c.k}</option>
+              <option key={c.k} value={c.k}>
+                {c.k}
+              </option>
             ))}
           </select>
         </Field>
@@ -185,7 +222,9 @@ function Calculator() {
           />
         </Field>
         <div className="rounded-xl border border-signal/40 bg-signal/5 p-4 text-right">
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">est. monthly</div>
+          <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted-foreground">
+            est. monthly
+          </div>
           <div className="mt-1 font-display text-3xl font-medium tabular-nums text-foreground">
             ${monthlyUSD.toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </div>

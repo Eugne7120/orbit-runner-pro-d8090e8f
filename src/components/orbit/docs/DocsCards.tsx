@@ -79,13 +79,7 @@ export function CardGrid({ children }: { children: ReactNode }) {
 
 /* ----------------- Tables ----------------- */
 
-export function ApiTable({
-  headers,
-  rows,
-}: {
-  headers: string[];
-  rows: (ReactNode | string)[][];
-}) {
+export function ApiTable({ headers, rows }: { headers: string[]; rows: (ReactNode | string)[][] }) {
   return (
     <div className="my-6 overflow-x-auto rounded-xl border border-border">
       <table className="w-full min-w-[520px] text-left text-[13.5px]">

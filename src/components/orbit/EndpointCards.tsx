@@ -16,7 +16,13 @@ type Endpoint = {
 function I({ d, className = "" }: { d: string; className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className}>
-      <path d={d} stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d={d}
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -34,9 +40,7 @@ const ENDPOINTS: Endpoint[] = [
     path: "/v1/images/generations",
     title: "Image generation",
     description: "Text-to-image routed to image-capable workers.",
-    icon: (p) => (
-      <I d="M3 5h18v14H3zM7 15l3-4 3 3 3-5 5 6" {...p} />
-    ),
+    icon: (p) => <I d="M3 5h18v14H3zM7 15l3-4 3 3 3-5 5 6" {...p} />,
   },
   {
     method: "POST",
@@ -59,18 +63,14 @@ const ENDPOINTS: Endpoint[] = [
     path: "/v1/workers",
     title: "Workers",
     description: "Network-wide status: region, GPU class, health, load.",
-    icon: (p) => (
-      <I d="M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01" {...p} />
-    ),
+    icon: (p) => <I d="M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01" {...p} />,
   },
   {
     method: "GET",
     path: "/v1/credits",
     title: "Credits",
     description: "Usage by key, by model, by window. Live and historical.",
-    icon: (p) => (
-      <I d="M3 7h18v10H3zM3 10h18M7 14h3" {...p} />
-    ),
+    icon: (p) => <I d="M3 7h18v10H3zM3 10h18M7 14h3" {...p} />,
   },
 ];
 
