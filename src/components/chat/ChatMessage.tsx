@@ -80,24 +80,33 @@ export function ChatMessage({ message, isStreaming, onRegenerate }: ChatMessageP
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
-      className={cn("group flex gap-3 px-4 py-3", isUser ? "justify-end" : "justify-start")}
+      transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+      className={cn("group flex gap-4 px-4 py-6", isUser ? "flex-row-reverse" : "flex-row")}
     >
-      {!isUser && (
-        <div className="w-7 h-7 rounded-full bg-signal/15 border border-signal/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <img src={orbitLogoIcon} alt="0RBIT" className="w-3.5 h-3.5 object-contain" />
+      {!isUser ? (
+        <div className="w-8 h-8 rounded-xl bg-signal/10 border border-signal/20 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+          <img src={orbitLogoIcon} alt="0RBIT" className="w-4 h-4 object-contain" />
+        </div>
+      ) : (
+        <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-border flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold text-foreground shadow-sm">
+          U
         </div>
       )}
 
-      <div className={cn("max-w-[85%] md:max-w-[75%] min-w-0", isUser && "max-w-[80%]")}>
+      <div
+        className={cn(
+          "flex flex-col min-w-0 max-w-[85%] md:max-w-[80%]",
+          isUser ? "items-end" : "items-start",
+        )}
+      >
         {isUser ? (
-          <div className="rounded-2xl rounded-tr-sm bg-signal/15 border border-signal/20 px-4 py-2.5 text-sm text-foreground leading-relaxed whitespace-pre-wrap">
+          <div className="rounded-2xl rounded-tr-none bg-signal/15 border border-signal/20 px-4 py-3 text-sm text-foreground leading-relaxed whitespace-pre-wrap shadow-sm">
             {message.content}
           </div>
         ) : (
-          <div className="text-sm text-foreground leading-relaxed">
+          <div className="text-sm text-foreground leading-relaxed w-full">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -258,12 +267,6 @@ export function ChatMessage({ message, isStreaming, onRegenerate }: ChatMessageP
           </div>
         )}
       </div>
-
-      {isUser && (
-        <div className="w-7 h-7 rounded-full bg-white/[0.08] border border-border flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-semibold text-foreground">
-          U
-        </div>
-      )}
     </motion.div>
   );
 }

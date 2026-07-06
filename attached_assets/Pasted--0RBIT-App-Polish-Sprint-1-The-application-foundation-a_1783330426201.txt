@@ -1,0 +1,383 @@
+# 0RBIT App Polish — Sprint 1
+
+The application foundation already exists.
+
+Do NOT redesign the application.
+
+Do NOT change the design system.
+
+Do NOT change the color palette.
+
+Do NOT replace the typography.
+
+Do NOT build backend functionality yet.
+
+Do NOT integrate real AI responses yet.
+
+The goal of this sprint is to polish the application experience so it feels like a premium AI product instead of an unfinished prototype.
+
+Focus on UI, UX, interactions, responsiveness and realistic application states.
+
+---
+
+# Global Improvements
+
+Improve all application pages.
+
+Current pages:
+
+• /app/chat
+• /app/dashboard
+• /app/credits
+
+Every page should feel complete.
+
+Remove empty spaces.
+
+Improve spacing.
+
+Improve responsiveness.
+
+Improve transitions.
+
+Improve animations.
+
+Everything should feel smooth and premium.
+
+---
+
+# App Responsiveness
+
+The application is currently desktop-focused.
+
+Make every application page fully responsive.
+
+Optimize for:
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+Navigation should adapt naturally.
+
+Cards should stack correctly.
+
+Chat layout should remain usable on mobile.
+
+No overflow issues.
+
+No broken spacing.
+
+---
+
+# Better Page Transitions
+
+Add smooth transitions between app pages.
+
+Switching between Chat, Dashboard and Credits should feel fluid.
+
+Do not use flashy animations.
+
+Keep everything subtle and premium.
+
+---
+
+# APP / CHAT
+
+This page needs the most work.
+
+Do not integrate a real AI backend yet.
+
+Instead create a realistic AI chat experience using frontend animation.
+
+Improve:
+
+• chat layout
+
+• message spacing
+
+• message bubbles
+
+• input area
+
+• sidebar
+
+• header
+
+• model selector
+
+• settings button
+
+• scroll behavior
+
+---
+
+## Simulated Conversation
+
+Create a believable demo conversation.
+
+The conversation should loop.
+
+Example flow:
+
+User sends a prompt.
+
+↓
+
+Message appears.
+
+↓
+
+AI starts thinking.
+
+↓
+
+Thinking indicator animates.
+
+↓
+
+AI streams the response.
+
+↓
+
+Response appears token by token.
+
+↓
+
+Code blocks animate correctly.
+
+↓
+
+Conversation finishes.
+
+↓
+
+Pause.
+
+↓
+
+Restart.
+
+Do not use fake lorem ipsum.
+
+Generate meaningful AI responses related to distributed inference, APIs, programming or AI infrastructure.
+
+---
+
+## Better Chat Animations
+
+Improve:
+
+Message enter animation
+
+Streaming animation
+
+Thinking indicator
+
+Auto scroll
+
+Typing indicator
+
+Hover states
+
+Input focus
+
+Copy button
+
+Code block appearance
+
+Everything should feel smooth.
+
+---
+
+## Chat Background
+
+The chat page still feels empty.
+
+Add a subtle animated architectural background.
+
+Very low opacity.
+
+No particles.
+
+No cyberpunk.
+
+---
+
+# APP / DASHBOARD
+
+The dashboard currently feels unfinished.
+
+Expand it into a believable runtime dashboard.
+
+Include:
+
+Workers Online
+
+Credits Used
+
+Current Model
+
+Average Latency
+
+Request History
+
+GPU Usage
+
+Recent Activity
+
+Runtime Status
+
+Everything should update slowly over time.
+
+Numbers should animate.
+
+Charts should evolve.
+
+Status indicators should change naturally.
+
+Do not make the dashboard static.
+
+---
+
+# APP / CREDITS
+
+The credits page currently lacks depth.
+
+Improve the experience.
+
+Include:
+
+Current Balance
+
+Usage History
+
+Recent Transactions
+
+Credit Consumption
+
+Estimated Remaining Credits
+
+Top Up CTA
+
+Pricing Summary
+
+Future Billing (placeholder)
+
+Animated usage chart
+
+Transaction timeline
+
+Everything should feel like a real SaaS billing page.
+
+---
+
+# Empty States
+
+Every page should have polished empty states.
+
+Never leave blank areas.
+
+Examples:
+
+No conversations
+
+No requests
+
+No transactions
+
+No activity
+
+Each empty state should still feel intentional.
+
+---
+
+# Loading States
+
+Create proper loading components.
+
+Skeleton loaders.
+
+Animated placeholders.
+
+Smooth transitions.
+
+Never abruptly switch content.
+
+---
+
+# Motion
+
+Improve motion throughout the application.
+
+Buttons
+
+Cards
+
+Sidebar
+
+Charts
+
+Chat
+
+Navigation
+
+Dialogs
+
+Dropdowns
+
+Keep animations subtle.
+
+Avoid flashy effects.
+
+---
+
+# Design Quality
+
+The application should feel similar in quality to:
+
+ChatGPT
+
+Cursor
+
+Linear
+
+Vercel
+
+Raycast
+
+Not in appearance,
+
+but in interaction quality.
+
+---
+
+# Performance
+
+Use lightweight animations.
+
+Avoid unnecessary rendering.
+
+Maintain a smooth experience.
+
+---
+
+# Result
+
+After this sprint:
+
+✓ The app should feel like a premium AI application.
+
+✓ The chat should feel alive even without a real backend.
+
+✓ Dashboard should feel operational.
+
+✓ Credits page should feel production-ready.
+
+✓ Every page should be fully responsive.
+
+✓ Every interaction should feel polished.

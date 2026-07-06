@@ -68,18 +68,23 @@ export function CreditsWidget({
       </div>
 
       {/* Progress bar */}
-      <div className="mb-4">
-        <div className="h-1.5 w-full rounded-full bg-white/[0.06] overflow-hidden">
+      <div className="mb-4 group/progress cursor-help">
+        <div className="h-1.5 w-full rounded-full bg-white/[0.06] overflow-hidden relative">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-signal to-orbit"
+            className="h-full rounded-full bg-gradient-to-r from-signal to-orbit relative z-10"
             initial={{ width: 0 }}
             animate={{ width: `${100 - usedPct}%` }}
             transition={{ duration: 1, ease: [0.22, 0.61, 0.36, 1] }}
           />
+          <div className="absolute inset-0 bg-signal/10 opacity-0 group-hover/progress:opacity-100 transition-opacity" />
         </div>
         <div className="flex justify-between mt-1.5">
-          <span className="text-[11px] text-muted-foreground">{usedPct}% used</span>
-          <span className="text-[11px] text-muted-foreground">{total} total</span>
+          <span className="text-[11px] text-muted-foreground transition-colors group-hover/progress:text-foreground">
+            {usedPct}% used
+          </span>
+          <span className="text-[11px] text-muted-foreground transition-colors group-hover/progress:text-foreground">
+            {total} total
+          </span>
         </div>
       </div>
 

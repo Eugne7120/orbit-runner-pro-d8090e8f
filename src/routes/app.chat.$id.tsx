@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { z } from "zod";
 import { ChatMessage } from "@/components/chat/ChatMessage";
 import { ChatComposer } from "@/components/chat/ChatComposer";
@@ -173,23 +173,38 @@ function ChatView() {
   return (
     <div className="flex flex-col h-full">
       {/* Chat topbar */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-background/80 backdrop-blur-sm flex-shrink-0">
-        <ModelSelector value={model} onChange={handleModelChange} compact />
-        <button
-          onClick={() => {
-            const c = chatStore.create(model);
-            navigate({ to: "/app/chat/$id", params: { id: c.id } });
-          }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-white/[0.05] border border-transparent hover:border-border transition-all"
-        >
-          <Plus className="w-3.5 h-3.5" />
-          New chat
-        </button>
+      <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-background/80 backdrop-blur-md flex-shrink-0 z-10 shadow-sm">
+        <div className="flex items-center gap-4">
+          <ModelSelector value={model} onChange={handleModelChange} compact />
+          <div className="hidden sm:flex items-center gap-2 px-2 py-1 rounded-md bg-signal/5 border border-signal/10">
+            <div className="w-1.5 h-1.5 rounded-full bg-signal animate-pulse" />
+            <span className="text-[10px] font-bold text-signal uppercase tracking-tighter">
+              Live
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => {
+              const c = chatStore.create(model);
+              navigate({ to: "/app/chat/$id", params: { id: c.id } });
+            }}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-foreground bg-white/[0.05] border border-border hover:bg-white/[0.1] hover:border-border-strong transition-all shadow-sm"
+          >
+            <Plus className="w-4 h-4" />
+            New chat
+          </button>
+        </div>
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto py-4">
-        <div className="max-w-3xl mx-auto">
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex-1 overflow-y-auto py-8 scroll-smooth"
+      >
+        <div className="max-w-3xl mx-auto w-full">
           <AnimatePresence initial={false}>
             {messages.map((msg, i) => (
               <ChatMessage
@@ -203,13 +218,29 @@ function ChatView() {
                 }
               />
             ))}
+            {streaming && messages[messages.length - 1]?.role === "user" && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex gap-4 px-4 py-6"
+              >
+                <div className="w-8 h-8 rounded-xl bg-signal/10 border border-signal/20 flex items-center justify-center animate-pulse">
+                  <div className="w-1.5 h-1.5 rounded-full bg-signal" />
+                </div>
+                <div className="flex gap-1.5 items-center pt-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-signal/40 animate-bounce [animation-delay:-0.3s]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-signal/40 animate-bounce [animation-delay:-0.15s]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-signal/40 animate-bounce" />
+                </div>
+              </motion.div>
+            )}
           </AnimatePresence>
-          <div ref={bottomRef} />
+          <div ref={bottomRef} className="h-4" />
         </div>
       </div>
 
       {/* Composer */}
-      <div className="flex-shrink-0 px-4 pb-4 pt-2 border-t border-border bg-background/80 backdrop-blur-sm">
+      <div className="flex-shrink-0 px-4 pb-6 pt-2 border-t border-border bg-background/50 backdrop-blur-md z-10">
         <div className="max-w-3xl mx-auto">
           <ChatComposer
             value={input}

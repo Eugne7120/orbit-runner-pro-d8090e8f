@@ -70,7 +70,7 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
       <h1 className="text-sm font-semibold text-foreground flex-1 truncate">{title}</h1>
 
       {/* Search placeholder */}
-      <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-border text-muted-foreground/60 text-xs cursor-pointer hover:bg-white/[0.07] transition-colors min-w-32">
+      <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-border text-muted-foreground/60 text-xs cursor-pointer hover:bg-white/[0.07] transition-colors min-w-32">
         <Search className="w-3 h-3 flex-shrink-0" />
         <span>Search...</span>
         <kbd className="ml-auto font-mono text-[10px] px-1 py-0.5 rounded bg-white/[0.06] text-muted-foreground/50">
@@ -79,14 +79,15 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
       </div>
 
       {/* Credits badge */}
-      <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-signal/10 border border-signal/20 text-signal text-xs font-medium">
+      <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-signal/10 border border-signal/20 text-signal text-xs font-medium">
         <div className="w-1.5 h-1.5 rounded-full bg-signal animate-pulse" />
-        <span>120 Credits</span>
+        <span className="hidden sm:inline">120 Credits</span>
+        <span className="sm:hidden">120</span>
       </div>
 
       {/* Wallet status */}
       {walletAddress && (
-        <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-border text-xs text-muted-foreground font-mono">
+        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-border text-xs text-muted-foreground font-mono">
           <Wallet className="w-3 h-3 text-signal" />
           <span>{shortenAddress(walletAddress)}</span>
         </div>

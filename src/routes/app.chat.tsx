@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect, useState, useCallback } from "react";
 import { ConversationSidebar } from "@/components/chat/ConversationSidebar";
@@ -6,6 +6,8 @@ import { AppTopbar } from "@/components/app/AppTopbar";
 import { AppSidebar } from "@/components/app/AppSidebar";
 import { chatStore, type Conversation } from "@/lib/chat-store";
 import { useGuestMode } from "@/lib/guest";
+import { motion, AnimatePresence } from "motion/react";
+import { Atmosphere } from "@/components/orbit/Atmosphere";
 
 export const Route = createFileRoute("/app/chat")({
   component: ChatLayout,
@@ -15,6 +17,7 @@ function ChatLayout() {
   const { authenticated, ready } = usePrivy();
   const guest = useGuestMode();
   const navigate = useNavigate();
+  const router = useRouterState();
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -31,11 +34,14 @@ function ChatLayout() {
   if (!ready || (!authenticated && !guest)) return null;
 
   return (
-    <div className="flex h-screen bg-background overflow-hidden">
+    <div className="flex h-screen bg-background overflow-hidden relative">
+      <Atmosphere />
+      <div className="absolute inset-0 bg-background/40 backdrop-blur-[2px] pointer-events-none" />
+
       <AppSidebar mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
-      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+      <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10">
         <AppTopbar onMenuOpen={() => setMobileOpen(true)} />
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 overflow-hidden relative">
           <ConversationSidebar
             conversations={conversations}
             onNew={() => {
@@ -58,8 +64,19 @@ function ChatLayout() {
             }}
             onRefresh={refresh}
           />
-          <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-            <Outlet />
+          <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={router.location.pathname}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="flex-1 flex flex-col min-w-0 overflow-hidden"
+              >
+                <Outlet />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

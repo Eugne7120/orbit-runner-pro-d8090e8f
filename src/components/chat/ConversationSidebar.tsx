@@ -77,13 +77,13 @@ function ConvItem({
       to="/app/chat/$id"
       params={{ id: conv.id }}
       className={cn(
-        "group relative flex items-center gap-2 px-3 py-2 rounded-lg transition-all",
+        "group relative flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-200 border border-transparent",
         isActive
-          ? "bg-white/[0.08] text-foreground"
+          ? "bg-white/[0.08] text-foreground border-border/40 shadow-sm shadow-black/20"
           : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]",
       )}
     >
-      {conv.pinned && <Pin className="w-3 h-3 text-signal flex-shrink-0" />}
+      {conv.pinned && <Pin className="w-3 h-3 text-signal fill-signal/20 flex-shrink-0" />}
       {editing ? (
         <input
           ref={inputRef}
@@ -95,10 +95,10 @@ function ConvItem({
             if (e.key === "Escape") setEditing(false);
           }}
           onClick={(e) => e.preventDefault()}
-          className="flex-1 bg-transparent text-xs text-foreground outline-none border-b border-signal/50"
+          className="flex-1 bg-transparent text-xs text-foreground outline-none border-b border-signal/50 py-0"
         />
       ) : (
-        <span className="flex-1 text-xs truncate">{conv.title}</span>
+        <span className="flex-1 text-[13px] font-medium truncate leading-none">{conv.title}</span>
       )}
 
       {/* Hover actions */}
@@ -106,6 +106,7 @@ function ConvItem({
         className={cn(
           "flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity",
           editing && "hidden",
+          isActive && "opacity-100",
         )}
       >
         <button
@@ -114,9 +115,9 @@ function ConvItem({
             startEdit();
           }}
           aria-label="Rename conversation"
-          className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors"
+          className="p-1 rounded-md hover:bg-white/[0.1] text-muted-foreground/50 hover:text-foreground transition-colors"
         >
-          <Edit2 className="w-2.5 h-2.5" />
+          <Edit2 className="w-3 h-3" />
         </button>
         <button
           onClick={(e) => {
@@ -124,9 +125,9 @@ function ConvItem({
             onPin();
           }}
           aria-label={conv.pinned ? "Unpin conversation" : "Pin conversation"}
-          className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors"
+          className="p-1 rounded-md hover:bg-white/[0.1] text-muted-foreground/50 hover:text-foreground transition-colors"
         >
-          <Pin className={cn("w-2.5 h-2.5", conv.pinned && "text-signal")} />
+          <Pin className={cn("w-3 h-3", conv.pinned && "text-signal fill-signal/10")} />
         </button>
         <button
           onClick={(e) => {
@@ -134,9 +135,9 @@ function ConvItem({
             onDelete();
           }}
           aria-label="Delete conversation"
-          className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-destructive transition-colors"
+          className="p-1 rounded-md hover:bg-white/[0.1] text-muted-foreground/50 hover:text-destructive transition-colors"
         >
-          <Trash2 className="w-2.5 h-2.5" />
+          <Trash2 className="w-3 h-3" />
         </button>
       </div>
     </Link>
