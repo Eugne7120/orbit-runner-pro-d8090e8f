@@ -84,7 +84,7 @@ function WorkersPage() {
         title="The network, right now."
         intro="A live dashboard view of the mesh. Every number below moves continuously this is the same telemetry our schedulers see."
       >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           <Reveal delay={0}>
             <MetricTile label="workers online" base={214} variance={0.02} seed={201} />
           </Reveal>

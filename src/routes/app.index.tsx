@@ -93,7 +93,7 @@ function AppHome() {
           <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
             Quick Actions
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {QUICK_ACTIONS.map((a) => (
               <Link
                 key={a.to}
@@ -125,7 +125,7 @@ function AppHome() {
           <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
             Network Status
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {NETWORK_METRICS.map((m) => (
               <div
                 key={m.label}

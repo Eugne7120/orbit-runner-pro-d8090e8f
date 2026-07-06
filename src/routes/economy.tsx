@@ -56,7 +56,7 @@ function EconomyPage() {
         title="The treasury, live."
         intro="Every figure below is generated from the same telemetry the runtime uses internally nothing here is a static snapshot."
       >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           <Reveal delay={0}>
             <MetricTile
               label="treasury balance"
@@ -198,7 +198,7 @@ function EconomyPage() {
         title="Token statistics."
         intro="Supply-side numbers move slowly by design this is a monetary policy, not a trading chart."
       >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           <Reveal delay={0}>
             <MetricTile
               label="total supply"

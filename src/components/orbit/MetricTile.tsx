@@ -48,13 +48,13 @@ export function MetricTile({
   const fmt = format ?? ((n: number) => `${Math.round(n).toLocaleString()}${unit}`);
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-border bg-surface/40 p-5 transition-all duration-500 hover:border-border-strong hover:bg-surface">
-      <div className="flex items-start justify-between">
+    <div className="group relative overflow-hidden rounded-2xl border border-border bg-surface/40 p-4 transition-all duration-500 hover:border-border-strong hover:bg-surface sm:p-5">
+      <div className="flex items-start justify-between gap-2">
         <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
           {label}
         </div>
         <span
-          className={`font-mono text-[10.5px] ${
+          className={`shrink-0 font-mono text-[10.5px] ${
             dir === "up"
               ? "text-emerald-300/80"
               : dir === "down"
@@ -65,7 +65,7 @@ export function MetricTile({
           {dir === "up" ? "▲" : dir === "down" ? "▼" : "–"}
         </span>
       </div>
-      <div className="mt-3 font-display text-3xl font-medium tabular-nums tracking-tight md:text-4xl">
+      <div className="mt-3 font-display text-2xl font-medium tabular-nums tracking-tight sm:text-3xl md:text-4xl">
         {fmt(v)}
       </div>
       {hint && <div className="mt-1 font-mono text-[10.5px] text-muted-foreground/70">{hint}</div>}

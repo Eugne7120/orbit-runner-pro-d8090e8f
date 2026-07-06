@@ -185,7 +185,7 @@ function StatusStrip({ streaming, model }: { streaming: boolean; model: string }
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-6">
+    <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 md:grid-cols-6">
       {items.map((it) => (
         <div key={it.k} className="flex flex-col gap-0.5 bg-surface/60 px-3 py-2.5">
           <div className="flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">

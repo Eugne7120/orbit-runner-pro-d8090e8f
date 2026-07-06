@@ -144,7 +144,7 @@ function PricingPage() {
         title="Per-model pricing."
         intro="Prices go down as the network grows. Historical rates are recorded on-chain."
       >
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
           {CATALOG.map((r, i) => (
             <Reveal key={r.k} delay={i * 80}>
               <div className="rounded-xl border border-border bg-surface/40 p-6 h-full">

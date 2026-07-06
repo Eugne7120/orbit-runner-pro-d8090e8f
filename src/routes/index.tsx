@@ -219,7 +219,7 @@ $ orbit login`}
         title="The infrastructure is the artwork."
         intro="No stock diagrams. No brains, no hexagons, no globes. Just the actual shape of the system nodes, edges, queues, streams. Alive on every page."
       >
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           <Reveal delay={0}>
             <MetricTile
               label="workers online"

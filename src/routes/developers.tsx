@@ -59,7 +59,7 @@ function DevPage() {
 
       {/* Why */}
       <Section eyebrow="/ why · build on 0rbit" title="A runtime that argues for itself.">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
             {
               k: "OpenAI-shape",
@@ -288,7 +288,7 @@ print(stream.receipt().worker)`,
         title="Ships anywhere your code ships."
         intro="No sidecars. No agents. HTTPS, a key, and a network."
       >
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
             "Vercel",
             "Cloudflare",
