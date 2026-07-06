@@ -85,6 +85,7 @@ export function ChatComposer({
           {/* Left: attachment + model indicator */}
           <div className="flex items-center gap-2">
             <button
+              aria-label="Attach file (coming soon)"
               className="p-1.5 rounded-lg text-muted-foreground/50 hover:text-muted-foreground hover:bg-white/[0.05] transition-colors"
               title="Attach file (coming soon)"
             >
@@ -100,6 +101,7 @@ export function ChatComposer({
           {isStreaming ? (
             <button
               onClick={onStop}
+              aria-label="Stop generating"
               className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.08] border border-border text-foreground hover:bg-white/[0.12] transition-colors"
             >
               <Square className="w-3.5 h-3.5 fill-current" />
@@ -108,6 +110,7 @@ export function ChatComposer({
             <button
               onClick={onSubmit}
               disabled={!value.trim()}
+              aria-label="Send message"
               className={cn(
                 "flex items-center justify-center w-8 h-8 rounded-lg transition-all",
                 value.trim()

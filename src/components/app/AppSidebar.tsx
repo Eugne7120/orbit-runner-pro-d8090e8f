@@ -108,6 +108,7 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
         {onMobileClose && (
           <button
             onClick={onMobileClose}
+            aria-label="Close menu"
             className="lg:hidden p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-white/[0.05] transition-colors"
           >
             <X className="w-4 h-4" />

@@ -50,6 +50,7 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
       {/* Mobile menu button */}
       <button
         onClick={onMenuOpen}
+        aria-label="Open menu"
         className="lg:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/[0.05] transition-colors flex-shrink-0"
       >
         <Menu className="w-4 h-4" />
@@ -83,7 +84,10 @@ export function AppTopbar({ onMenuOpen }: AppTopbarProps) {
 
       {/* User avatar + logout */}
       <div className="relative group">
-        <button className="flex items-center gap-2 p-1 rounded-lg hover:bg-white/[0.05] transition-colors">
+        <button
+          aria-label="User menu"
+          className="flex items-center gap-2 p-1 rounded-lg hover:bg-white/[0.05] transition-colors"
+        >
           <div className="w-7 h-7 rounded-full bg-signal/20 border border-signal/30 flex items-center justify-center overflow-hidden flex-shrink-0">
             {avatarUrl ? (
               <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />

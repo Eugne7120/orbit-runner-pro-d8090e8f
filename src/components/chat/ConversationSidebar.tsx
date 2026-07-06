@@ -113,6 +113,7 @@ function ConvItem({
             e.preventDefault();
             startEdit();
           }}
+          aria-label="Rename conversation"
           className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors"
         >
           <Edit2 className="w-2.5 h-2.5" />
@@ -122,6 +123,7 @@ function ConvItem({
             e.preventDefault();
             onPin();
           }}
+          aria-label={conv.pinned ? "Unpin conversation" : "Pin conversation"}
           className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-foreground transition-colors"
         >
           <Pin className={cn("w-2.5 h-2.5", conv.pinned && "text-signal")} />
@@ -131,6 +133,7 @@ function ConvItem({
             e.preventDefault();
             onDelete();
           }}
+          aria-label="Delete conversation"
           className="p-1 rounded hover:bg-white/[0.08] text-muted-foreground hover:text-destructive transition-colors"
         >
           <Trash2 className="w-2.5 h-2.5" />
@@ -165,6 +168,7 @@ export function ConversationSidebar({
         </div>
         <button
           onClick={onNew}
+          aria-label="New conversation"
           className="flex items-center gap-1 px-2 py-1 rounded-lg bg-signal/15 text-signal hover:bg-signal/25 transition-colors text-xs font-medium"
         >
           <Plus className="w-3 h-3" />
