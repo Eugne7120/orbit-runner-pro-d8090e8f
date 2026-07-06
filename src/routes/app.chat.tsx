@@ -28,6 +28,13 @@ function ChatLayout() {
   }, [ready, authenticated, guest]);
 
   useEffect(() => {
+    // Guests get a clean slate on every new page load / tab open.
+    // sessionStorage is automatically wiped when the tab closes, so
+    // the next visit will always start fresh.
+    if (guest && !sessionStorage.getItem("orbit_guest_session")) {
+      chatStore.clearAll();
+      sessionStorage.setItem("orbit_guest_session", "1");
+    }
     refresh();
   }, []);
 

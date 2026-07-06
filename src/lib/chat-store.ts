@@ -103,4 +103,8 @@ export const chatStore = {
     const all = load().map((c) => (c.id === id ? { ...c, model } : c));
     save(all);
   },
+
+  clearAll() {
+    localStorage.removeItem(STORAGE_KEY);
+  },
 };
