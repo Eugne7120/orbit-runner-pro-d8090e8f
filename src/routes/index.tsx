@@ -8,6 +8,7 @@ import { ChatPreview } from "@/components/orbit/ChatPreview";
 import { MetricTile } from "@/components/orbit/MetricTile";
 import { RuntimeFeatures } from "@/components/orbit/RuntimeFeatures";
 import { Reveal } from "@/components/orbit/Reveal";
+import { ContractAddress } from "@/components/orbit/ContractAddress";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -88,6 +89,12 @@ function Home() {
             <span>p50 · 41ms</span>
             <span className="h-1 w-1 rounded-full bg-border-strong" />
             <span>1.2b tokens / day</span>
+          </div>
+          <div
+            className="animate-orbit-fade-up mt-5 flex justify-center"
+            style={{ animationDelay: "380ms" }}
+          >
+            <ContractAddress />
           </div>
         </div>
 
