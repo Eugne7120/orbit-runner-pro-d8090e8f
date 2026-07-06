@@ -66,7 +66,9 @@ function ChatView() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
-  const didInitQ = useRef(false);
+  // Stores the conversation id whose q-prompt has already been sent,
+  // so remounts (React strict-mode, HMR) never trigger a second send.
+  const didInitQ = useRef<string | null>(null);
 
   useEffect(() => {
     const conv = chatStore.get(id);
@@ -76,15 +78,15 @@ function ChatView() {
     }
     setMessages(conv.messages);
     setModel((conv.model as OrbitModelId) ?? "0rbit-core");
-    didInitQ.current = false;
+    // deliberately NOT touching didInitQ here — the q-effect owns it
   }, [id]);
 
   useEffect(() => {
-    if (q && !didInitQ.current) {
-      didInitQ.current = true;
+    if (q && didInitQ.current !== id) {
       const conv = chatStore.get(id);
       if (conv && conv.messages.length === 0) {
-        setTimeout(() => sendMessage(q), 150);
+        didInitQ.current = id; // mark before async work to block any re-run
+        sendMessage(q);
       }
     }
   }, [q, id]);
