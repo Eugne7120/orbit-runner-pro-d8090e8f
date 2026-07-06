@@ -7,7 +7,7 @@ export function Logo({ className = "" }: { className?: string }) {
     >
       <img src={orbitLogoIcon} alt="" className="h-5 w-5" />
       <span className="text-[15px] tracking-[-0.02em]">
-        0<span className="text-muted-foreground">R</span>BIT
+        0<span className="text-[#f3f5f8]">R</span>BIT
       </span>
     </span>
   );
