@@ -1,7 +1,7 @@
 import type * as React from "react";
 
 /**
- * Endpoint cards — visual grid of the main API surfaces.
+ * Endpoint cards visual grid of the main API surfaces.
  * Each card has: method pill, path, description, subtle hover animation.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Docs flow diagrams — pure SVG + CSS, no images.
+ * Docs flow diagrams pure SVG + CSS, no images.
  * All animation is subtle: dashed flowing lines and a slow pulse on nodes.
  */
 

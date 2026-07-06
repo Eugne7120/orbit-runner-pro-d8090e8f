@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * A terminal that "writes" real code line-by-line — no cursor, no fake glitch.
+ * A terminal that "writes" real code line-by-line no cursor, no fake glitch.
  * Starts empty, types with human-ish jitter, holds, wipes, repeats.
  */
 type Props = {

@@ -10,12 +10,12 @@ import { useState } from "react";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — 0RBIT" },
+      { title: "Pricing 0RBIT" },
       {
         name: "description",
         content: "Credits per token served. No seats, no tiers, no minimums.",
       },
-      { property: "og:title", content: "Pricing — 0RBIT" },
+      { property: "og:title", content: "Pricing 0RBIT" },
       {
         property: "og:description",
         content: "Credits per token served. No seats, no tiers, no minimums.",
@@ -74,7 +74,7 @@ function PricingPage() {
       <PageHeader
         eyebrow="/ pricing"
         title="Credits per token. Nothing else."
-        intro="No seats. No tiers to unlock features. No minimum spend. You are billed for the work the network does on your behalf — and only that."
+        intro="No seats. No tiers to unlock features. No minimum spend. You are billed for the work the network does on your behalf and only that."
       />
 
       <Section

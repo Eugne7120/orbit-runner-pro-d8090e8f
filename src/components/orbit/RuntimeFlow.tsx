@@ -42,7 +42,7 @@ function pathBetween(a: Node, b: Node) {
 }
 
 export function RuntimeFlow() {
-  // Which worker is currently "busy" — rotates slowly for a lived-in feel
+  // Which worker is currently "busy" rotates slowly for a lived-in feel
   const [busy, setBusy] = useState<string>("w2");
   useEffect(() => {
     const workers = ["w1", "w2", "w3"];

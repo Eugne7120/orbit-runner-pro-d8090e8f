@@ -10,13 +10,13 @@ import { PAGE_MAP, PAGES } from "@/components/orbit/docs/pages";
 export const Route = createFileRoute("/docs")({
   head: () => ({
     meta: [
-      { title: "Docs — 0RBIT" },
+      { title: "Docs 0RBIT" },
       {
         name: "description",
         content:
           "The complete reference for the 0RBIT runtime. Quickstart, chat, streaming, workers, credits, SDK.",
       },
-      { property: "og:title", content: "Docs — 0RBIT" },
+      { property: "og:title", content: "Docs 0RBIT" },
       { property: "og:description", content: "The complete reference for the 0RBIT runtime." },
     ],
   }),

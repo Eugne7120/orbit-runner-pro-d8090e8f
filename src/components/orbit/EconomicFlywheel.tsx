@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 /**
- * The economic flywheel — a closed loop of nine stages arranged in a ring,
+ * The economic flywheel a closed loop of nine stages arranged in a ring,
  * with a signal continuously orbiting to show how usage compounds into
- * more usage. Flat, geometric — no globe/3D.
+ * more usage. Flat, geometric no globe/3D.
  */
 
 const STAGES = [

@@ -12,12 +12,12 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/api")({
   head: () => ({
     meta: [
-      { title: "API — 0RBIT" },
+      { title: "API 0RBIT" },
       {
         name: "description",
         content: "OpenAI-compatible endpoints, streaming by default, priced per token served.",
       },
-      { property: "og:title", content: "API — 0RBIT" },
+      { property: "og:title", content: "API 0RBIT" },
       { property: "og:description", content: "OpenAI-compatible endpoints, streaming by default." },
     ],
   }),

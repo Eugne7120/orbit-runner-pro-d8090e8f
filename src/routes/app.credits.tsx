@@ -12,10 +12,10 @@ export const Route = createFileRoute("/app/credits")({
 });
 
 const HISTORY = [
-  { amount: -50, desc: "0RBIT Core — 12 conversations", date: "Today" },
-  { amount: -120, desc: "0RBIT Pro — 5 conversations", date: "Yesterday" },
+  { amount: -50, desc: "0RBIT Core 12 conversations", date: "Today" },
+  { amount: -120, desc: "0RBIT Pro 5 conversations", date: "Yesterday" },
   { amount: 500, desc: "Monthly credit allocation", date: "Jul 1, 2025" },
-  { amount: -210, desc: "0RBIT Core — 38 conversations", date: "Jun 30, 2025" },
+  { amount: -210, desc: "0RBIT Core 38 conversations", date: "Jun 30, 2025" },
 ];
 
 function CreditsPage() {

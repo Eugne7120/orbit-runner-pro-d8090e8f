@@ -8,12 +8,12 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/manifesto")({
   head: () => ({
     meta: [
-      { title: "Manifesto — 0RBIT" },
+      { title: "Manifesto 0RBIT" },
       {
         name: "description",
         content: "The infrastructure that runs intelligence should not belong to one company.",
       },
-      { property: "og:title", content: "Manifesto — 0RBIT" },
+      { property: "og:title", content: "Manifesto 0RBIT" },
       {
         property: "og:description",
         content: "The infrastructure that runs intelligence should not belong to one company.",
@@ -140,7 +140,7 @@ function ManifestoPage() {
         <Reveal>
           <div className="mx-auto max-w-3xl border-t border-border pt-10 text-center">
             <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              — the 0RBIT team
+              the 0RBIT team
             </div>
             <div className="mt-2 font-mono text-[11px] text-muted-foreground">
               2026 · earth · always on

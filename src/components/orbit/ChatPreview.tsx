@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
- * 0RBIT — Runtime Chat Preview
+ * 0RBIT Runtime Chat Preview
  *
  * A living product preview. A scripted conversation loops forever:
  * user prompt → phased thinking (routing/selecting/inferring) → streamed
@@ -36,7 +36,7 @@ const SCRIPT: Turn[] = [
       {
         kind: "text",
         value:
-          "Think of it as one endpoint backed by many small GPUs around the world. When you send a request, a router looks at price, latency and who's free right now, then hands the job to the best worker. That worker streams the answer back to you token by token. If it slows down, the next request goes somewhere else — the network keeps re-shaping itself so you always get the fastest path.",
+          "Think of it as one endpoint backed by many small GPUs around the world. When you send a request, a router looks at price, latency and who's free right now, then hands the job to the best worker. That worker streams the answer back to you token by token. If it slows down, the next request goes somewhere else the network keeps re-shaping itself so you always get the fastest path.",
       },
     ],
   },
@@ -317,7 +317,7 @@ export function ChatPreview({ className = "" }: { className?: string }) {
     <div className={`flex flex-col gap-3 ${className}`}>
       {/* Chat surface */}
       <div className="glass-strong overflow-hidden rounded-2xl shadow-elegant">
-        {/* Header — model selector + status */}
+        {/* Header model selector + status */}
         <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-2.5">
           <div className="flex items-center gap-2">
             <span

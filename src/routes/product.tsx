@@ -10,13 +10,13 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/product")({
   head: () => ({
     meta: [
-      { title: "Product — 0RBIT" },
+      { title: "Product 0RBIT" },
       {
         name: "description",
         content:
           "A runtime for AI that routes, executes and settles every request across a distributed mesh.",
       },
-      { property: "og:title", content: "Product — 0RBIT" },
+      { property: "og:title", content: "Product 0RBIT" },
       {
         property: "og:description",
         content:
@@ -61,7 +61,7 @@ function ProductPage() {
       <PageHeader
         eyebrow="/ product"
         title="A single endpoint. A network beneath it."
-        intro="0RBIT is the layer between your app and the model. It picks the worker, streams the tokens, retries the failure, settles the payment — and disappears."
+        intro="0RBIT is the layer between your app and the model. It picks the worker, streams the tokens, retries the failure, settles the payment and disappears."
       />
 
       <Section eyebrow="/ system">

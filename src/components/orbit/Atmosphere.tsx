@@ -1,17 +1,17 @@
 /**
- * Atmosphere — the site's living architectural background.
+ * Atmosphere the site's living architectural background.
  *
  * Five procedural layers, all rendered in SVG + CSS. No images, no video.
  *
- *   1. Atmosphere     — very soft radial gradients that drift over 40–80s.
- *   2. Blueprint      — a distributed-inference topology that extends far
+ *   1. Atmosphere very soft radial gradients that drift over 40–80s.
+ *   2. Blueprint a distributed-inference topology that extends far
  *                       beyond the viewport (rounded nodes, thin bezier
  *                       edges, engineering whiteboard feel).
- *   3. Runtime signals — sparse pulses travel along a subset of edges.
- *   4. Structural     — huge soft geometric shapes for spatial depth.
- *   5. Parallax       — each layer scrolls at a slightly different rate.
+ *   3. Runtime signals sparse pulses travel along a subset of edges.
+ *   4. Structural huge soft geometric shapes for spatial depth.
+ *   5. Parallax each layer scrolls at a slightly different rate.
  *
- * The pathname selects one of six architectural "areas" — the same network,
+ * The pathname selects one of six architectural "areas" the same network,
  * viewed from a different angle. All numbers are deterministic so SSR
  * and hydration produce identical DOM.
  */
@@ -73,7 +73,7 @@ const NODES: Node[] = [
   // Scheduler
   { id: "s1", x: 1060, y: 590, w: 160, h: 38, label: "scheduler", cluster: "router" },
 
-  // Worker mesh (grid) — the heart of the network
+  // Worker mesh (grid) the heart of the network
   { id: "w1", x: 1360, y: 220, w: 120, h: 30, label: "worker · a", cluster: "worker" },
   { id: "w2", x: 1360, y: 360, w: 120, h: 30, label: "worker · b", cluster: "worker" },
   { id: "w3", x: 1360, y: 500, w: 120, h: 30, label: "worker · c", cluster: "worker" },
@@ -179,7 +179,7 @@ const AREA_EMPHASIS: Record<Area, Record<Node["cluster"], number>> = {
   company: { edge: 1.0, router: 0.9, worker: 0.8, storage: 0.9, sink: 0.7 },
 };
 
-// Which edges get a runtime signal pulse — chosen for visual balance,
+// Which edges get a runtime signal pulse chosen for visual balance,
 // not exhaustively. Shuffled per area so different pages feel different.
 const SIGNAL_INDICES: Record<Area, number[]> = {
   home: [0, 6, 10, 14, 21, 27, 32],
@@ -239,14 +239,14 @@ export function Atmosphere() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
       style={{ ["--sy" as string]: "0" }}
     >
-      {/* Layer 0 — base vignette + faint 64px grid, static */}
+      {/* Layer 0 base vignette + faint 64px grid, static */}
       <div className="absolute inset-0" style={{ background: "var(--gradient-vignette)" }} />
       <div
         className="absolute inset-0 grid-lines mask-fade-b"
         style={{ opacity: 0.7, transform: "translate3d(0, calc(var(--sy) * -0.04px), 0)" }}
       />
 
-      {/* Layer 1 — Atmosphere. Soft radial gradients, 40–80s drift. */}
+      {/* Layer 1 Atmosphere. Soft radial gradients, 40–80s drift. */}
       <div
         className="absolute inset-0"
         style={{ transform: "translate3d(0, calc(var(--sy) * -0.08px), 0)" }}
@@ -271,7 +271,7 @@ export function Atmosphere() {
         />
       </div>
 
-      {/* Layer 4 — Structural shapes. Huge soft outlines behind everything. */}
+      {/* Layer 4 Structural shapes. Huge soft outlines behind everything. */}
       <svg
         className="absolute inset-0 h-full w-full"
         viewBox="0 0 2400 1400"
@@ -296,7 +296,7 @@ export function Atmosphere() {
         </g>
       </svg>
 
-      {/* Layer 2 — Architecture blueprint. The signature layer. */}
+      {/* Layer 2 Architecture blueprint. The signature layer. */}
       <svg
         className="absolute inset-0 h-full w-full animate-atmos-drift"
         viewBox="0 0 2400 1400"
@@ -336,7 +336,7 @@ export function Atmosphere() {
           })}
         </g>
 
-        {/* Nodes — rounded rects with a tiny center dot and a label */}
+        {/* Nodes rounded rects with a tiny center dot and a label */}
         <g>
           {NODES.map((n) => {
             const em = emphasis[n.cluster];
@@ -373,7 +373,7 @@ export function Atmosphere() {
         </g>
       </svg>
 
-      {/* Layer 3 — Runtime signals. Sparse pulses on selected edges. */}
+      {/* Layer 3 Runtime signals. Sparse pulses on selected edges. */}
       <svg
         className="absolute inset-0 h-full w-full"
         viewBox="0 0 2400 1400"
@@ -415,7 +415,7 @@ export function Atmosphere() {
         })}
       </svg>
 
-      {/* Top & bottom edge fades — no hard seams */}
+      {/* Top & bottom edge fades no hard seams */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
     </div>

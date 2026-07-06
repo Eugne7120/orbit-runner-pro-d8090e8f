@@ -10,12 +10,12 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/company")({
   head: () => ({
     meta: [
-      { title: "Company — 0RBIT" },
+      { title: "Company 0RBIT" },
       {
         name: "description",
         content: "Who is building the decentralized runtime for AI, and how to reach us.",
       },
-      { property: "og:title", content: "Company — 0RBIT" },
+      { property: "og:title", content: "Company 0RBIT" },
       { property: "og:description", content: "Who is building the decentralized runtime for AI." },
     ],
   }),

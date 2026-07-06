@@ -17,12 +17,12 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/developers")({
   head: () => ({
     meta: [
-      { title: "Developers — 0RBIT" },
+      { title: "Developers 0RBIT" },
       {
         name: "description",
-        content: "The complete developer portal — SDKs, docs, playground, runtime, deployment.",
+        content: "The complete developer portal SDKs, docs, playground, runtime, deployment.",
       },
-      { property: "og:title", content: "Developers — 0RBIT" },
+      { property: "og:title", content: "Developers 0RBIT" },
       { property: "og:description", content: "SDKs, docs, playground, runtime." },
     ],
   }),
@@ -42,8 +42,8 @@ const models = [
   { id: "orbit-1", ctx: "128k", tps: "180", price: "$0.42", tag: "flagship" },
   { id: "orbit-1-mini", ctx: "64k", tps: "320", price: "$0.12", tag: "fast" },
   { id: "orbit-1-long", ctx: "1M", tps: "84", price: "$1.10", tag: "long" },
-  { id: "embed-1", ctx: "8k", tps: "—", price: "$0.03", tag: "embed" },
-  { id: "image-1", ctx: "—", tps: "—", price: "$0.004/img", tag: "image" },
+  { id: "embed-1", ctx: "8k", tps: "-", price: "$0.03", tag: "embed" },
+  { id: "image-1", ctx: "-", tps: "-", price: "$0.004/img", tag: "image" },
   { id: "vision-1", ctx: "128k", tps: "140", price: "$0.62", tag: "vision" },
 ];
 
@@ -54,7 +54,7 @@ function DevPage() {
       <PageHeader
         eyebrow="/ developers"
         title="Built for the person on the keyboard."
-        intro="Every choice we make is a choice a developer will feel — SDK ergonomics, error shapes, log formats, receipt structure. Nothing shipped to make a chart, everything shipped to make a shift."
+        intro="Every choice we make is a choice a developer will feel SDK ergonomics, error shapes, log formats, receipt structure. Nothing shipped to make a chart, everything shipped to make a shift."
       />
 
       {/* Why */}
@@ -125,7 +125,7 @@ function DevPage() {
         </Reveal>
       </Section>
 
-      {/* API — request/response demo with language tabs */}
+      {/* API request/response demo with language tabs */}
       <Section
         eyebrow="/ api"
         title="POST once. Stream forever."
@@ -151,7 +151,7 @@ function DevPage() {
       <Section
         eyebrow="/ docs"
         title="A reference that stays out of the way."
-        intro="Search by shape, not by page. Every endpoint, every error, every SDK — one keystroke away."
+        intro="Search by shape, not by page. Every endpoint, every error, every SDK one keystroke away."
       >
         <Reveal>
           <DocsShell />

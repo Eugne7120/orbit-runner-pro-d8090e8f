@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 /**
  * Unique visualization for the API page: horizontal request lifecycle timeline.
- * Different from RuntimeFlow — this is a time-based ribbon with phase blocks.
+ * Different from RuntimeFlow this is a time-based ribbon with phase blocks.
  */
 
 type Phase = { id: string; label: string; ms: number; tone: "io" | "core" | "run" | "stream" };

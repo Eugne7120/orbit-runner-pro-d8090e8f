@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Full-lifecycle terminal:
- *  Phase 1: BOOT — typed initialization sequence (only phase with typing)
- *  Phase 2: MONITOR — continuous fade-in live logs (repeats forever)
+ *  Phase 1: BOOT typed initialization sequence (only phase with typing)
+ *  Phase 2: MONITOR continuous fade-in live logs (repeats forever)
  *  Between cycles, a new prompt arrives and streams tokens back.
  */
 
@@ -129,7 +129,7 @@ export function BootTerminal({ className = "" }: { className?: string }) {
     };
   }, [cycle]);
 
-  // Monitor mode — continuous logs after boot
+  // Monitor mode continuous logs after boot
   useEffect(() => {
     if (!booted) return;
     let cancelled = false;

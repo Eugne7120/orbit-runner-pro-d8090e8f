@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 /**
  * Horizontal reward-distribution timeline. A progress indicator sweeps
  * across the stages on a fixed loop, highlighting whichever stage is
- * "current" — purely illustrative, not wall-clock accurate.
+ * "current" purely illustrative, not wall-clock accurate.
  */
 
 const STAGES = [

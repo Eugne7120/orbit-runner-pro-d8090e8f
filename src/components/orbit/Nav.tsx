@@ -63,7 +63,7 @@ export function Nav() {
         <Link
           to="/"
           className="flex items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          aria-label="0RBIT — home"
+          aria-label="0RBIT home"
         >
           <Logo />
         </Link>

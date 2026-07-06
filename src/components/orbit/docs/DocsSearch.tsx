@@ -8,7 +8,7 @@ const POPULAR = [
   { label: "Server-sent event format", slug: "streaming" },
   { label: "Credits & billing", slug: "credits" },
   { label: "Error envelope", slug: "faq" },
-  { label: "SDK — TypeScript", slug: "sdk" },
+  { label: "SDK TypeScript", slug: "sdk" },
 ];
 
 export function DocsSearch() {

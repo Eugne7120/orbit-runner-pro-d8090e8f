@@ -49,7 +49,7 @@ export function ChatComposer({
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Suggested prompts — show when empty */}
+      {/* Suggested prompts show when empty */}
       {isEmpty && (
         <div className="flex flex-wrap gap-2 justify-center">
           {SUGGESTED_PROMPTS.map((p) => (

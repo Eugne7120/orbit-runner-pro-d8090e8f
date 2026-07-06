@@ -16,13 +16,13 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/workers")({
   head: () => ({
     meta: [
-      { title: "Workers — 0RBIT" },
+      { title: "Workers 0RBIT" },
       {
         name: "description",
         content:
-          "How the 0RBIT worker network operates — live topology, worker status, rewards and how to join the mesh.",
+          "How the 0RBIT worker network operates live topology, worker status, rewards and how to join the mesh.",
       },
-      { property: "og:title", content: "Workers — 0RBIT" },
+      { property: "og:title", content: "Workers 0RBIT" },
       {
         property: "og:description",
         content: "A live look at the decentralized workers powering 0RBIT.",
@@ -39,7 +39,7 @@ function WorkersPage() {
       <PageHeader
         eyebrow="/ workers"
         title="The mesh that runs the models."
-        intro="0RBIT has no data centers of its own. Every request is served by an independent worker — a GPU, somewhere, running our runtime and earning credits for it. This is how that network operates."
+        intro="0RBIT has no data centers of its own. Every request is served by an independent worker a GPU, somewhere, running our runtime and earning credits for it. This is how that network operates."
       />
 
       <Section
@@ -66,7 +66,7 @@ function WorkersPage() {
             <LiveCard
               eyebrow="/ earn"
               title="Rewards accrue"
-              description="Completed inference settles instantly as credits — redeemable, stakeable, on-chain."
+              description="Completed inference settles instantly as credits redeemable, stakeable, on-chain."
             />
           </Reveal>
           <Reveal delay={240}>
@@ -82,7 +82,7 @@ function WorkersPage() {
       <Section
         eyebrow="/ 02 · network overview"
         title="The network, right now."
-        intro="A live dashboard view of the mesh. Every number below moves continuously — this is the same telemetry our schedulers see."
+        intro="A live dashboard view of the mesh. Every number below moves continuously this is the same telemetry our schedulers see."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal delay={0}>
@@ -149,7 +149,7 @@ function WorkersPage() {
       <Section
         eyebrow="/ 03 · topology"
         title="Requests find the best worker."
-        intro="A simplified view of the mesh: the scheduler holds no state of its own — it just routes. Watch a request travel from client to scheduler to worker."
+        intro="A simplified view of the mesh: the scheduler holds no state of its own it just routes. Watch a request travel from client to scheduler to worker."
       >
         <Reveal>
           <div className="glass-strong rounded-3xl p-4 shadow-elegant md:p-8">
@@ -175,7 +175,7 @@ function WorkersPage() {
       <Section
         eyebrow="/ 05 · activity"
         title="Live from the network."
-        intro="A rolling feed of what's happening across the mesh — connections, completions, rewards, syncs."
+        intro="A rolling feed of what's happening across the mesh connections, completions, rewards, syncs."
       >
         <Reveal>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
@@ -191,7 +191,7 @@ function WorkersPage() {
       <Section
         eyebrow="/ 06 · performance"
         title="How the fleet is performing."
-        intro="Latency, distribution and saturation, generated straight from the runtime — no snapshots, no cached charts."
+        intro="Latency, distribution and saturation, generated straight from the runtime no snapshots, no cached charts."
       >
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <Reveal delay={0}>
@@ -253,7 +253,7 @@ function WorkersPage() {
       <Section
         eyebrow="/ 07 · job routing"
         title="From request to response."
-        intro="Every job takes the same five-stage path through the runtime — the scheduler never becomes the bottleneck."
+        intro="Every job takes the same five-stage path through the runtime the scheduler never becomes the bottleneck."
       >
         <Reveal>
           <div className="glass-strong rounded-3xl p-8 shadow-elegant md:p-12">
@@ -305,7 +305,7 @@ function WorkersPage() {
       <Section
         eyebrow="/ 09 · benefits"
         title="Why run a node."
-        intro="Decentralized inference isn't just an architecture choice — it changes the economics for everyone who contributes compute."
+        intro="Decentralized inference isn't just an architecture choice it changes the economics for everyone who contributes compute."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {BENEFITS.map((b, i) => (
@@ -612,7 +612,7 @@ const BECOME_STEPS = [
 const BENEFITS = [
   {
     title: "Earn passive income",
-    body: "Idle GPU time converts directly into credits — no marketplace listing, no negotiation.",
+    body: "Idle GPU time converts directly into credits no marketplace listing, no negotiation.",
   },
   {
     title: "Privacy focused",
@@ -632,7 +632,7 @@ const BENEFITS = [
   },
   {
     title: "Open infrastructure",
-    body: "The routing protocol and worker spec are open — anyone can build a compatible client.",
+    body: "The routing protocol and worker spec are open anyone can build a compatible client.",
   },
 ];
 

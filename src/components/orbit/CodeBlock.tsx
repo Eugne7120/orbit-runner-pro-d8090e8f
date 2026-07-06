@@ -4,7 +4,7 @@ type Tab = { label: string; lang?: string; code: string };
 
 /**
  * Premium code block with language tabs, copy button, and syntax hinting.
- * Kept dependency-free — token coloring done via a tiny hand-rolled tokenizer.
+ * Kept dependency-free token coloring done via a tiny hand-rolled tokenizer.
  */
 export function CodeBlock({
   tabs,

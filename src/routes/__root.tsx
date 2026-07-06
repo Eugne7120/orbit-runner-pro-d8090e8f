@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "0RBIT — The decentralized runtime for AI" },
+      { title: "0RBIT The decentralized runtime for AI" },
       {
         name: "description",
         content:
@@ -85,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "0RBIT Labs" },
       { name: "theme-color", content: "#141821" },
-      { property: "og:title", content: "0RBIT — The decentralized runtime for AI" },
+      { property: "og:title", content: "0RBIT The decentralized runtime for AI" },
       {
         property: "og:description",
         content: "Inference, routing and streaming across a global network of workers.",

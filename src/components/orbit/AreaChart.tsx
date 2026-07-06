@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Live area chart. Values evolve continuously via a smoothed random walk.
- * SVG only — no chart lib. Renders at ~2fps for calm motion.
+ * SVG only no chart lib. Renders at ~2fps for calm motion.
  */
 export function AreaChart({
   seed = 42,

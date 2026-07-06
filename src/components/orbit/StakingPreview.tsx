@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Staking dashboard preview — UI only, no wallet connection.
+ * Staking dashboard preview UI only, no wallet connection.
  * Stake / unstake move a local demo balance; rewards accrue slowly
  * over time and can be "claimed" back into the available balance.
  */

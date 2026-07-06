@@ -7,9 +7,9 @@ export const Route = createFileRoute("/docs/")({
     const p = PAGE_MAP.intro;
     return {
       meta: [
-        { title: `${p.title} — 0RBIT Docs` },
+        { title: `${p.title} 0RBIT Docs` },
         { name: "description", content: p.description },
-        { property: "og:title", content: `${p.title} — 0RBIT Docs` },
+        { property: "og:title", content: `${p.title} 0RBIT Docs` },
         { property: "og:description", content: p.description },
       ],
     };

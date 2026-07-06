@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * 0RBIT — Design System
+ * 0RBIT Design System
  * Dark-first. Engineered. Restrained.
  * Colors in oklch. Typography loaded via <link> in __root.tsx.
  */
@@ -67,7 +67,7 @@
 :root {
   --radius: 0.75rem;
 
-  /* Dark by default — matte black with a whisper of blue */
+  /* Dark by default matte black with a whisper of blue */
   --background: oklch(0.14 0.008 250);
   --surface: oklch(0.175 0.01 250);
   --surface-2: oklch(0.21 0.012 250);
@@ -87,7 +87,7 @@
   --accent: oklch(0.24 0.014 250);
   --accent-foreground: oklch(0.97 0.004 250);
 
-  /* Signal — the one accent. Refined electric blue */
+  /* Signal the one accent. Refined electric blue */
   --signal: oklch(0.78 0.14 232);
   --signal-dim: oklch(0.55 0.11 232);
   --orbit: oklch(0.68 0.13 232);
@@ -167,7 +167,7 @@
     font-weight: 500;
   }
 
-  /* Custom scrollbar — thin, restrained */
+  /* Custom scrollbar thin, restrained */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
@@ -347,10 +347,10 @@
   animation: orbit-shimmer 3s linear infinite;
 }
 
-/* Micro-float for cards — 3px, ~16s. Almost imperceptible. */
+/* Micro-float for cards 3px, ~16s. Almost imperceptible. */
 .orbit-float { animation: orbit-float-micro 16s ease-in-out infinite; will-change: transform; }
 
-/* Button sheen — quiet light sweep on hover */
+/* Button sheen quiet light sweep on hover */
 @utility btn-sheen {
   position: relative;
   overflow: hidden;

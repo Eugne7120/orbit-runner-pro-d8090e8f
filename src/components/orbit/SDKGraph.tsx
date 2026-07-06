@@ -1,6 +1,6 @@
 /**
  * Developer page architecture: SDK / transport / runtime dependency graph.
- * A vertical layered stack with connective flows — distinct from RuntimeFlow.
+ * A vertical layered stack with connective flows distinct from RuntimeFlow.
  */
 import { useEffect, useState } from "react";
 

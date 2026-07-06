@@ -105,7 +105,7 @@ const RESPONSE_LINES = [
   "The router scores every live worker on four signals before your request",
   "leaves the gateway: predicted latency, current queue depth, per-token price,",
   "and geographic locality. The lowest weighted score wins. If it slows down",
-  "mid-stream, the next chunk is quietly reassigned — you never see the swap.",
+  "mid-stream, the next chunk is quietly reassigned you never see the swap.",
   "",
   "▸ 412 tokens · 218 tok/s · complete",
   "▸ receipt · rcp_7ab1 · signed",

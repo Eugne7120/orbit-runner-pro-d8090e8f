@@ -1,7 +1,7 @@
 import type * as React from "react";
 
 /**
- * 0RBIT — Runtime feature cards
+ * 0RBIT Runtime feature cards
  * Compact, hover-active cards that sit beside the runtime chat preview.
  */
 
@@ -86,7 +86,7 @@ const FEATURES: Feature[] = [
   {
     eyebrow: "compat",
     title: "OpenAI compatible",
-    description: "Same client, same schema. Point your SDK at orbit — nothing else changes.",
+    description: "Same client, same schema. Point your SDK at orbit nothing else changes.",
     icon: IconApi,
   },
   {

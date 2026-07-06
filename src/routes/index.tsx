@@ -12,19 +12,19 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "0RBIT — The decentralized runtime for AI" },
+      { title: "0RBIT The decentralized runtime for AI" },
       {
         name: "description",
         content:
           "Inference, routing and streaming across a global network of workers. AI infrastructure engineered for speed, precision and trust.",
       },
-      { property: "og:title", content: "0RBIT — The decentralized runtime for AI" },
+      { property: "og:title", content: "0RBIT The decentralized runtime for AI" },
       {
         property: "og:description",
         content:
           "A global mesh of workers routes every inference request to wherever it is cheapest, fastest and closest.",
       },
-      { name: "twitter:title", content: "0RBIT — The decentralized runtime for AI" },
+      { name: "twitter:title", content: "0RBIT The decentralized runtime for AI" },
       {
         name: "twitter:description",
         content: "Inference, routing and streaming across a global network of workers.",
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <PageShell>
-      {/* HERO — already has animate-orbit-fade-up, leave as-is */}
+      {/* HERO already has animate-orbit-fade-up, leave as-is */}
       <section className="relative mx-auto max-w-6xl px-6 pt-8 md:pt-16">
         <div className="mx-auto max-w-4xl text-center">
           <div className="animate-orbit-fade-up inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
@@ -57,7 +57,7 @@ function Home() {
             style={{ animationDelay: "140ms" }}
           >
             0RBIT routes every request through a global mesh of workers. Inference happens where it
-            is cheapest, fastest and closest — settled invisibly on-chain, delivered like software.
+            is cheapest, fastest and closest settled invisibly on-chain, delivered like software.
           </p>
           <div
             className="animate-orbit-fade-up mt-10 flex flex-wrap items-center justify-center gap-3"
@@ -152,7 +152,7 @@ function Home() {
               <div className="space-y-0">
                 <LiveMetric label="settlement" base={380} unit="ms" />
                 <LiveMetric label="finality" base={2} unit="s" />
-                <LiveMetric label="fees" base={0} unit="—" />
+                <LiveMetric label="fees" base={0} unit="-" />
               </div>
             </LiveCard>
           </Reveal>
@@ -163,7 +163,7 @@ function Home() {
       <Section
         eyebrow="/ 02 · developer surface"
         title="Ships like software. Runs like infrastructure."
-        intro="One SDK. One key. Streaming from the first token. The network beneath it is elastic, distributed and priced per unit of work — not per seat, not per model, not per month."
+        intro="One SDK. One key. Streaming from the first token. The network beneath it is elastic, distributed and priced per unit of work not per seat, not per model, not per month."
       >
         <Reveal>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
@@ -188,11 +188,11 @@ $ orbit login`}
         </Reveal>
       </Section>
 
-      {/* PRODUCT PREVIEW — Runtime chat */}
+      {/* PRODUCT PREVIEW Runtime chat */}
       <Section
         eyebrow="/ 03 · product"
         title="Experience 0RBIT Runtime."
-        intro="A real chat streaming against the same architecture you see above — routed, executed and settled on the mesh in real time. This is what your users will feel."
+        intro="A real chat streaming against the same architecture you see above routed, executed and settled on the mesh in real time. This is what your users will feel."
       >
         <Reveal>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
@@ -210,7 +210,7 @@ $ orbit login`}
       <Section
         eyebrow="/ 04 · observability"
         title="The infrastructure is the artwork."
-        intro="No stock diagrams. No brains, no hexagons, no globes. Just the actual shape of the system — nodes, edges, queues, streams. Alive on every page."
+        intro="No stock diagrams. No brains, no hexagons, no globes. Just the actual shape of the system nodes, edges, queues, streams. Alive on every page."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           <Reveal delay={0}>

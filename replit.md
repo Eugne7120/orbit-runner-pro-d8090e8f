@@ -20,15 +20,15 @@ The dev server starts on **port 5000**.
 
 ## Project structure
 
-- `src/components/orbit/` — all page-level and section components for the 0RBIT design system
-- `src/components/ui/` — shadcn/ui primitives
-- `src/routes/` — TanStack Router route files
-- `src/styles.css` — global styles with Tailwind 4 config
+- `src/components/orbit/` all page-level and section components for the 0RBIT design system
+- `src/components/ui/` shadcn/ui primitives
+- `src/routes/` TanStack Router route files
+- `src/styles.css` global styles with Tailwind 4 config
 
 ## Notes
 
 - The project was originally built with [Lovable](https://lovable.dev). Avoid rewriting published git history.
-- Hydration mismatches in the browser console are benign — they come from `Math.random()`-seeded initial state in orbit components (accepted pattern).
+- Hydration mismatches in the browser console are benign they come from `Math.random()`-seeded initial state in orbit components (accepted pattern).
 
 ## User preferences
 

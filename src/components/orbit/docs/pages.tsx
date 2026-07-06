@@ -186,7 +186,7 @@ const quickstart: DocPage = {
       </div>
 
       <Note title="Key rotation">
-        Rotate a key in one call — <C>orbit keys rotate prod</C>. The old key stays valid for 60
+        Rotate a key in one call <C>orbit keys rotate prod</C>. The old key stays valid for 60
         seconds so in-flight requests finish cleanly.
       </Note>
 
@@ -293,7 +293,7 @@ for await (const chunk of stream) {
 
       <Tip>
         Every SDK exposes <C>response.receipt</C> as a string. Store it alongside your own request
-        id — it is the fastest way to correlate our logs with yours.
+        id it is the fastest way to correlate our logs with yours.
       </Tip>
     </>
   ),
@@ -475,10 +475,10 @@ const chat: DocPage = {
         headers={["Code", "Name", "Meaning"]}
         rows={[
           ["200", "OK", "Completion returned."],
-          ["400", "invalid_request", "Bad params — see message."],
+          ["400", "invalid_request", "Bad params see message."],
           ["401", "unauthorized", "Missing or invalid key."],
           ["402", "insufficient_credits", "Wallet below reserve."],
-          ["409", "worker_unavailable", "Retry — router will pick another."],
+          ["409", "worker_unavailable", "Retry router will pick another."],
           ["429", "rate_limited", "See Retry-After header."],
           ["500", "runtime_error", "Report the request id."],
         ]}
@@ -612,8 +612,8 @@ const models: DocPage = {
           [<C>orbit-1</C>, "128k", "180", "1.20 cr", "3.60 cr"],
           [<C>orbit-1-mini</C>, "64k", "410", "0.20 cr", "0.60 cr"],
           [<C>orbit-1-vision</C>, "64k", "120", "1.60 cr", "4.80 cr"],
-          [<C>orbit-embed-1</C>, "8k", "—", "0.04 cr", "—"],
-          [<C>orbit-image-1</C>, "—", "—", "—", "0.008 / image"],
+          [<C>orbit-embed-1</C>, "8k", "-", "0.04 cr", "-"],
+          [<C>orbit-image-1</C>, "-", "-", "-", "0.008 / image"],
         ]}
       />
 
@@ -708,7 +708,7 @@ console.log(stream.usage);`,
         rows={[
           ["token", `{ delta: string, index: number }`, "Every decode step."],
           ["tool_call", `{ id, name, arguments_delta }`, "During tool invocations."],
-          ["error", `{ code, message, retry_after_ms? }`, "Terminal — stream closes after."],
+          ["error", `{ code, message, retry_after_ms? }`, "Terminal stream closes after."],
           ["done", `{ usage, receipt, worker }`, "Always last on a clean close."],
         ]}
       />
@@ -716,7 +716,7 @@ console.log(stream.usage);`,
       <H2 id="backp">Backpressure</H2>
       <Note>
         The runtime honors TCP backpressure. If your consumer stops draining, the worker pauses
-        decoding within one token — you are never charged for tokens the client did not receive.
+        decoding within one token you are never charged for tokens the client did not receive.
       </Note>
 
       <H2 id="diag">Streaming process</H2>
@@ -731,7 +731,7 @@ const workers: DocPage = {
   title: "Workers",
   kicker: "GET /v1/workers",
   description:
-    "Every worker on the mesh — region, GPU class, current queue depth, reliability score. The router uses this to place your request; you can query it too.",
+    "Every worker on the mesh region, GPU class, current queue depth, reliability score. The router uses this to place your request; you can query it too.",
   toc: [
     { id: "list", label: "List workers" },
     { id: "select", label: "Worker selection" },
@@ -1089,7 +1089,7 @@ const faq: DocPage = {
               code: `{
   "error": {
     "code": "rate_limited",
-    "message": "429 — 1200 RPM ceiling on chat.",
+    "message": "429 1200 RPM ceiling on chat.",
     "retry_after_ms": 1400,
     "request_id": "req_a9c1…",
     "worker": null
@@ -1100,7 +1100,7 @@ const faq: DocPage = {
         />
       </div>
       <Warning>
-        Never retry on <C>400</C> or <C>402</C>. Both are terminal — fix the request or top up.
+        Never retry on <C>400</C> or <C>402</C>. Both are terminal fix the request or top up.
       </Warning>
     </>
   ),
@@ -1114,9 +1114,9 @@ const changelog: DocPage = {
   description:
     "Every change to the API, the runtime, and the SDKs. Reverse chronological, additive by default.",
   toc: [
-    { id: "v260", label: "v2.6.0 — 2026-06-30" },
-    { id: "v253", label: "v2.5.3 — 2026-06-14" },
-    { id: "v250", label: "v2.5.0 — 2026-05-28" },
+    { id: "v260", label: "v2.6.0 2026-06-30" },
+    { id: "v253", label: "v2.5.3 2026-06-14" },
+    { id: "v250", label: "v2.5.0 2026-05-28" },
   ],
   render: () => (
     <>

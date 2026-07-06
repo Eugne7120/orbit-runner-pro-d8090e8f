@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Worker network topology — a flat mesh diagram, not a map or globe.
+ * Worker network topology a flat mesh diagram, not a map or globe.
  * A client submits requests to the scheduler hub, which routes to one
  * of several worker nodes arranged around it. Workers are loosely
  * interconnected (mesh), and a signal periodically travels client → hub → worker.

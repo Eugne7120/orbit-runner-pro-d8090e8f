@@ -15,13 +15,13 @@ import { Reveal } from "@/components/orbit/Reveal";
 export const Route = createFileRoute("/economy")({
   head: () => ({
     meta: [
-      { title: "Economy — 0RBIT" },
+      { title: "Economy 0RBIT" },
       {
         name: "description",
         content:
-          "How the $0RBIT token economy works — treasury, buyback and burn, staking rewards, and the flywheel that powers the network.",
+          "How the $0RBIT token economy works treasury, buyback and burn, staking rewards, and the flywheel that powers the network.",
       },
-      { property: "og:title", content: "Economy — 0RBIT" },
+      { property: "og:title", content: "Economy 0RBIT" },
       {
         property: "og:description",
         content: "A transparent, usage-backed token economy for decentralized AI.",
@@ -54,7 +54,7 @@ function EconomyPage() {
         id="tokenomics"
         eyebrow="/ 02 · treasury"
         title="The treasury, live."
-        intro="Every figure below is generated from the same telemetry the runtime uses internally — nothing here is a static snapshot."
+        intro="Every figure below is generated from the same telemetry the runtime uses internally nothing here is a static snapshot."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal delay={0}>
@@ -141,7 +141,7 @@ function EconomyPage() {
         id="utility"
         eyebrow="/ 03 · utility"
         title="What holding $0RBIT does."
-        intro="The token isn't a ticket — it's a claim on the economics of the network."
+        intro="The token isn't a ticket it's a claim on the economics of the network."
       >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {UTILITY.map((u, i) => (
@@ -160,7 +160,7 @@ function EconomyPage() {
         id="buyback"
         eyebrow="/ 04 · buyback & burn"
         title="Revenue becomes scarcity."
-        intro="Half of platform revenue is used to buy $0RBIT on the open market and burn it — permanently, verifiably."
+        intro="Half of platform revenue is used to buy $0RBIT on the open market and burn it permanently, verifiably."
       >
         <Reveal>
           <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
@@ -173,7 +173,7 @@ function EconomyPage() {
         id="staking"
         eyebrow="/ 05 · staking"
         title="Stake, earn, compound."
-        intro="A preview of the staking dashboard. Connect a wallet at launch — for now, try it with demo balances."
+        intro="A preview of the staking dashboard. Connect a wallet at launch for now, try it with demo balances."
       >
         <Reveal>
           <StakingPreview />
@@ -196,7 +196,7 @@ function EconomyPage() {
         id="statistics"
         eyebrow="/ 07 · statistics"
         title="Token statistics."
-        intro="Supply-side numbers move slowly by design — this is a monetary policy, not a trading chart."
+        intro="Supply-side numbers move slowly by design this is a monetary policy, not a trading chart."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal delay={0}>
@@ -286,7 +286,7 @@ function EconomyPage() {
         id="flywheel"
         eyebrow="/ 08 · flywheel"
         title="Why growth compounds."
-        intro="Usage doesn't just generate revenue once — it strengthens every part of the network that produces the next request."
+        intro="Usage doesn't just generate revenue once it strengthens every part of the network that produces the next request."
       >
         <Reveal>
           <div className="glass-strong rounded-3xl p-6 shadow-elegant md:p-10">
@@ -320,7 +320,7 @@ function Hero() {
         </h1>
         <p className="mt-6 max-w-2xl text-pretty text-[17px] leading-relaxed text-muted-foreground md:text-[18px]">
           Every AI request contributes to a sustainable token economy powered by real compute usage
-          — not speculation.
+          not speculation.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
@@ -346,7 +346,7 @@ function Hero() {
 const UTILITY = [
   {
     title: "Stake to earn USDC",
-    body: "Staked $0RBIT earns a share of daily platform revenue, paid in USDC — not inflationary token emissions.",
+    body: "Staked $0RBIT earns a share of daily platform revenue, paid in USDC not inflationary token emissions.",
   },
   {
     title: "Higher worker rewards",
@@ -362,7 +362,7 @@ const UTILITY = [
   },
   {
     title: "Governance ready",
-    body: "Protocol parameters — fee splits, burn rate, emission schedule — move to token-holder governance over time.",
+    body: "Protocol parameters fee splits, burn rate, emission schedule move to token-holder governance over time.",
   },
   {
     title: "Deflationary economy",

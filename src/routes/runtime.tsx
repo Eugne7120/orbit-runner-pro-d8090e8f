@@ -13,13 +13,13 @@ import { useEffect, useState } from "react";
 export const Route = createFileRoute("/runtime")({
   head: () => ({
     meta: [
-      { title: "Runtime — 0RBIT" },
+      { title: "Runtime 0RBIT" },
       {
         name: "description",
         content:
-          "Live operational view of the 0RBIT network — requests, workers, latency, throughput, credits.",
+          "Live operational view of the 0RBIT network requests, workers, latency, throughput, credits.",
       },
-      { property: "og:title", content: "Runtime — 0RBIT" },
+      { property: "og:title", content: "Runtime 0RBIT" },
       { property: "og:description", content: "Live view of the 0RBIT network." },
     ],
   }),
@@ -33,7 +33,7 @@ function RuntimePage() {
       <PageHeader
         eyebrow="/ runtime"
         title="A live view of the network."
-        intro="This is the operator's view — what our own on-call sees. Numbers move in real time. Nothing is cached. Nothing is polished for effect."
+        intro="This is the operator's view what our own on-call sees. Numbers move in real time. Nothing is cached. Nothing is polished for effect."
       />
 
       <Section eyebrow="/ health">

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
-  /** Stagger delay in ms — use multiples of 80 for cascading card grids */
+  /** Stagger delay in ms use multiples of 80 for cascading card grids */
   delay?: number;
   /** Extra classes applied to the wrapper div (e.g. layout classes) */
   className?: string;
@@ -11,7 +11,7 @@ interface RevealProps {
 /**
  * Scroll-reveal wrapper.
  * Fades in + slides up once when it enters the viewport, then stays visible.
- * Uses IntersectionObserver — no scroll listeners, no repeated triggers.
+ * Uses IntersectionObserver no scroll listeners, no repeated triggers.
  * prefers-reduced-motion is handled by the global rule in styles.css.
  */
 export function Reveal({ children, delay = 0, className = "" }: RevealProps) {

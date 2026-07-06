@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Live activity feed — continuously rotating worker/network events.
+ * Live activity feed continuously rotating worker/network events.
  * Newest entries enter at the bottom and drift upward, fading as they age.
  */
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 /**
  * Abstract world dot-map showing worker regions.
- * Not a real globe — a stylized lat/lng grid with worker points.
+ * Not a real globe a stylized lat/lng grid with worker points.
  */
 
 const REGIONS = [
