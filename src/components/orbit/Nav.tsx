@@ -86,7 +86,7 @@ export function Nav() {
             rel="noopener noreferrer"
             className="hidden rounded-full px-3 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:inline-flex"
           >
-            Sign in
+            X/Twitter
           </a>
           <Link
             to="/pricing"
@@ -155,7 +155,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className="rounded-full border border-border-strong px-4 py-3.5 text-center text-[15px] font-medium text-foreground/80 transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              Sign in
+              X/Twitter
             </a>
             <Link
               to="/pricing"
