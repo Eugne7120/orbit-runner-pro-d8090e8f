@@ -22,7 +22,7 @@ function LoginPage() {
 
   const handleGuest = () => {
     enterGuestMode();
-    navigate({ to: "/app" });
+    navigate({ to: "/app/chat" });
   };
 
   return (
