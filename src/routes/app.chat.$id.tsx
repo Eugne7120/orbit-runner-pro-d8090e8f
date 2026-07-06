@@ -15,11 +15,14 @@ export const Route = createFileRoute("/app/chat/$id")({
   component: ChatView,
 });
 
+const FIRST_TOKEN_TIMEOUT_MS = 30_000;
+
 async function streamChat(
   messages: { role: string; content: string }[],
   model: string,
   onDelta: (d: string) => void,
   signal: AbortSignal,
+  onFirstToken?: () => void,
 ) {
   const res = await fetch("/app-chat-api", {
     method: "POST",
@@ -32,24 +35,46 @@ async function streamChat(
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buf = "";
+  let gotFirstToken = false;
 
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buf += decoder.decode(value, { stream: true });
-    const lines = buf.split("\n");
-    buf = lines.pop() ?? "";
-    for (const line of lines) {
-      if (!line.startsWith("data: ")) continue;
-      try {
-        const parsed = JSON.parse(line.slice(6));
-        if (parsed.content) onDelta(parsed.content);
-        if (parsed.done) return;
-        if (parsed.error) throw new Error(parsed.error);
-      } catch {
-        /* ignore malformed SSE chunk */
+  // The free/rate-limited OpenRouter models occasionally hang without ever
+  // producing a token. Bail out with a clear error instead of leaving the
+  // UI looking frozen indefinitely.
+  const timeoutId = setTimeout(() => {
+    if (!gotFirstToken) reader.cancel().catch(() => {});
+  }, FIRST_TOKEN_TIMEOUT_MS);
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split("\n");
+      buf = lines.pop() ?? "";
+      for (const line of lines) {
+        if (!line.startsWith("data: ")) continue;
+        try {
+          const parsed = JSON.parse(line.slice(6));
+          if (parsed.content) {
+            if (!gotFirstToken) {
+              gotFirstToken = true;
+              clearTimeout(timeoutId);
+              onFirstToken?.();
+            }
+            onDelta(parsed.content);
+          }
+          if (parsed.done) return;
+          if (parsed.error) throw new Error(parsed.error);
+        } catch {
+          /* ignore malformed SSE chunk */
+        }
       }
     }
+    if (!gotFirstToken) {
+      throw new Error("The model didn't respond in time. Please try again.");
+    }
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -62,6 +87,7 @@ function ChatView() {
   const [model, setModel] = useState<OrbitModelId>("0rbit-core");
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
+  const [waitingFirstToken, setWaitingFirstToken] = useState(false);
   const [autoScroll, setAutoScroll] = useState(true);
 
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -96,6 +122,15 @@ function ChatView() {
     if (autoScroll) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, autoScroll]);
 
+  // Cancel any in-flight stream when leaving the conversation (e.g. switching
+  // chats or navigating away) so stale responses can't land later and
+  // confuse a different conversation's state.
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+    };
+  }, [id]);
+
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -115,6 +150,7 @@ function ChatView() {
       setMessages((prev) => [...prev, assistantMsg]);
 
       setStreaming(true);
+      setWaitingFirstToken(true);
       abortRef.current = new AbortController();
 
       try {
@@ -137,10 +173,14 @@ function ChatView() {
             });
           },
           abortRef.current.signal,
+          () => setWaitingFirstToken(false),
         );
       } catch (err) {
         if (err instanceof Error && err.name !== "AbortError") {
-          const errMsg = "Something went wrong. Please try again.";
+          const errMsg =
+            err.message === "The model didn't respond in time. Please try again."
+              ? err.message
+              : "Something went wrong. Please try again.";
           chatStore.updateLastMessage(id, errMsg);
           setMessages((prev) => {
             const updated = [...prev];
@@ -150,6 +190,7 @@ function ChatView() {
         }
       } finally {
         setStreaming(false);
+        setWaitingFirstToken(false);
         abortRef.current = null;
       }
     },
@@ -159,6 +200,7 @@ function ChatView() {
   const handleStop = () => {
     abortRef.current?.abort();
     setStreaming(false);
+    setWaitingFirstToken(false);
   };
 
   const handleRegenerate = useCallback(async () => {
@@ -209,21 +251,23 @@ function ChatView() {
       >
         <div className="max-w-3xl mx-auto w-full">
           <AnimatePresence initial={false}>
-            {messages.map((msg, i) => (
-              <ChatMessage
-                key={msg.id}
-                message={msg}
-                isStreaming={streaming && i === messages.length - 1 && msg.role === "assistant"}
-                onRegenerate={
-                  !streaming && msg.role === "assistant" && i === messages.length - 1
-                    ? handleRegenerate
-                    : undefined
-                }
-              />
-            ))}
-            {streaming && messages[messages.length - 1]?.role === "user" && (
-              <RuntimePipeline waiting={true} />
-            )}
+            {messages.map((msg, i) => {
+              const isLast = i === messages.length - 1;
+              if (waitingFirstToken && isLast && msg.role === "assistant" && !msg.content) {
+                return null;
+              }
+              return (
+                <ChatMessage
+                  key={msg.id}
+                  message={msg}
+                  isStreaming={streaming && isLast && msg.role === "assistant"}
+                  onRegenerate={
+                    !streaming && msg.role === "assistant" && isLast ? handleRegenerate : undefined
+                  }
+                />
+              );
+            })}
+            {waitingFirstToken && <RuntimePipeline waiting={true} />}
           </AnimatePresence>
           <div ref={bottomRef} className="h-4" />
         </div>

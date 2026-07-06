@@ -1,0 +1,319 @@
+# 0RBIT Runtime Experience — Connected Runtime Animation
+
+Do NOT redesign the application.
+
+Do NOT change layouts.
+
+Do NOT replace existing components.
+
+Do NOT change the design system.
+
+This sprint focuses on creating one connected runtime experience between the Chat application and the website background.
+
+The goal is to make users feel like their request is actually moving through the 0RBIT distributed inference network.
+
+---
+
+# Runtime Pipeline
+
+Keep the Runtime Pipeline component.
+
+It should appear immediately after the user sends a message.
+
+Pipeline example:
+
+○ Allocate Worker
+
+○ Load Context
+
+○ Prepare Runtime
+
+○ Run Inference
+
+○ Stream Response
+
+○ Complete
+
+Status:
+
+○ Pending
+
+◉ Running
+
+✓ Completed
+
+Only one stage can be active at a time.
+
+---
+
+# Connect the Runtime Pipeline to the Background
+
+This is the most important part of this sprint.
+
+The background should react to the Runtime Pipeline.
+
+When the runtime advances,
+
+the background should also animate.
+
+The user should feel that the request is travelling through the network.
+
+---
+
+# Stage 1 — Allocate Worker
+
+When "Allocate Worker" starts,
+
+highlight one nearby network node.
+
+The node softly glows.
+
+A connection line becomes active.
+
+No bright colors.
+
+No flashing.
+
+---
+
+# Stage 2 — Load Context
+
+A small signal pulse travels through several nearby connections.
+
+Movement should be smooth.
+
+Slow.
+
+Elegant.
+
+The pulse represents the request entering the runtime.
+
+---
+
+# Stage 3 — Prepare Runtime
+
+A second node activates.
+
+Nearby connections softly illuminate.
+
+The architecture feels like it is preparing the request.
+
+---
+
+# Stage 4 — Run Inference
+
+The selected worker node becomes active.
+
+It should gently pulse while inference is running.
+
+The glow should remain subtle.
+
+Do not use aggressive lighting.
+
+---
+
+# Stage 5 — Stream Response
+
+A signal travels back from the worker toward the chat area.
+
+At this exact moment,
+
+the AI response begins streaming.
+
+Both animations should feel synchronized.
+
+The user should visually understand that the generated response is coming from the network.
+
+---
+
+# Stage 6 — Complete
+
+All highlighted nodes slowly return to their idle state.
+
+The background returns to its normal breathing animation.
+
+Nothing should disappear abruptly.
+
+Everything fades naturally.
+
+---
+
+# Background Behaviour
+
+The background should always remain alive.
+
+Even when idle.
+
+Examples:
+
+Very slow moving signal pulses.
+
+Occasional node heartbeat.
+
+Subtle connection highlights.
+
+Gentle architectural movement.
+
+Never completely static.
+
+Never visually noisy.
+
+---
+
+# Synchronization
+
+The Runtime Pipeline,
+
+background,
+
+and AI response
+
+should feel connected.
+
+Everything should happen in the correct order.
+
+The user should never feel like animations are unrelated.
+
+---
+
+# Runtime Summary
+
+After the AI finishes,
+
+show a compact Runtime Summary.
+
+Example:
+
+Worker
+
+Worker #214
+
+Region
+
+Singapore
+
+Latency
+
+38 ms
+
+First Token
+
+412 ms
+
+Streaming
+
+42 tok/s
+
+Completion
+
+2.3 s
+
+Allow the summary to collapse.
+
+---
+
+# Animation Style
+
+Everything should feel:
+
+Premium
+
+Elegant
+
+Professional
+
+Infrastructure-focused
+
+Avoid:
+
+❌ Cyberpunk
+
+❌ Hacker movie effects
+
+❌ Neon
+
+❌ RGB glow
+
+❌ Matrix
+
+❌ Flashing animations
+
+❌ Sci-fi UI
+
+---
+
+# Motion
+
+Use smooth easing.
+
+Slow transitions.
+
+No sudden movements.
+
+Animations should feel intentional.
+
+---
+
+# Performance
+
+Animations must remain lightweight.
+
+Prefer:
+
+SVG
+
+CSS
+
+Framer Motion
+
+Avoid expensive rendering.
+
+Maintain excellent performance.
+
+---
+
+# Final Experience
+
+When the user sends a prompt,
+
+they should experience this flow:
+
+User clicks Send
+
+↓
+
+Runtime Pipeline appears
+
+↓
+
+Background activates
+
+↓
+
+Worker node lights up
+
+↓
+
+Signals travel through the architecture
+
+↓
+
+Pipeline progresses
+
+↓
+
+AI response starts streaming
+
+↓
+
+Signals return toward the chat
+
+↓
+
+Runtime Summary appears
+
+↓
+
+Background returns to idle
+
+The entire experience should feel like one connected distributed AI system instead of separate UI animations.

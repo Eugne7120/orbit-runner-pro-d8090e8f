@@ -2,3 +2,4 @@
 - [0RBIT Atmosphere area routing](orbit-atmosphere-areas.md) — new marketing routes should map to one of Atmosphere.tsx's existing "areas" (or get a new one) so the background emphasis matches the page's theme.
 - [0RBIT final-polish conventions](orbit-polish-conventions.md) — mobile nav pattern, easing/aria conventions established during the pre-launch polish pass.
 - [Privy config version quirk](privy-config-quirk.md) — installed @privy-io/react-auth version rejects `solanaClusters`/legacy embeddedWallets shape; check actual type defs before configuring.
+- [0RBIT chat loading indicator](orbit-chat-loading-indicator.md) — drive "waiting for AI" UI off explicit state set on send/cleared on first token, not derived message-role checks; add timeout + abort-on-unmount.
