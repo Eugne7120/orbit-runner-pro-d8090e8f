@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const GUEST_KEY = "orbit_guest_mode";
 
@@ -18,11 +18,6 @@ export function exitGuestMode() {
 }
 
 export function useGuestMode() {
-  const [guest, setGuest] = useState(false);
-
-  useEffect(() => {
-    setGuest(isGuestMode());
-  }, []);
-
+  const [guest] = useState(() => isGuestMode());
   return guest;
 }
