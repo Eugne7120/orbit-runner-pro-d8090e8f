@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { z } from "zod";
 import { ChatMessage } from "@/components/chat/ChatMessage";
 import { ChatComposer } from "@/components/chat/ChatComposer";
+import { RuntimePipeline } from "@/components/chat/RuntimePipeline";
 import { ModelSelector } from "@/components/app/ModelSelector";
 import { chatStore, type Message } from "@/lib/chat-store";
 import { resolveModel, type OrbitModelId } from "@/lib/openai";
@@ -221,20 +222,7 @@ function ChatView() {
               />
             ))}
             {streaming && messages[messages.length - 1]?.role === "user" && (
-              <motion.div
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex gap-4 px-4 py-6"
-              >
-                <div className="w-8 h-8 rounded-xl bg-signal/10 border border-signal/20 flex items-center justify-center animate-pulse">
-                  <div className="w-1.5 h-1.5 rounded-full bg-signal" />
-                </div>
-                <div className="flex gap-1.5 items-center pt-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-signal/40 animate-bounce [animation-delay:-0.3s]" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-signal/40 animate-bounce [animation-delay:-0.15s]" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-signal/40 animate-bounce" />
-                </div>
-              </motion.div>
+              <RuntimePipeline waiting={true} />
             )}
           </AnimatePresence>
           <div ref={bottomRef} className="h-4" />
