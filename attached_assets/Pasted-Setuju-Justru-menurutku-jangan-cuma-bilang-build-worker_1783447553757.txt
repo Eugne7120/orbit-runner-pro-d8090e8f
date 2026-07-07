@@ -1,0 +1,742 @@
+Setuju. Justru menurutku jangan cuma bilang **"build worker page"**.
+
+Lovable perlu dikasih konteks bahwa dia lagi bikin **halaman `/app/workers`**, yaitu halaman dashboard yang dipakai contributor setelah login.
+
+Jadi promptnya lebih jelas dan hasilnya lebih konsisten.
+
+---
+
+# PHASE 3 — BUILD `/app/workers` (Worker Dashboard)
+
+## Context
+
+You are now building the authenticated application page:
+
+```
+/app/workers
+```
+
+This is **NOT** a landing page.
+
+This is **NOT** a marketing page.
+
+This is the internal dashboard used by contributors after logging into 0RBIT.
+
+A contributor uses this page to:
+
+* Download the Worker Runtime
+* Connect their wallet
+* Pair their machine
+* Monitor GPU status
+* Watch incoming inference jobs
+* View earnings
+* View completed jobs
+* Verify on-chain settlements
+* Monitor network health
+
+Everything should feel like operating modern cloud infrastructure.
+
+Think:
+
+* GitHub Actions
+* Cloudflare Dashboard
+* Railway
+* Vercel
+* Stripe Dashboard
+
+NOT crypto dashboards.
+
+NOT mining dashboards.
+
+NOT DePIN dashboards.
+
+---
+
+# Layout
+
+Desktop first.
+
+Large workspace layout.
+
+```
+Sidebar
+
+↓
+
+Main Dashboard
+
+↓
+
+Detail Panels
+
+↓
+
+Activity Feed
+```
+
+Use plenty of breathing room.
+
+Rounded cards.
+
+Dark glass surfaces.
+
+Subtle borders.
+
+Minimal blue accent.
+
+---
+
+# Sidebar
+
+Navigation
+
+```
+Overview
+
+Workers
+
+Jobs
+
+Rewards
+
+Activity
+
+Proof
+
+Settings
+```
+
+Worker page highlighted.
+
+Sidebar should remain fixed.
+
+---
+
+# Header
+
+Top status bar.
+
+Show
+
+```
+Worker Runtime
+
+Node Online
+
+Last heartbeat
+
+Wallet
+
+Current Region
+```
+
+Live indicator.
+
+Heartbeat pulse.
+
+Current network latency.
+
+---
+
+# Hero Status
+
+Large status card.
+
+```
+Worker
+
+ONLINE
+
+GPU
+
+RTX 4090
+
+Region
+
+Singapore
+
+Queue
+
+3 Jobs
+
+Today's Earnings
+
+18.42 USDC
+
+Success Rate
+
+99.3%
+
+Node Reputation
+
+Excellent
+```
+
+Everything updates smoothly.
+
+Numbers animate naturally.
+
+---
+
+# Worker Runtime Status
+
+Build a dedicated section.
+
+Show
+
+```
+Runtime Version
+
+v1.2.3
+
+GPU Driver
+
+CUDA 12.4
+
+VRAM
+
+24 GB
+
+Temperature
+
+63°
+
+Power Usage
+
+221W
+
+Inference Engine
+
+0RBIT Runtime
+
+Connection
+
+Healthy
+
+Heartbeat
+
+Live
+```
+
+Every value updates.
+
+No fake flashing.
+
+Natural movement.
+
+---
+
+# Runtime Architecture Animation
+
+This becomes the signature visual.
+
+Large animated flow diagram.
+
+```
+User Request
+
+↓
+
+Router
+
+↓
+
+Queue
+
+↓
+
+Worker
+
+↓
+
+Inference
+
+↓
+
+Streaming
+
+↓
+
+Settlement
+
+↓
+
+Proof
+```
+
+Animated continuously.
+
+Moving signal.
+
+Routing pulses.
+
+Workers change state.
+
+Idle
+
+Busy
+
+Streaming
+
+Offline
+
+Everything loops forever.
+
+This should feel like watching a real distributed runtime.
+
+---
+
+# Installation Wizard
+
+If runtime not installed.
+
+Show setup wizard.
+
+```
+Download Runtime
+
+↓
+
+Install
+
+↓
+
+Connect Wallet
+
+↓
+
+Benchmark GPU
+
+↓
+
+Join Network
+
+↓
+
+Ready
+```
+
+Every completed step becomes active.
+
+Progress animation.
+
+Smooth transitions.
+
+---
+
+# Runtime Terminal
+
+Do NOT use fake scrolling logs.
+
+Instead simulate actual installation.
+
+Example
+
+```
+Downloading runtime package...
+
+Extracting binaries...
+
+Checking CUDA installation...
+
+Detecting GPU...
+
+Benchmarking hardware...
+
+Connecting wallet...
+
+Receiving node identity...
+
+Joining runtime...
+
+Worker online.
+```
+
+Every line appears progressively.
+
+Exactly like a real installation.
+
+When finished.
+
+Clear terminal.
+
+Restart.
+
+Loop forever.
+
+No blinking typing cursor.
+
+No fake hacker effect.
+
+---
+
+# GPU Benchmark
+
+Dedicated benchmark card.
+
+```
+GPU
+
+RTX 4090
+
+VRAM
+
+24 GB
+
+CUDA
+
+12.4
+
+Bandwidth
+
+982 GB/s
+
+Estimated TPS
+
+384 Tokens/sec
+
+Node Tier
+
+Enterprise
+```
+
+Animate benchmark graph.
+
+Animate throughput.
+
+---
+
+# Live Jobs
+
+This section is extremely important.
+
+Every few seconds.
+
+Generate a new job.
+
+Example
+
+```
+Job Received
+
+↓
+
+Router Selected
+
+↓
+
+Loading Model
+
+↓
+
+Running Inference
+
+↓
+
+Streaming
+
+↓
+
+Settlement
+
+↓
+
+Reward Sent
+
+↓
+
+Completed
+```
+
+Each step activates.
+
+Animated progress.
+
+Different worker.
+
+Different latency.
+
+Different reward.
+
+Different token count.
+
+Loop forever.
+
+---
+
+# Active Queue
+
+Show queue.
+
+```
+Waiting
+
+2
+
+Running
+
+4
+
+Completed
+
+218
+
+Failed
+
+0
+```
+
+Update every few seconds.
+
+Smooth counter animation.
+
+---
+
+# Earnings Dashboard
+
+```
+Today
+
+18.42 USDC
+
+Yesterday
+
+21.93
+
+This Week
+
+148.91
+
+Lifetime
+
+2841.12
+```
+
+Line chart updates.
+
+Tiny sparkline animation.
+
+---
+
+# Payment Breakdown
+
+Visual architecture.
+
+```
+User
+
+↓
+
+Credits
+
+↓
+
+Runtime
+
+↓
+
+Worker Reward
+
+↓
+
+Treasury
+
+↓
+
+Settlement
+
+↓
+
+Completed
+```
+
+Moving light pulses.
+
+Flow animation.
+
+Infrastructure style.
+
+---
+
+# On-chain Proof
+
+Every completed job generates proof.
+
+Card example.
+
+```
+Inference Completed
+
+Worker
+
+Node SG-08
+
+Latency
+
+287 ms
+
+Reward
+
+0.031 USDC
+
+Credits
+
+0.08
+
+Transaction
+
+9a82....
+
+Settlement
+
+Confirmed
+
+Explorer
+
+View Transaction
+```
+
+Newest appears on top.
+
+Older cards slide down.
+
+Soft animation.
+
+---
+
+# Activity Feed
+
+Continuous activity.
+
+```
+Worker-08 completed Chat
+
++0.031 USDC
+
+2 sec ago
+
+----------------
+
+Worker-11 completed Image
+
++0.121 USDC
+
+----------------
+
+Worker-04 online
+
+Singapore
+
+----------------
+
+Worker-02 benchmark updated
+```
+
+Cards slide in.
+
+Fade out.
+
+Never static.
+
+---
+
+# Background
+
+The dashboard background must never be plain black.
+
+Use subtle architectural motion.
+
+Examples
+
+Routing topology
+
+Connection paths
+
+Grid overlays
+
+Network nodes
+
+Signal flow
+
+Circuit diagrams
+
+Very subtle.
+
+2~5% opacity.
+
+Always moving slowly.
+
+No particles.
+
+No neon.
+
+No cyberpunk.
+
+---
+
+# Motion
+
+Everything should feel alive.
+
+Cards
+
+Micro floating.
+
+Metrics
+
+Smooth counting.
+
+Status
+
+Breathing glow.
+
+Buttons
+
+Light sweep.
+
+Lines
+
+Signal pulses.
+
+Nodes
+
+Heartbeat animation.
+
+Section transitions
+
+Soft fade.
+
+Nothing should feel static.
+
+---
+
+# Fake Data
+
+Until backend APIs exist, simulate realistic runtime data.
+
+Generate believable:
+
+* GPU information
+* Queue size
+* Worker IDs
+* Job IDs
+* Token counts
+* Credits consumed
+* USDC rewards
+* Solana transaction hashes
+* Latency values
+* Runtime version
+* Heartbeat intervals
+* Throughput metrics
+
+The data should update periodically and feel like a real production system, not random numbers.
+
+---
+
+# Implementation Notes
+
+* Do **not** implement a real backend yet.
+* Build everything as reusable React components.
+* Separate components for RuntimeFlow, WorkerStatus, LiveJobs, RuntimeTerminal, PaymentFlow, OnChainProof, EarningsChart, and ActivityFeed.
+* All animations should be implemented with code (CSS, Framer Motion, SVG, Canvas where appropriate). **Do not use video assets or image assets.**
+* The entire `/app/workers` page should feel polished enough that a visitor believes the runtime already exists, while remaining visually honest that the data is currently simulated for the MVP.
