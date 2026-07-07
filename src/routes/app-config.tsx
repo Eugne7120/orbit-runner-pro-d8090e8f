@@ -4,7 +4,7 @@ export const Route = createFileRoute("/app-config")({
   server: {
     handlers: {
       GET: async () => {
-        return new Response(JSON.stringify({ privyAppId: process.env.PRIVY_APP_ID ?? "" }), {
+        return new Response(JSON.stringify({ privyAppId: process.env.VITE_PRIVY_APP_ID ?? "" }), {
           headers: { "Content-Type": "application/json" },
         });
       },

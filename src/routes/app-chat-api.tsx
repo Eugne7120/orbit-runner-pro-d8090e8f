@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import OpenAI from "openai";
+import { ALLOWED_INTERNAL_MODELS } from "@/lib/openai";
 
 export const Route = createFileRoute("/app-chat-api")({
   server: {
@@ -19,6 +20,13 @@ export const Route = createFileRoute("/app-chat-api")({
             messages: { role: string; content: string }[];
             model: string;
           };
+
+          if (!ALLOWED_INTERNAL_MODELS.has(model)) {
+            return new Response(JSON.stringify({ error: "Model not allowed" }), {
+              status: 400,
+              headers: { "Content-Type": "application/json" },
+            });
+          }
 
           const stream = await openai.chat.completions.create({
             model,

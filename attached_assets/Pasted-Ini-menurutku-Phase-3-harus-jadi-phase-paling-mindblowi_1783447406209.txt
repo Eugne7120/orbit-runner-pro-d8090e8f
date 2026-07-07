@@ -1,0 +1,719 @@
+Ini menurutku **Phase 3** harus jadi phase paling "mindblowing". Bukan karena banyak fitur, tapi karena ini pertama kalinya user benar-benar melihat kalau **0RBIT adalah sebuah runtime network**, bukan chatbot AI biasa.
+
+Jangan fokus bikin banyak halaman. Fokus bikin **1 halaman Worker** yang kalau orang buka langsung ngerti cara jaringan bekerja.
+
+---
+
+# PHASE 3 — WORKER RUNTIME + NETWORK + ON-CHAIN PROOF
+
+> ## IMPORTANT
+>
+> Do NOT redesign the existing UI.
+>
+> Keep the exact design language already established.
+>
+> Continue using the same design system, spacing, typography, rounded corners, glass surfaces, colors, motion language, and architectural visual style.
+>
+> Everything must feel like it was built by the same design team.
+>
+> This phase is about extending the product, not changing the brand.
+
+---
+
+# GOAL
+
+Build the complete Worker Runtime experience.
+
+This should feel like operating a distributed AI infrastructure network.
+
+Not a crypto mining dashboard.
+
+Not a DePIN clone.
+
+Not a GPU rental website.
+
+Everything should communicate:
+
+> "The network is alive."
+
+The Worker page should immediately make visitors understand that every AI request travels through a decentralized runtime before reaching the model.
+
+The entire page should feel operational, technical and premium.
+
+---
+
+# DO NOT USE
+
+❌ Crypto graphics
+
+❌ Hexagons
+
+❌ Blockchain cubes
+
+❌ Floating particles
+
+❌ Neon cyberpunk
+
+❌ Random glowing circles
+
+❌ AI generated decoration
+
+Instead use
+
+✓ Thin architectural lines
+
+✓ Runtime topology
+
+✓ Terminal UI
+
+✓ Flow diagrams
+
+✓ Data routing
+
+✓ System visualization
+
+✓ Clean infrastructure aesthetic
+
+---
+
+# PAGE STRUCTURE
+
+---
+
+# 1. HERO
+
+Headline
+
+Run AI.
+Get Paid.
+Own Infrastructure.
+
+Description
+
+Turn your GPU into part of the global inference runtime.
+
+0RBIT automatically routes AI requests to your node, verifies execution, settles payment on Solana and records proof of work.
+
+CTA
+
+Download Runtime
+
+Become Worker
+
+---
+
+Hero Visual
+
+NOT an illustration.
+
+Build a fully animated runtime topology.
+
+Imagine something between
+
+Stripe
+
+Linear
+
+Vercel
+
+OpenCompute
+
+The animation continuously loops.
+
+Visual flow
+
+User Request
+
+↓
+
+Global Router
+
+↓
+
+Worker Selection
+
+↓
+
+Inference
+
+↓
+
+Streaming
+
+↓
+
+Settlement
+
+↓
+
+Reward
+
+↓
+
+Proof
+
+Every request should travel through the network as animated signal pulses.
+
+Workers should softly switch between
+
+Idle
+
+Busy
+
+Streaming
+
+Completed
+
+Status.
+
+---
+
+# 2. LIVE NETWORK
+
+Title
+
+Global Runtime Network
+
+This is NOT a map.
+
+Instead create a topology diagram.
+
+Example
+
+```
+         Worker
+            ●
+
+      ●            ●
+
+ API ---- Router ---- Stream
+
+      ●            ●
+
+          Worker
+```
+
+Everything animated.
+
+Signal pulses.
+
+Routing paths.
+
+Changing workers.
+
+Small latency labels.
+
+Node activity.
+
+Queue changes.
+
+Nothing static.
+
+---
+
+# 3. DOWNLOAD RUNTIME
+
+Instead of one button.
+
+Build installation wizard.
+
+```
+Download Runtime
+
+↓
+
+Install
+
+↓
+
+Connect Wallet
+
+↓
+
+Benchmark GPU
+
+↓
+
+Join Network
+
+↓
+
+Ready
+```
+
+Each step should animate.
+
+Completed steps glow softly.
+
+Current step pulses.
+
+Hover should preview the next step.
+
+---
+
+Right side
+
+Runtime terminal
+
+Instead of fake logs
+
+Actually simulate installation.
+
+Example
+
+```
+$ downloading runtime...
+
+██████████
+
+installing dependencies...
+
+checking CUDA...
+
+checking VRAM...
+
+wallet connected
+
+benchmark complete
+
+joining network
+
+worker online
+```
+
+No typing cursor.
+
+The code should progressively appear line by line.
+
+Exactly like a real installation.
+
+When finished.
+
+Clear.
+
+Restart.
+
+Loop forever.
+
+---
+
+# 4. GPU BENCHMARK
+
+Live benchmark card.
+
+Show
+
+GPU
+
+VRAM
+
+CUDA
+
+Driver
+
+Bandwidth
+
+Estimated Throughput
+
+Node Tier
+
+Everything animates.
+
+Numbers count smoothly.
+
+Graphs update.
+
+Status changes.
+
+---
+
+# 5. LIVE JOB TIMELINE
+
+This section is extremely important.
+
+Every few seconds.
+
+Generate a fake inference request.
+
+Animate
+
+```
+Incoming Request
+
+↓
+
+Router Searching
+
+↓
+
+Best Worker Found
+
+↓
+
+Loading Model
+
+↓
+
+Running Inference
+
+↓
+
+Streaming Response
+
+↓
+
+Settlement
+
+↓
+
+Reward Sent
+
+↓
+
+Completed
+```
+
+Each step activates one after another.
+
+Current step glows.
+
+Finished step becomes green.
+
+Everything loops forever.
+
+Different latency every loop.
+
+Different token count.
+
+Different worker.
+
+---
+
+# 6. WORKER DASHBOARD
+
+Large dashboard.
+
+Show
+
+Node Status
+
+Worker ID
+
+GPU
+
+Current Model
+
+Queue
+
+Latency
+
+Jobs Today
+
+Today's Earnings
+
+Lifetime Earnings
+
+Success Rate
+
+Node Reputation
+
+Everything updates live.
+
+Every metric should slowly change.
+
+Not random.
+
+Natural.
+
+---
+
+# 7. LIVE TERMINAL
+
+Replace fake log monitor.
+
+Instead simulate actual inference execution.
+
+Example
+
+```
+POST /v1/chat
+
+↓
+
+Loading model...
+
+↓
+
+Allocating GPU memory...
+
+↓
+
+Running inference...
+
+↓
+
+Streaming tokens...
+
+↓
+
+Settlement...
+
+↓
+
+Reward confirmed.
+```
+
+Each line appears naturally.
+
+One by one.
+
+Exactly like watching real software.
+
+When complete.
+
+Restart.
+
+Never use typing animation.
+
+Never use blinking cursor.
+
+Only progressive log generation.
+
+---
+
+# 8. PAYMENT FLOW
+
+One of the most important visuals.
+
+Build animated payment architecture.
+
+```
+User
+
+↓
+
+Credits
+
+↓
+
+Runtime
+
+↓
+
+Worker
+
+↓
+
+Treasury
+
+↓
+
+Proof
+
+↓
+
+Solana
+```
+
+When a request completes.
+
+Animate
+
+Credits moving.
+
+Worker reward.
+
+Treasury allocation.
+
+Settlement.
+
+Everything using moving light pulses.
+
+No coins.
+
+No dollar icons flying.
+
+Everything abstract.
+
+Infrastructure style.
+
+---
+
+# 9. ON CHAIN PROOF
+
+This should feel premium.
+
+Every completed request generates
+
+Worker
+
+Latency
+
+Reward
+
+Settlement
+
+Signature
+
+Explorer
+
+Build beautiful receipt cards.
+
+Example
+
+```
+Inference Completed
+
+Worker
+
+Node SG-08
+
+Latency
+
+318 ms
+
+Reward
+
+0.041 USDC
+
+Settlement
+
+Completed
+
+Proof
+
+4sd82...
+
+Explorer
+
+View Transaction
+```
+
+Cards softly appear.
+
+Old ones move down.
+
+Newest stays on top.
+
+---
+
+# 10. LIVE REWARD FEED
+
+Instead of one graph.
+
+Create activity feed.
+
+Example
+
+```
+Worker-18 earned
+
+0.041 USDC
+
+2 sec ago
+
+----------------
+
+Worker-03 earned
+
+0.087 USDC
+
+7 sec ago
+
+----------------
+
+Worker-22 completed
+
+Image Generation
+
+0.24 USDC
+```
+
+New cards slide in.
+
+Old cards fade.
+
+Continuous.
+
+---
+
+# 11. BACKGROUND
+
+Do NOT leave empty black.
+
+Every section should contain subtle architectural visuals.
+
+Examples
+
+Runtime topology
+
+Connection paths
+
+Grid fragments
+
+Routing diagrams
+
+Moving signal paths
+
+Node clusters
+
+Circuit routing
+
+Everything
+
+2~5% opacity.
+
+Extremely subtle.
+
+Always moving.
+
+Never distracting.
+
+The website should never have completely empty black areas.
+
+---
+
+# 12. MICRO ANIMATIONS
+
+Everything should feel alive.
+
+Examples
+
+Cards slightly float independently.
+
+Metric numbers animate.
+
+Signal lights pulse.
+
+Lines breathe.
+
+Nodes expand softly.
+
+Hover reveals hidden borders.
+
+Buttons have subtle light sweep.
+
+Background continuously moves.
+
+Nothing should remain completely static.
+
+---
+
+# FINAL QUALITY TARGET
+
+The finished Worker experience should feel closer to operating modern cloud infrastructure than browsing a crypto website.
+
+The emotional references are:
+
+* Stripe Dashboard
+* Linear
+* Vercel
+* OpenCompute
+* Cloudflare
+* GitHub Actions
+* Railway
+* Warp Terminal
+
+Users should immediately understand that 0RBIT is not selling GPUs. It is exposing a **living decentralized AI runtime** where every request, every worker, every reward, and every on-chain settlement is visible through elegant motion and infrastructure-first visual storytelling.
+
+**Do not rush implementation. Prioritize polish, animation quality, visual consistency, and believable system behavior over adding unnecessary features.**

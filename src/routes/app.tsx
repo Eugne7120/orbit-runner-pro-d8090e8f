@@ -3,7 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { PrivyProvider } from "@/components/app/PrivyProvider";
 
 const getPrivyAppId = createServerFn({ method: "GET" }).handler(async () => {
-  return { privyAppId: process.env.PRIVY_APP_ID ?? "" };
+  return { privyAppId: process.env.VITE_PRIVY_APP_ID ?? "" };
 });
 
 export const Route = createFileRoute("/app")({
